@@ -20,18 +20,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="支持联邦学习的去蜂窝mMIMO 网络高效通信策略1.背景介绍为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集[^1]。由于无线通信场景的开放性，用户的（个人词库, FedAvg[^2]）（工业识别, Mm-FedAvg[^3]）（智能监控, FedVision[^4]）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的">
+  <meta name="description" content="支持联邦学习的去蜂窝mMIMO 网络高效通信策略 1.背景介绍 为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集1。由于无线通信场景的开放性，用户的（个人词库, FedAvg2）（工业识别, Mm-FedAvg3）（智能监控, FedVision4）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无蜂窝">
 <meta property="og:url" content="https://uncle-tt.github.io/uncategorized/%E6%97%A0%E8%9C%82%E7%AA%9D.html">
 <meta property="og:site_name" content="FATT的个人博客">
-<meta property="og:description" content="支持联邦学习的去蜂窝mMIMO 网络高效通信策略1.背景介绍为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集[^1]。由于无线通信场景的开放性，用户的（个人词库, FedAvg[^2]）（工业识别, Mm-FedAvg[^3]）（智能监控, FedVision[^4]）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的">
+<meta property="og:description" content="支持联邦学习的去蜂窝mMIMO 网络高效通信策略 1.背景介绍 为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集1。由于无线通信场景的开放性，用户的（个人词库, FedAvg2）（工业识别, Mm-FedAvg3）（智能监控, FedVision4）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-20T13:11:32.000Z">
-<meta property="article:modified_time" content="2022-12-20T13:12:26.435Z">
+<meta property="article:modified_time" content="2022-12-22T13:19:33.185Z">
 <meta property="article:author" content="FATT">
 <meta property="article:tag" content="支持联邦学习的去蜂窝mMIMO 网络高效通信策略">
 <meta name="twitter:card" content="summary">
@@ -177,10 +177,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-20 21:11:32 / 修改时间：21:12:26" itemprop="dateCreated datePublished" datetime="2022-12-20T21:11:32+08:00">2022-12-20</time>
+              <time title="创建时间：2022-12-20 21:11:32" itemprop="dateCreated datePublished" datetime="2022-12-20T21:11:32+08:00">2022-12-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-22 21:19:33" itemprop="dateModified" datetime="2022-12-22T21:19:33+08:00">2022-12-22</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -200,112 +206,559 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="支持联邦学习的去蜂窝mMIMO-网络高效通信策略"><a href="#支持联邦学习的去蜂窝mMIMO-网络高效通信策略" class="headerlink" title="支持联邦学习的去蜂窝mMIMO 网络高效通信策略"></a><strong>支持联邦学习的去蜂窝mMIMO 网络高效通信策略</strong></h4><h4 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h4><p>为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集[^1]。由于无线通信场景的开放性，用户的（个人词库, FedAvg[^2]）（工业识别, Mm-FedAvg[^3]）（智能监控, FedVision[^4]）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。联邦学习支持用户在本地训练模型，是保障用户隐私数据安全的新型机器学习范例。</p>
-<p>[^1]: Dong, S., Wang, P., &amp; Abbas, K. (2021). A survey on deep learning and its applications. <em>Computer Science Review</em>, <em>40</em>, 100379.<br>[^2]: McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient learning of deep networks from decentralized data. In <em>Artificial intelligence and statistics</em> (pp. 1273-1282). PMLR.<br>[^3]: Zhao, Y., Barnaghi, P., &amp; Haddadi, H. (2022, May). Multimodal Federated Learning on IoT Data. In <em>2022 IEEE&#x2F;ACM Seventh International Conference on Internet-of-Things Design and Implementation (IoTDI)</em> (pp. 43-54). IEEE.<br>[^4]: Deng, Y., Han, T., &amp; Ansari, N. (2020). FedVision: Federated video analytics with edge computing. <em>IEEE Open Journal of the Computer Society</em>, <em>1</em>, 62-72.</p>
+        <h4
+id="支持联邦学习的去蜂窝mmimo-网络高效通信策略"><strong>支持联邦学习的去蜂窝mMIMO
+网络高效通信策略</strong></h4>
+<h4 id="背景介绍">1.背景介绍</h4>
+<p>为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>。由于无线通信场景的开放性，用户的（个人词库,
+FedAvg<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>）（工业识别, Mm-FedAvg<a href="#fn3"
+class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>）（智能监控, FedVision<a href="#fn4"
+class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。联邦学习支持用户在本地训练模型，是保障用户隐私数据安全的新型机器学习范例。</p>
 <p>为了保护用户的数据隐私，联邦学习提出用户仅需要上传本地模型的参数到云服务器。然而，将有海量智能设备通过无线通信链路更新模型参数，一方面，大量数据上传使得通信系统中的干扰水平提高，增加了通信开销；另一方面无线信道的复杂性使得用户设备的服务质量无法得到保证，无线信道质量较差的设备需要更长的上传时间，这降低了通信效率，并增加了全局训练时延。前者取决于通信系统的抗干扰能力，而后者则与用户设备的通信策略相关。在实际应用中，通信系统由工业电源供电，无须担心高功耗负载带来的续航问题，而无线设备通过锂电池供电，低通信效率将显著增加无线设备的能量消耗。</p>
-<hr>
+<hr />
 <p>在大规模无线网络中，海量用户设备进行数据收发导致了无线信道的复杂性，因此总存在一部分用户受到严重干扰，使得这部分用户的通信效率降低。如图1所示，由于中心服务器需要等待所有参与联邦学习进程的用户设备接收训练更新，通信效率低的用户设备将导致参与训练的其他用户设备的功耗增加，这就是所谓的落后者效应。</p>
 <p>落后者效应导致在每轮更新过程中，网络中总存在一部分用户在训练过程中的不必要的待机时间和功耗大大增加，</p>
-<p>为了节省UE端的能耗，我们需要在联邦学习过程中抑制落后者效应。文献[^5][^6][^7]中提出联邦学习在每次迭代中，只需要一个终端的子集而不是所有终端发送本地更新。通过特定的采样技术选择用户设备的子集，使训练更新的聚合是无偏的，从而使联邦学习过程收敛。使用用户设备采样的网络比不使用用户设备采样的网络有更小的落后者用户设备的概率。因此，在这个意义上，落后者效应得到了缓解。然而，抽样的某些用户设备可能是掉线的用户设备，因此，仅使用用户设备采样技术并不总是有效地缓解落后者效应。另一方面，文献[^8][^9]提出了用户选择方法来缓解落后者效应。文献[^8]开发了一种在线方案，在每次迭代中选择用户设备以最小化训练时间，同时保证联邦学习过程的收敛性。文献[^9]中设计了一种联合设计训练时间最小化的带宽分配和用户设备选择的次优方案。文献[^10]中引入了一种联合联邦学习、资源分配和用户设备选择方案的新型联邦学习框架，以在达到一定联邦学习精度的同时最小化训练时间。但是，在时分多址、频分多址和正交频分多址网络中实现联邦学习，如[^8][^10]，可能效率不高。在这些网络中，联邦学习训练时间显著增加，特别是当用户设备数量较大时。</p>
-<p>[^5]:McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient learning of deep networks from decentralized data. In <em>Artificial intelligence and statistics</em> (pp. 1273-1282). PMLR.<br>[^6]: X. Li, K. Huang, W. Yang, S. Wang, and Z. Zhang, “On the convergence of FedAvg on Non-IID data,” in Proc. Int. Conf. Learning Representations (ICLR), 2020.<br>[^7]: Haddadpour, F., &amp; Mahdavi, M. (2019). On the convergence of local descent methods in federated learning. <em>arXiv preprint arXiv:1910.14425</em>.<br>[^8]:Xia, W., Quek, T. Q., Guo, K., Wen, W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client scheduling for federated learning. <em>IEEE Transactions on Wireless Communications</em>, <em>19</em>(11), 7108-7123.<br>[^9]:Vu, T. T., Ngo, D. T., Ngo, H. Q., Dao, M. N., Tran, N. H., &amp; Middleton, R. H. (2022). Joint Resource Allocation to Minimize Execution Time of Federated Learning in Cell-Free Massive MIMO. <em>IEEE Internet of Things Journal</em>.<br>[^10]:M. Chen, H. V. Poor, W. Saad, and S. Cui, “Convergence time minimization of federated learning over wireless networks,” in <em>Proc. IEEE Int. Conf. Commun. (ICC)</em>, 2020, pp. 1–6.</p>
-<p>近年来，无蜂窝的大规模多输入多输出(CFmMIMO)网络被认为是在[^11]无线网络上支持联邦学习的绝佳选择。在CFmMIMO网络中，用户设备由大量的分布式接入点通过相同频段的无线链路同时提供服务，接入点通过回程链路连接到中央处理器。CFmMIMO网络提供了宏分集增益，从而为所有终端[^12]提供高质量的服务。更重要的是，CFmMIMO网络提供了信道硬化[^13]，即有效信道增益在一个大尺度相干时间内相当稳定。利用这一特性，文献[^11]提出了一个联邦学习框架，使联邦学习过程的每次迭代发生在一个大尺度相干时间内。然而，现有工作仍未研究落后者效应对用户终端功耗的影响，因此用于减轻无细胞大规模 MIMO 网络上联邦学习的落后者效应的方法尚未被研究。</p>
-<p>[^11]: T. T. Vu, D. T. Ngo, N. H. Tran, H. Q. Ngo, M. N. Dao, and R. H. Middleton, “Cell-free massive MIMO for wireless federated learning,” <em>IEEE Trans. Wireless Commun.</em>, 2020.<br>[^12]: H. Q. Ngo, A. Ashikhmin, H. Yang, E. G. Larsson, and T. L. Marzetta, “Cell-free massive MIMO versus small cells,”<em>IEEE Trans. Wireless Commun.</em>, vol. 16, no. 3, pp. 1834–1850, Mar. 2017.<br>[^13]: T. L. Marzetta, E. G. Larsson, H. Yang, and H. Q. Ngo, Fundamentals of Massive MIMO. <em>Cambridge University Press</em>, 2016.<br>因此本文的研究目标在于通过缓解无蜂窝网络中进行联邦学习的落后者效应，降低用户设备的功耗。</p>
+<p>为了节省UE端的能耗，我们需要在联邦学习过程中抑制落后者效应。文献<a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a><a href="#fn6" class="footnote-ref"
+id="fnref6" role="doc-noteref"><sup>6</sup></a><a href="#fn7"
+class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a>中提出联邦学习在每次迭代中，只需要一个终端的子集而不是所有终端发送本地更新。通过特定的采样技术选择用户设备的子集，使训练更新的聚合是无偏的，从而使联邦学习过程收敛。使用用户设备采样的网络比不使用用户设备采样的网络有更小的落后者用户设备的概率。因此，在这个意义上，落后者效应得到了缓解。然而，抽样的某些用户设备可能是掉线的用户设备，因此，仅使用用户设备采样技术并不总是有效地缓解落后者效应。另一方面，文献<a
+href="#fn8" class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref"
+id="fnref9"
+role="doc-noteref"><sup>9</sup></a>提出了用户选择方法来缓解落后者效应。文献<a
+href="#fn10" class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a>开发了一种在线方案，在每次迭代中选择用户设备以最小化训练时间，同时保证联邦学习过程的收敛性。文献<a
+href="#fn11" class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a>中设计了一种联合设计训练时间最小化的带宽分配和用户设备选择的次优方案。文献<a
+href="#fn12" class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a>中引入了一种联合联邦学习、资源分配和用户设备选择方案的新型联邦学习框架，以在达到一定联邦学习精度的同时最小化训练时间。但是，在时分多址、频分多址和正交频分多址网络中实现联邦学习，如<a
+href="#fn13" class="footnote-ref" id="fnref13"
+role="doc-noteref"><sup>13</sup></a><a href="#fn14" class="footnote-ref"
+id="fnref14"
+role="doc-noteref"><sup>14</sup></a>，可能效率不高。在这些网络中，联邦学习训练时间显著增加，特别是当用户设备数量较大时。</p>
+<p>近年来，无蜂窝的大规模多输入多输出(CFmMIMO)网络被认为是在<a
+href="#fn15" class="footnote-ref" id="fnref15"
+role="doc-noteref"><sup>15</sup></a>无线网络上支持联邦学习的绝佳选择。在CFmMIMO网络中，用户设备由大量的分布式接入点通过相同频段的无线链路同时提供服务，接入点通过回程链路连接到中央处理器。CFmMIMO网络提供了宏分集增益，从而为所有终端<a
+href="#fn16" class="footnote-ref" id="fnref16"
+role="doc-noteref"><sup>16</sup></a>提供高质量的服务。更重要的是，CFmMIMO网络提供了信道硬化<a
+href="#fn17" class="footnote-ref" id="fnref17"
+role="doc-noteref"><sup>17</sup></a>，即有效信道增益在一个大尺度相干时间内相当稳定。利用这一特性，文献<a
+href="#fn18" class="footnote-ref" id="fnref18"
+role="doc-noteref"><sup>18</sup></a>提出了一个联邦学习框架，使联邦学习过程的每次迭代发生在一个大尺度相干时间内。然而，现有工作仍未研究落后者效应对用户终端功耗的影响，因此用于减轻无细胞大规模
+MIMO 网络上联邦学习的落后者效应的方法尚未被研究。</p>
 <p>在联邦学习场景下，</p>
 <p>如图1所示，联邦学习的步骤如下。</p>
 <ul>
-<li><p>服务器分发全局模型给参与联邦学习的用户。</p>
-</li>
-<li><p>用户使用个人数据训练本地模型。</p>
-</li>
-<li><p>用户上传本地模型。</p>
-</li>
+<li><p>服务器分发全局模型给参与联邦学习的用户。</p></li>
+<li><p>用户使用个人数据训练本地模型。</p></li>
+<li><p>用户上传本地模型。</p></li>
 <li><p>服务器汇聚多个用户的本地模型生成新的全局模型。</p>
-<p>联邦学习过程将持续进行直到全局模型收敛。</p>
-</li>
+<p>联邦学习过程将持续进行直到全局模型收敛。</p></li>
 </ul>
-<hr>
+<hr />
 <p>通常联邦学习训练模型的迭代过程将持续上千次，随着参与联邦学习的用户数量的增加，联邦学习训练过程传输的数据量使现有通信系统不堪重负。</p>
-<hr>
+<hr />
 <p>【相关工作部分】</p>
 <p>由于上述所有有前途的优势，FL已经吸引了开发者和研究人员的广泛关注。</p>
 <p>目前的研究可以分为以下几类：</p>
 <ul>
 <li><p>提升模型收敛速度，降低全局通信轮次</p>
 <ul>
-<li><p>通过用户调度，提高模型收敛速度。</p>
-</li>
-<li><p>通过优化云端魔性的聚合方式，获得更好的全局模型。</p>
-</li>
-</ul>
-</li>
+<li><p>通过用户调度，提高模型收敛速度。</p></li>
+<li><p>通过优化云端魔性的聚合方式，获得更好的全局模型。</p></li>
+</ul></li>
 <li><p>降低每轮通信的通信消耗（训练时间、数据量）</p>
 <ul>
 <li>通过用户侧或基站侧的资源分配方案降低模型训练的时间</li>
 <li>通过压缩模型参数的方法，降低每轮次通信的数据量</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
+<hr />
 <p>【本文工作】</p>
 <p>在无线网络中，大多数用户设备仅依靠电池维持工作，参与联邦学习的多轮次通信消耗对用户设备的续航时间影响很大，因此高能效的资源分配方案是必要的。基于上述原因，本文提出了一种用户设备的资源分配方案以支持在无蜂窝系统上进行联邦学习。通过建模用户设备在每轮次联邦学习过程中的计算时间、计算功耗、数据传输时间和数据传输功耗，最终在优化用户设备的本地模型精度、上行功率分配系数和CPU时钟频率等变量的基础上，最小化用户设备的能耗。</p>
-<h4 id="2-系统模型"><a href="#2-系统模型" class="headerlink" title="2.系统模型"></a>2.系统模型</h4><p>我们考虑一个由$K$个用户和$L$个接入点组成的无蜂窝网络。无蜂窝网络遵循TDD协议在相同的时频块上为多个用户同时服务。我们假设第k个用户使用的上行导频$||\boldsymbol{\phi}<em>{k}||^{2}&#x3D;1,\boldsymbol{\phi}</em>{k} \in \mathbb{C}^{\tau_{p} \times 1}$,$ \forall k \in {1,\ldots,K}$,发送导频序列的功率为$\rho_{p}$任意导频序列相互正交。当用户k参与联邦学习时，用户k将在信道$\mathbf{h}<em>{k,n} \in \mathcal{CN}(0,\mathbf{R</em>{k,n}})$上发送上行导频$\boldsymbol{\phi}<em>{k} \in \mathbb{C}^{\tau</em>{p} \times 1}$给第l个接入点，其中$\mathbf{R_{k,l}} &#x3D; \tr(\beta_{k,l})&#x2F;N$是用户天线与接入点天线之间的信道相关矩阵, $\beta_{k,l}$为信道的大尺度衰落因子，$N$为接入点天线数量。在第l个接入点接收的导频向量为：<br>$$<br>\boldsymbol{y}<em>{l}^{p} &#x3D;\sqrt{\tau</em>{p}\rho_{p}} \sum_{k&#x3D;1}^{K}\mathbf{h}<em>{k,l} \boldsymbol{\phi}</em>{k} + \mathbf{n}<em>{l}^{p}<br>$$<br>其中$\mathbf{n}</em>{l}^{p}$为加性噪声，导频向量$y_{l}^{p}$在导频$\phi_{k}$上的投影为:<br>$$<br>\hat{y}<em>{l,k}^{p}&#x3D;\boldsymbol{\phi}</em>{k}^{H} \boldsymbol{y}<em>{l}^{p}&#x3D;\sqrt{\tau</em>{p} \rho_{p}} \sum_{k &#x3D; 1}^{K} \mathbf{h}<em>{k,l} \boldsymbol{\phi}</em>{k}^{H} \boldsymbol{\phi}<em>{\ell}+\boldsymbol{\phi}</em>{k}^{H} \boldsymbol{n}<em>{l}^{p}<br>$$<br>给定$\hat{y}</em>{l}^{p}$,接入点$l$使用最小均方误差（MMSE）方法得到信道$\mathbf{h}<em>{k,l}$的估计：<br>$$<br>\hat{\mathbf{h}}</em>{k,l} &#x3D; \mathbb{E}\left{(\hat{\boldsymbol{y}}<em>{l}^{p})^{*} \mathbf{h}</em>{k,l}\right}\left(\mathbb{E}\left{\left|\hat{\mathbf{h}}<em>{k,l}\right|^{2}\right}\right)^{-1} \hat{y}</em>{l,k}^{p}&#x3D;\frac{\tau_{t} \rho_{t}\left(\beta_{m k}\right)^{2}}{\sum_{\ell \in \mathcal{K}}^{\tau_{t} \rho_{t} \beta_{m \ell}\left|\varphi_{k}^{H} \varphi_{\ell}\right|^{2}+1}}\hat{y}_{l,k}^{p}<br>$$</p>
+<h4 id="系统模型">2.系统模型</h4>
+<p>我们考虑一个由<span class="math inline">\(K\)</span>个用户和<span
+class="math inline">\(L\)</span>个接入点组成的无蜂窝网络。无蜂窝网络遵循TDD协议在相同的时频块上为多个用户同时服务。我们假设第k个用户使用的上行导频<span
+class="math inline">\(||\boldsymbol{\phi}_{k}||^{2}=1,\boldsymbol{\phi}_{k}
+\in \mathbb{C}^{\tau_{p} \times 1}\)</span>,$ k {1,,K}<span
+class="math inline">\(,发送导频序列的功率为\)</span><em>{p}<span
+class="math inline">\(任意导频序列相互正交。当用户k参与联邦学习时，用户k将在信道\)</span></em>{k,n}
+(0,)<span class="math inline">\(上发送上行导频\)</span><em>{k}
+^{</em>{p} }<span class="math inline">\(给第l个接入点，其中\)</span> =
+(_{k,l})/N$是用户天线与接入点天线之间的信道相关矩阵, <span
+class="math inline">\(\beta_{k,l}\)</span>为信道的大尺度衰落因子，<span
+class="math inline">\(N\)</span>为接入点天线数量。在第l个接入点接收的导频向量为：
+<span class="math display">\[
+\boldsymbol{y}_{l}^{p} =\sqrt{\tau_{p}\rho_{p}}
+\sum_{k=1}^{K}\mathbf{h}_{k,l} \boldsymbol{\phi}_{k} +
+\mathbf{n}_{l}^{p}
+\]</span> 其中<span
+class="math inline">\(\mathbf{n}_{l}^{p}\)</span>为加性噪声，导频向量<span
+class="math inline">\(y_{l}^{p}\)</span>在导频<span
+class="math inline">\(\phi_{k}\)</span>上的投影为: <span
+class="math display">\[
+\hat{y}_{l,k}^{p}=\boldsymbol{\phi}_{k}^{H}
+\boldsymbol{y}_{l}^{p}=\sqrt{\tau_{p} \rho_{p}} \sum_{k = 1}^{K}
+\mathbf{h}_{k,l} \boldsymbol{\phi}_{k}^{H}
+\boldsymbol{\phi}_{\ell}+\boldsymbol{\phi}_{k}^{H}
+\boldsymbol{n}_{l}^{p}
+\]</span> 给定<span
+class="math inline">\(\hat{y}_{l}^{p}\)</span>,接入点<span
+class="math inline">\(l\)</span>使用最小均方误差（MMSE）方法得到信道<span
+class="math inline">\(\mathbf{h}_{k,l}\)</span>的估计： <span
+class="math display">\[
+\hat{\mathbf{h}}_{k,l} =
+\mathbb{E}\left\{(\hat{\boldsymbol{y}}_{l}^{p})^{*}
+\mathbf{h}_{k,l}\right\}\left(\mathbb{E}\left\{\left|\hat{\mathbf{h}}_{k,l}\right|^{2}\right\}\right)^{-1}
+\hat{y}_{l,k}^{p}=\frac{\tau_{t} \rho_{t}\left(\beta_{m
+k}\right)^{2}}{\sum_{\ell \in \mathcal{K}}^{\tau_{t} \rho_{t} \beta_{m
+\ell}\left|\varphi_{k}^{H}
+\varphi_{\ell}\right|^{2}+1}}\hat{y}_{l,k}^{p}
+\]</span></p>
 <ul>
-<li><p><strong>1.服务器分发全局模型给参与联邦学习的用户。</strong>假设接入点通过共轭波束赋形为多用户提供下行服务。接入点能源充足，因此分发全局模型的下行时间可以被忽略。</p>
-</li>
-<li><p><strong>2.用户使用个人数据训练本地模型。</strong>当用户接收到全局模型$\mathbf{w}$后，使用本地数据集${\mathbf{x}<em>{k} \in S</em>{u},y_{k} }$训练得到本地模型$\mathbf{g}<em>{k}$,其中$S</em>{u}$为本地数据集的大小，本地模型$\mathbf{g}<em>{k}$具有损失函数$f(\mathbf{g}</em>{k})$。对于一个给定的本地模型精度$\theta$，模型在本地训练得到最优模型$\mathbf{g}<em>{k}^{i}$需要的迭代次数可以表示为$L(\theta) &#x3D;\varphi  log(\frac{1}{\theta})$，其中$\varphi$取决于数据集的大小和本地模型的规模。本地模型在全局第$i$次迭代的更新可以表示为$\Delta \mathbf{g}</em>{k}^{i}$。用$c_{k}$（周期&#x2F;样本）表示用户k的CPU处理一个数据样本所需的周期数。$c_{k}$是通过离线测量预先知道的。$D_{k}$（数据样本）和$f_{k}$（周期&#x2F;秒）分别为本地数据集的大小和用户k的CPU处理频率。</p>
-</li>
-<li><p>用户在本地训练的时间可以表示为：<br>$$<br>t_{c,k}(\theta,f_{k}) &#x3D; L(\theta)\frac{D_{k}c_{k}}{f_{k}}<br>$$<br>训练本地模型所消耗的能量可以表示为：<br>$$<br>E_{c, k}\left(\theta, f_{k}\right)&#x3D;L(\theta) \frac{\alpha}{2} c_{k} D_{k} f_{k}^{2}<br>$$</p>
-</li>
-<li><p><strong>3.用户上传本地模型。</strong>用户的发射功率为$p_{u}\eta_{k}$,其中$p_{u}$为上行最大发射功率，$\eta_{k}$为用户k的上行功率控制系数。因此用户发送的数据可以表示为$\mathbf{d}<em>{i,k} &#x3D; \sqrt{p</em>{u}\eta_{k}} \Delta \mathbf{g}<em>{k}^{i}$。在接入点l处接收到的上行信号为：<br>$$<br>\mathbf{y}</em>{l}^{u} &#x3D; \sqrt{\rho_{u}} \sum_{k&#x3D;1}^{K}\mathbf{h}<em>{k,l} \sqrt{\eta</em>{k}}\mathbf{d}<em>{i,k} + \mathbf{n}</em>{l}^{u}<br>$$<br>用户k的上行速率$R_{u,k}$小于可达速率$h_{u, k}(\boldsymbol{\eta})$：<br>$$<br>\log <em>{2}\left(1+\frac{\rho</em>{u} \eta_{k}\left(\sum_{l&#x3D;1}^{L} \sigma_{k,l}^{2}\right)^{2}}{\rho_{u} \sum_{k^{<code>&#125;&#125;^&#123;K&#125; \eta_&#123;k^&#123;</code>}}\left(\sum_{l&#x3D;1}^{L} \sigma_{k,l}^{2} \frac{\beta_{m \ell}}{\beta_{m k}}\right)^{2}\left|\boldsymbol{\phi}<em>{k}^{H} \boldsymbol{\phi}</em>{\ell}\right|^{2}+\rho_{u} \sum_{k} \eta_{k} \sum_{l&#x3D;1}^{L} \sigma_{k,l}^{2} \beta_{k,l}+\mathbf{n}<em>{l}^{k}}\right)<br>$$<br>定义$S</em>{u}$为用户上行数据包$\mathbf{d}<em>{i,k}$的大小,用户k发送本地模型参数所需的时间为:<br>$$<br>t</em>{u, k}\left(R_{u, k}(\boldsymbol{\eta})\right)&#x3D;\frac{S_{u}}{R_{u, k}}<br>$$<br>用户k发送本地模型参数消耗的能量为：<br>$$<br>E_{u, k}\left(\zeta_{k}, R_{u, k}(\boldsymbol{\eta})\right)&#x3D;\rho_{u} \zeta_{k} t_{u, k}\left(R_{u, k}(\boldsymbol{\eta})\right)<br>$$</p>
-</li>
-<li><p><strong>4.服务器汇聚多个用户的本地模型生成新的全局模型。</strong>给定一个全局模型的训练精度$\epsilon$,全局模型需要迭代的次数为：<br>$$<br>G(\theta)&#x3D;\frac{\vartheta \log \left(\frac{1}{\epsilon}\right)}{1-\theta}<br>$$</p>
-<p>其中，$\vartheta$取决于全局数据集的特征和大小。服务器接收到所有参与学习的用户的模型参数之后，并更新第$i+1$轮全局训练的模型为：<br>$$<br>\mathbf{w}^{(n+1)} &#x3D;\mathbf{w}^{(n)} + \frac{1}{K} \sum_{k&#x3D;1}^{K} \Delta \mathbf{g}_{k} ^{(n)}<br>$$<br>服务器下发新的全局模型，开始第$i+1$轮的训练。直到模型收敛后停止训练。</p>
-</li>
+<li><p><strong>1.服务器分发全局模型给参与联邦学习的用户。</strong>假设接入点通过共轭波束赋形为多用户提供下行服务。接入点能源充足，因此分发全局模型的下行时间可以被忽略。</p></li>
+<li><p><strong>2.用户使用个人数据训练本地模型。</strong>当用户接收到全局模型<span
+class="math inline">\(\mathbf{w}\)</span>后，使用本地数据集<span
+class="math inline">\(\{\mathbf{x}_{k} \in S_{u},y_{k}
+\}\)</span>训练得到本地模型<span
+class="math inline">\(\mathbf{g}_{k}\)</span>,其中<span
+class="math inline">\(S_{u}\)</span>为本地数据集的大小，本地模型<span
+class="math inline">\(\mathbf{g}_{k}\)</span>具有损失函数<span
+class="math inline">\(f(\mathbf{g}_{k})\)</span>。对于一个给定的本地模型精度<span
+class="math inline">\(\theta\)</span>，模型在本地训练得到最优模型<span
+class="math inline">\(\mathbf{g}_{k}^{i}\)</span>需要的迭代次数可以表示为<span
+class="math inline">\(L(\theta) =\varphi
+log(\frac{1}{\theta})\)</span>，其中<span
+class="math inline">\(\varphi\)</span>取决于数据集的大小和本地模型的规模。本地模型在全局第<span
+class="math inline">\(i\)</span>次迭代的更新可以表示为<span
+class="math inline">\(\Delta \mathbf{g}_{k}^{i}\)</span>。用<span
+class="math inline">\(c_{k}\)</span>（周期/样本）表示用户k的CPU处理一个数据样本所需的周期数。<span
+class="math inline">\(c_{k}\)</span>是通过离线测量预先知道的。<span
+class="math inline">\(D_{k}\)</span>（数据样本）和<span
+class="math inline">\(f_{k}\)</span>（周期/秒）分别为本地数据集的大小和用户k的CPU处理频率。</p></li>
+<li><p>用户在本地训练的时间可以表示为： <span class="math display">\[
+t_{c,k}(\theta,f_{k}) = L(\theta)\frac{D_{k}c_{k}}{f_{k}}
+\]</span> 训练本地模型所消耗的能量可以表示为： <span
+class="math display">\[
+E_{c, k}\left(\theta, f_{k}\right)=L(\theta) \frac{\alpha}{2} c_{k}
+D_{k} f_{k}^{2}
+\]</span></p></li>
+<li><p><strong>3.用户上传本地模型。</strong>用户的发射功率为<span
+class="math inline">\(p_{u}\eta_{k}\)</span>,其中<span
+class="math inline">\(p_{u}\)</span>为上行最大发射功率，<span
+class="math inline">\(\eta_{k}\)</span>为用户k的上行功率控制系数。因此用户发送的数据可以表示为<span
+class="math inline">\(\mathbf{d}_{i,k} = \sqrt{p_{u}\eta_{k}} \Delta
+\mathbf{g}_{k}^{i}\)</span>。在接入点l处接收到的上行信号为： <span
+class="math display">\[
+\mathbf{y}_{l}^{u} = \sqrt{\rho_{u}} \sum_{k=1}^{K}\mathbf{h}_{k,l}
+\sqrt{\eta_{k}}\mathbf{d}_{i,k} + \mathbf{n}_{l}^{u}
+\]</span> 用户k的上行速率<span
+class="math inline">\(R_{u,k}\)</span>小于可达速率<span
+class="math inline">\(h_{u, k}(\boldsymbol{\eta})\)</span>： <span
+class="math display">\[
+\log _{2}\left(1+\frac{\rho_{u} \eta_{k}\left(\sum_{l=1}^{L}
+\sigma_{k,l}^{2}\right)^{2}}{\rho_{u} \sum_{k^{`}}^{K}
+\eta_{k^{`}}\left(\sum_{l=1}^{L} \sigma_{k,l}^{2} \frac{\beta_{m
+\ell}}{\beta_{m k}}\right)^{2}\left|\boldsymbol{\phi}_{k}^{H}
+\boldsymbol{\phi}_{\ell}\right|^{2}+\rho_{u} \sum_{k} \eta_{k}
+\sum_{l=1}^{L} \sigma_{k,l}^{2} \beta_{k,l}+\mathbf{n}_{l}^{k}}\right)
+\]</span> 定义<span
+class="math inline">\(S_{u}\)</span>为用户上行数据包<span
+class="math inline">\(\mathbf{d}_{i,k}\)</span>的大小,用户k发送本地模型参数所需的时间为:
+<span class="math display">\[
+t_{u, k}\left(R_{u, k}(\boldsymbol{\eta})\right)=\frac{S_{u}}{R_{u, k}}
+\]</span> 用户k发送本地模型参数消耗的能量为： <span
+class="math display">\[
+E_{u, k}\left(\zeta_{k}, R_{u, k}(\boldsymbol{\eta})\right)=\rho_{u}
+\zeta_{k} t_{u, k}\left(R_{u, k}(\boldsymbol{\eta})\right)
+\]</span></p></li>
+<li><p><strong>4.服务器汇聚多个用户的本地模型生成新的全局模型。</strong>给定一个全局模型的训练精度<span
+class="math inline">\(\epsilon\)</span>,全局模型需要迭代的次数为： <span
+class="math display">\[
+G(\theta)=\frac{\vartheta \log
+\left(\frac{1}{\epsilon}\right)}{1-\theta}
+\]</span></p>
+<p>其中，<span
+class="math inline">\(\vartheta\)</span>取决于全局数据集的特征和大小。服务器接收到所有参与学习的用户的模型参数之后，并更新第<span
+class="math inline">\(i+1\)</span>轮全局训练的模型为： <span
+class="math display">\[
+\mathbf{w}^{(n+1)} =\mathbf{w}^{(n)} + \frac{1}{K} \sum_{k=1}^{K} \Delta
+\mathbf{g}_{k} ^{(n)}
+\]</span> 服务器下发新的全局模型，开始第<span
+class="math inline">\(i+1\)</span>轮的训练。直到模型收敛后停止训练。</p></li>
 </ul>
-<h4 id="3-能耗优化问题表述"><a href="#3-能耗优化问题表述" class="headerlink" title="3. 能耗优化问题表述"></a>3. 能耗优化问题表述</h4><p>在无蜂窝大规模MIMO系统中，用户设备通常仅依靠电池工作，因此节能的用户资源分配方案是必要的。在进行联邦学习的过程中，用户可供分配的资源为上行发射功率和本地训练时的CPU时钟频率。根据前述，我们得到一个最小化用户能耗的最优化问题如下：<br>$$<br>\min_{\boldsymbol{\theta},\boldsymbol{f},\boldsymbol{\eta}} G(\theta) (E_{c} +E_{u})<br>$$</p>
-<p>$$<br>s.t. \ \ \max_{k} (t_{c,k}+t_{u,k}) \leq T \ \ \ \ (C.1)\<br>0 \leq R_{u,k} \leq h_{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)\<br>0 \leq \eta_{k} \leq 1 \ \ \ \ (C.3)\<br>\theta_{min}^{k} \leq \theta_{k} \leq \theta_{max}^{k} \ \ \ \ (C.4)\<br>f_{min} \leq f_{k} \leq f_{max} \ \ \ \ (C.5)\<br>$$</p>
-<p>其中$E_{c} &#x3D; \sum_{k&#x3D;1}^{K}E_{c,k}$, $ E_{u} &#x3D; \sum_{k&#x3D;1}^{K}E_{u,k}$。C.1表示用户的本地计算时延和上行模型更新时延需要满足最大时延约束T。C.2表示用户上行速率的约束。C.3表示传输上行模型更新的功率控制系数的值域。C.4表示本地模型的训练精度约束，其中$\theta_{min}$和$\theta_{max}$分别表示用户本地所支持的最大模型精度和最小模型精度。C.5表示用户CPU时钟频率的约束，其中$f_{min}^{k}$和$f_{max}^{k}$分别表示用户k的CPU所支持的最小时钟频率和最大时钟频率。最后，我们使用$\boldsymbol{\theta} &#x3D; { \theta_{1},\ldots,\theta_{K} }$, $\boldsymbol{\eta} &#x3D; { \eta_{1},\ldots,\eta_{K} } $和$\boldsymbol{f} &#x3D; {f_{1}, \ldots, f_{K} }$分别表示各个终端设备的本地模型精度、上行功率分配系数和CPU时钟频率的分配结果。</p>
-<p>需要注意的是，C.1和C.2涉及多个变量，都为非凸约束，无法在多项式时间内被解决。我们观察到该优化问题主要由两部分组成，即本地模型训练功耗和上行数据传输功耗。在本地训练阶段，对于给定的数据集、用户设备性能，用户的本地训练功耗在多个迭代中不变。在用户上行传输阶段，由于无线信道的遍历随机特性，信道在每轮上传中的随机实现都不相同，因此每轮的上行传输功耗的优化都是不同的。基于上述观察，我们将该优化问题分为两步来解决，与用户设备$k$本地训练功耗相关的子问题P2可表示如下：<br>$$<br>P2:\min_{\theta_{k},f_{k}} E_{C,k}(\theta_{k}, f_{k})<br>\ s.t.\ \ \log(\theta_{k})\frac{C_{k}D_{k}}{f_{k}} \leq T_{C,k} \ \ \ \   (C.1)<br>\ (C.4),(C.5)<br>$$<br>其中$E_{C,k}(\theta_{k},f_{k}) &#x3D;\frac{\vartheta \log(\frac{1}{\epsilon})}{1-\theta_{k}}\log(\frac{1}{\theta_{k}}) \frac{\alpha_{k}C_{k}D_{k}}{f_{k}} $，表示用户k的本地训练总功耗。</p>
-<p><strong>推论1：</strong> 当$\theta$固定时，用户CPU的最优工作频率$f_{k}$如下:<br>$$<br>\begin{align}<br>f_{k}^{<em>} &#x3D; \left{\begin{matrix}<br>f_{max}^{k}  \ \ \ \ \ \ \ \ \ \ \      \ \ &amp;f_{k}^{</em>} \geq f_{max}^{k},\<br>\frac{C_{k}D_{k}}{T_{C,k}}\log(\frac{1}{\theta_{k}}) &amp;f_{min}^{k} &lt; f_{k}^{<em>} &lt; f_{max}^{k},\<br>f_{max}^{k}  \ \ \ \ \ \ \ \ \ \ \   \ \ &amp;f_{k}^{</em>} \leq f_{min}^{k},<br>\end{matrix}\right.<br>\end{align}<br>$$<br><strong>证明：</strong></p>
-<p>当$\theta$的值固定时，根据P2可以导出$\frac{\partial E_{c,k}(\theta_{k}, f_{k})}{\partial f_{k}}&#x3D;- \frac{\vartheta \log(\frac{1}{\epsilon})}{1-\theta_{k}}\log(\frac{1}{\theta_{k}}) \frac{\alpha_{k}C_{k}D_{k}}{f_{k}^{2}} \leq 0$，即$f_{k}$关于函数$E_{c,k}(\theta_{k},f_{k})$单调递减。C.1可以被重新表述为：<br>$$<br>f_{k} \geq \frac{C_{k}D_{k}}{T_{C,k}}\log(\frac{1}{\theta_{k}})<br>$$</p>
-<p>易知等号成立时上式满足最优条件，因此用户$k$的CPU的最优工作频率为$f_{k}^{*} &#x3D; \frac{C_{k}D_{k}}{T_{C,k}}\log(\frac{1}{\theta_{k}})$ 。</p>
-<p>在获得$f_{k}$的最优解后并固定$f_{k}$的值，我们发现问题P2的目标函数关于$\theta_{k}$仍是非凸的。为简化问题，我们考虑用户设备使用相同的精度训练模型，为了求解全局最优的$\theta$，我们令$A &#x3D; \vartheta \log(\frac{1}{\epsilon}) \alpha_{k}C_{k}D_{k}$, 并引入辅助变量$x_{k}$:<br>$$<br>\ x_{k} &#x3D; \frac{A\log(\frac{1}{\theta})}{1-\theta}<br>$$<br>可以证明此时问题P2的解等价于下式的解：<br>$$<br>z(f_{k}, x_{k}) &#x3D; \min_{f_{k},x_{k}} 2x_{k} \sqrt{A\log(\frac{1}{\theta_{k}})} -x_{k}^{2}(1-\theta_{k})<br>$$</p>
+<h4 id="能耗优化问题表述">3. 能耗优化问题表述</h4>
+<p>在无蜂窝大规模MIMO系统中，用户设备通常仅依靠电池工作，因此节能的用户资源分配方案是必要的。在进行联邦学习的过程中，用户可供分配的资源为上行发射功率和本地训练时的CPU时钟频率。根据前述，我们得到一个最小化用户能耗的最优化问题如下：
+<span class="math display">\[
+\min_{\boldsymbol{\theta},\boldsymbol{f},\boldsymbol{\eta}} G(\theta)
+(E_{c} +E_{u})
+\]</span></p>
+<p><span class="math display">\[
+s.t. \ \ \max_{k} (t_{c,k}+t_{u,k}) \leq T \ \ \ \ (C.1)\\
+0 \leq R_{u,k} \leq h_{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)\\
+0 \leq \eta_{k} \leq 1 \ \ \ \ (C.3)\\
+\theta_{min}^{k} \leq \theta_{k} \leq \theta_{max}^{k} \ \ \ \ (C.4)\\
+f_{min} \leq f_{k} \leq f_{max} \ \ \ \ (C.5)\\
+\]</span></p>
+<p>其中<span class="math inline">\(E_{c} =
+\sum_{k=1}^{K}E_{c,k}\)</span>, $ E_{u} = <em>{k=1}<sup>{K}E_{u,k}<span
+class="math inline">\(。C.1表示用户的本地计算时延和上行模型更新时延需要满足最大时延约束T。C.2表示用户上行速率的约束。C.3表示传输上行模型更新的功率控制系数的值域。C.4表示本地模型的训练精度约束，其中\)</span><em>{min}<span
+class="math inline">\(和\)</span></em>{max}<span
+class="math inline">\(分别表示用户本地所支持的最大模型精度和最小模型精度。C.5表示用户CPU时钟频率的约束，其中\)</span>f_{min}</sup>{k}<span
+class="math inline">\(和\)</span>f</em>{max}^{k}<span
+class="math inline">\(分别表示用户k的CPU所支持的最小时钟频率和最大时钟频率。最后，我们使用\)</span>
+= { <em>{1},,</em>{K} }$, $ = { <em>{1},,</em>{K} } <span
+class="math inline">\(和\)</span> = {f_{1}, , f_{K}
+}$分别表示各个终端设备的本地模型精度、上行功率分配系数和CPU时钟频率的分配结果。</p>
+<p>需要注意的是，C.1和C.2涉及多个变量，都为非凸约束，无法在多项式时间内被解决。我们观察到该优化问题主要由两部分组成，即本地模型训练功耗和上行数据传输功耗。在本地训练阶段，对于给定的数据集、用户设备性能，用户的本地训练功耗在多个迭代中不变。在用户上行传输阶段，由于无线信道的遍历随机特性，信道在每轮上传中的随机实现都不相同，因此每轮的上行传输功耗的优化都是不同的。基于上述观察，我们将该优化问题分为两步来解决，与用户设备<span
+class="math inline">\(k\)</span>本地训练功耗相关的子问题P2可表示如下：
+<span class="math display">\[
+P2:\min_{\theta_{k},f_{k}} E_{C,k}(\theta_{k}, f_{k})
+\\ s.t.\ \ \log(\theta_{k})\frac{C_{k}D_{k}}{f_{k}} \leq T_{C,k} \ \ \
+\   (C.1)
+\\ (C.4),(C.5)
+\]</span> 其中$E_{C,k}(<em>{k},f</em>{k}) =()
+$，表示用户k的本地训练总功耗。</p>
+<p><strong>推论1：</strong> 当<span
+class="math inline">\(\theta\)</span>固定时，用户CPU的最优工作频率<span
+class="math inline">\(f_{k}\)</span>如下: <span class="math display">\[
+\begin{align}
+f_{k}^{*} = \left\{\begin{matrix}
+f_{max}^{k}  \ \ \ \ \ \ \ \ \ \ \      \ \ &amp;f_{k}^{*} \geq
+f_{max}^{k},\\
+\frac{C_{k}D_{k}}{T_{C,k}}\log(\frac{1}{\theta_{k}}) &amp;f_{min}^{k}
+&lt; f_{k}^{*} &lt; f_{max}^{k},\\
+f_{max}^{k}  \ \ \ \ \ \ \ \ \ \ \   \ \ &amp;f_{k}^{*} \leq
+f_{min}^{k},
+\end{matrix}\right.
+\end{align}
+\]</span> <strong>证明：</strong></p>
+<p>当<span
+class="math inline">\(\theta\)</span>的值固定时，根据P2可以导出<span
+class="math inline">\(\frac{\partial E_{c,k}(\theta_{k},
+f_{k})}{\partial f_{k}}=- \frac{\vartheta
+\log(\frac{1}{\epsilon})}{1-\theta_{k}}\log(\frac{1}{\theta_{k}})
+\frac{\alpha_{k}C_{k}D_{k}}{f_{k}^{2}} \leq 0\)</span>，即<span
+class="math inline">\(f_{k}\)</span>关于函数<span
+class="math inline">\(E_{c,k}(\theta_{k},f_{k})\)</span>单调递减。C.1可以被重新表述为：
+<span class="math display">\[
+f_{k} \geq \frac{C_{k}D_{k}}{T_{C,k}}\log(\frac{1}{\theta_{k}})
+\]</span></p>
+<p>易知等号成立时上式满足最优条件，因此用户<span
+class="math inline">\(k\)</span>的CPU的最优工作频率为<span
+class="math inline">\(f_{k}^{*} =
+\frac{C_{k}D_{k}}{T_{C,k}}\log(\frac{1}{\theta_{k}})\)</span> 。</p>
+<p>在获得<span class="math inline">\(f_{k}\)</span>的最优解后并固定<span
+class="math inline">\(f_{k}\)</span>的值，我们发现问题P2的目标函数关于<span
+class="math inline">\(\theta_{k}\)</span>仍是非凸的。为简化问题，我们考虑用户设备使用相同的精度训练模型，为了求解全局最优的<span
+class="math inline">\(\theta\)</span>，我们令<span
+class="math inline">\(A = \vartheta \log(\frac{1}{\epsilon})
+\alpha_{k}C_{k}D_{k}\)</span>, 并引入辅助变量<span
+class="math inline">\(x_{k}\)</span>: <span class="math display">\[
+\\ x_{k} = \frac{A\log(\frac{1}{\theta})}{1-\theta}
+\]</span> 可以证明此时问题P2的解等价于下式的解： <span
+class="math display">\[
+z(f_{k}, x_{k}) = \min_{f_{k},x_{k}} 2x_{k}
+\sqrt{A\log(\frac{1}{\theta_{k}})} -x_{k}^{2}(1-\theta_{k})
+\]</span></p>
 <p>上式被称为二次变换，是一种有效的分式规划方法。通过二次变换方法我们可以获得对于每个用户最优的本地模型精度，然而每个用户使用最优的本地模型精度将导致高性能用户在每轮迭代中的贡献高于其他低性能用户，使最终的全局模型在低性能用户设备上的推断能力下降。</p>
-<p><strong>推论2：</strong> <em>为了避免上述问题，用户本地模型的精度应当拥有一致的目标，即 $\theta &#x3D; \theta_{1} &#x3D; \ldots &#x3D; \theta_{K}$。在此目标下，全局的用户模型精度的可行域如下：</em><br>$$<br>\min_{k} (\theta_{k}^{<em>}) \leq \theta \leq \max_{k} (\theta_{k}^{</em>})<br>$$<br><em>更小的 $\theta$值需要更多轮的本地更新和全局更新，导致训练功耗和传输功耗的增加，因此容易验证全局的本地模型的最优解为</em> $\theta^{<em>} &#x3D; \max_{k} (\theta_{k}^{</em>})$。</p>
+<p><strong>推论2：</strong>
+<em>为了避免上述问题，用户本地模型的精度应当拥有一致的目标，即 <span
+class="math inline">\(\theta = \theta_{1} = \ldots =
+\theta_{K}\)</span>。在此目标下，全局的用户模型精度的可行域如下：</em>
+<span class="math display">\[
+\min_{k} (\theta_{k}^{*}) \leq \theta \leq \max_{k} (\theta_{k}^{*})
+\]</span> <em>更小的 <span
+class="math inline">\(\theta\)</span>值需要更多轮的本地更新和全局更新，导致训练功耗和传输功耗的增加，因此容易验证全局的本地模型的最优解为</em>
+<span class="math inline">\(\theta^{*} = \max_{k}
+(\theta_{k}^{*})\)</span>。</p>
 <p>一种用于解决用户本地训练功耗的算法可以总结如下：</p>
-<hr>
-<hr>
-<p><strong>Alogrithm 1</strong>  sub-problem 1 </p>
-<p><strong>Input:</strong> $\theta_{min}^{k}$, $\theta_{max}^{k}$, $f_{min}^{k}, f_{max}^{k}$,$\epsilon, i, i_{max},   T_{c,1}&#x3D;\ldots&#x3D; T_{c,K} $</p>
-<p>1:<strong>initialization:</strong> i&#x3D;0</p>
-<p>2:<strong>for k&#x3D;1:K</strong></p>
-<p>2:        <strong>while</strong> $i&lt;i_{max}$ <strong>do</strong></p>
-<p>2:					<strong>while $E_{C,k}^{(i+1)}-E_{C,k}^{(i)} &gt; \epsilon$ do</strong></p>
-<p>3:								Fix $\theta_{k}$ , update $f_{k}$ by (16)</p>
-<p>4:								Fix $f_{k}$, update $x_{k}$ by (17)</p>
-<p>5:	    						Fix $f_{k}$, update $\theta_{k}$ by solving  (18). </p>
-<p>6:	   				 <strong>end</strong> </p>
-<p>6:		<strong>end</strong></p>
-<p>7:		i&#x3D;0</p>
-<p>8:		$\theta_{k}^{*} &#x3D; \theta_{k}^{(i+1)}$</p>
-<p>9:		$f_{k}^{*} &#x3D; f_{k}^{(i+1)}$</p>
-<p>10:		$t_{c,k} &#x3D; T_{c,k}$</p>
+<hr />
+<hr />
+<p><strong>Alogrithm 1</strong> sub-problem 1</p>
+<p><strong>Input:</strong> <span
+class="math inline">\(\theta_{min}^{k}\)</span>, <span
+class="math inline">\(\theta_{max}^{k}\)</span>, <span
+class="math inline">\(f_{min}^{k}, f_{max}^{k}\)</span>,$, i, i_{max},
+T_{c,1}== T_{c,K} $</p>
+<p>1:<strong>initialization:</strong> i=0</p>
+<p>2:<strong>for k=1:K</strong></p>
+<p>2: <strong>while</strong> <span
+class="math inline">\(i&lt;i_{max}\)</span> <strong>do</strong></p>
+<p>2: <strong>while <span
+class="math inline">\(E_{C,k}^{(i+1)}-E_{C,k}^{(i)} &gt;
+\epsilon\)</span> do</strong></p>
+<p>3: Fix <span class="math inline">\(\theta_{k}\)</span> , update <span
+class="math inline">\(f_{k}\)</span> by (16)</p>
+<p>4: Fix <span class="math inline">\(f_{k}\)</span>, update <span
+class="math inline">\(x_{k}\)</span> by (17)</p>
+<p>5: Fix <span class="math inline">\(f_{k}\)</span>, update <span
+class="math inline">\(\theta_{k}\)</span> by solving (18).</p>
+<p>6: <strong>end</strong></p>
+<p>6: <strong>end</strong></p>
+<p>7: i=0</p>
+<p>8: <span class="math inline">\(\theta_{k}^{*} =
+\theta_{k}^{(i+1)}\)</span></p>
+<p>9: <span class="math inline">\(f_{k}^{*} = f_{k}^{(i+1)}\)</span></p>
+<p>10: <span class="math inline">\(t_{c,k} = T_{c,k}\)</span></p>
 <p>11:<strong>end</strong></p>
-<p>12:$\theta^{<em>} &#x3D; \max_{k} (\theta_{k}^{</em>})$</p>
-<p><strong>Output:</strong>  $(\theta^{<em>},\boldsymbol{f^{</em>}},\boldsymbol{t}_{c}^{*})$</p>
-<hr>
-<hr>
-<p>通过运行算法1我们可以获得最优的本地模型训练精度和用户设备CPU运行频率$(\theta^{<em>},\boldsymbol{f^{</em>}} &#x3D; {  f_{1}^{<em>},\ldots, f_{K}^{</em>} })$, 此时$T_{C} &#x3D; {  T_{c,1}^{<em>},\ldots, T_{c,K}^{</em>} }$已知。用户设备在更新本地模型之后，将通过无蜂窝网络上传本地模型的参数到服务器，用户模型上传的能耗优化问题$P3$可以表示如下：<br>$$<br>P3: \min_{\eta_{k}}E_{U,k}\<br>s.t. \ \ \max_{k} (t_{c,k}^{<em>}+t_{u,k}) \leq T \ \ \ \ (C.1)\<br>0 \leq R_{u,k} \leq h_{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)\<br>0 \leq \eta_{k} \leq 1 \ \ \ \ (C.3)\<br>$$<br>其中$E_{U,k} &#x3D; G(\theta^{</em>})\frac{S_{k}}{R_{u,k}}t_{u,k}$, $\theta^{<em>}$通过运行算法1获得，$G(\theta^{</em>})$ 为已知常数。在一轮联邦学习训练过程中，训练时延由信道情况最差的用户决定，并且导致了更多的能量消耗。这种情况被称为落后者效应，通常通过用户调度缓解。C.1表示在一轮训练过程中，用户训练时延与上行传输时延的和应当小于时延阈值$T$。C.2和C.3分别表示上行传输速率的值域和功率控制因子的定义域。C.1和C.2仍是非凸的,我们仍需要对约束条件进行进一步的变换。</p>
-<p>对于$f(a,b) &#x3D; \log(1+ \frac{|a|^{2}}{b})$，有函数下界 ：<br>$$<br>\begin{aligned}<br>f(a, b) \geq \log \left(1+\frac{\left|a^{(n)}\right|^{2}}{b^{(n)}}\right)-\frac{\left|a^{(n)}\right|^{2}}{b^{(n)}}<br>+2 \frac{a^{(n)} x}{b^{(n)}}-\frac{\left|a^{(n)}\right|^{2}\left(|a|^{2}+b\right)}{b^{(n)}\left(\left|a^{(n)}\right|^{2}+b^{(n)}\right)}<br>\end{aligned}<br>$$<br>根据上述关系我们可以将$h_{u,k}(\eta)$重新表述为：<br>$$<br>\begin{aligned}<br>\widetilde{h}<em>{u, k}(\boldsymbol{\eta}) \triangleq \log <em>{2}\left(1+\frac{\left(\Psi</em>{k}^{(n)}\right)^{2}}{\Xi</em>{k}^{(n)}}\right)-\frac{\left(\Psi_{k}^{(n)}\right)^{2}}{\Xi_{k}^{(n)}}<br>+2 \frac{\Psi_{k}^{(n)} \Psi_{k}}{\Xi_{k}^{(n)}}-\frac{\left(\Psi_{k}^{(n)}\right)^{2}\left(\Psi_{k}^{2}+\Xi_{k}\right)}{\Xi_{k}^{(n)}\left(\left(\Psi_{k}^{(n)}\right)^{2}+\Xi_{k}^{(n)}\right)} \leq h_{u, k}(\boldsymbol{\eta})<br>\end{aligned}<br>$$<br>其中<br>$$<br>\begin{aligned}<br>\Psi_{k}\left(\eta_{k}\right)&#x3D;&amp; \rho_{u}^{1 &#x2F; 2} \eta_{k}\left(\sum_{m \in \mathcal{M}} \sigma_{m k}^{2}\right) \<br>\Xi_{k}(\boldsymbol{\eta})&#x3D;&amp; \rho_{u} \sum_{k^{<code>&#125; \in \mathcal&#123;K&#125; \backslash k&#125; \eta_&#123;k^&#123;</code>}}^{2}\left(\sum_{m \in \mathcal{M}} \sigma_{m k}^{2} \frac{\beta_{m k^{<code>&#125;&#125;&#125;&#123;\beta_&#123;m k&#125;&#125;\right)^&#123;2&#125;\left|\phi_&#123;k&#125;^&#123;H&#125; \phi_&#123;k^&#123;</code>}}\right|^{2} \<br>&amp;+\rho_{u} \sum_{k^{<code>&#125; \in \mathcal&#123;K&#125;&#125; \eta_&#123;k^&#123;</code>}}^{2} \sum_{m \in \mathcal{M}} \sigma_{m k}^{2} \beta_{m k^{&#96;}}+\sum_{m \in \mathcal{M}} \sigma_{m k}^{2}<br>\end{aligned}<br>$$<br>综上，C.2可以重新表述为一个凸集合：<br>$$<br>0 \leq R_{u,k} \leq \widetilde{h}<em>{u, k}(\boldsymbol{\eta}) \leq h</em>{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)<br>$$</p>
-<p><strong>推论3：</strong> <em>为了缓解落后者效应，考虑最小化用户设备的最大时延，对于用户设备$k,\ \forall k \in {1,\ldots, K}$，令用户设备的最优时延</em> $T_{k}^{<em>} &#x3D; t_{c,k}^{</em>}+t_{u,k}^{<em>}$，$K$<em>个用户设备进行一轮联邦学习过程的最优时延满足以下关系：</em><br>$$<br>T &#x3D; T_{1}^{</em>} &#x3D; T_{2}^{<em>} &#x3D; \ldots &#x3D; T_{K}^{</em>}<br>$$<br><strong>证明：</strong> <em>在任意一次联邦学习全局更新的迭代过程中，总存在一个训练时延与通信时延最大的用户$k$。假定用户设备的性能一致，我们可以忽略训练时延对总时延的影响，即:</em> $T_{k} \approx t_{u,k}  &#x3D; \frac{S_{k}}{R_{u,k}},$ $\ \ \forall k \in {1, \ldots, K }$，且$T_{k}$服从如下条件：<br>$$<br>T_{k} \geq T_{k^{‘}}, \ \ \forall k^{‘} \in {k^{‘} \neq k | 1,\ldots, K  }<br>$$</p>
-<p>当存在$\eta_{k}$使得$T_{k}^{<em>}$最优时，假设存在$\eta_{k^{‘}}$令$T_{k^{‘}} &gt; T_{k}^{</em>}$，此时$T_{k^{‘}}^{<em>}$为全局最优，这与初始条件冲突，因此假设条件不成立，即仅存在$\eta_{k^{‘}}$令$T_{k^{‘}} \leq T_{k}^{</em>}$,由于$T_{k}^{<em>} &#x3D; \frac{S_{k}}{R_{u,k}^{</em>}}$,其中$R_{u,k}^{*} &#x3D; \widetilde{h}<em>{u,k}(\boldsymbol{\eta}) $,$\widetilde{h}</em>{u,k}(\boldsymbol{\eta}) $为凹函数，满足下列不等式：<br>$$<br>\lambda \widetilde{h}(x) + (1-\lambda)\widetilde{h}(y) &lt; \widetilde{h}(\lambda x+(1-\lambda) y) \label{eq27}<br>$$</p>
-<p>令$f(x) &#x3D; T_{k}^{<em>}(x) &#x3D; \frac{S_{k}}{\widetilde{h}(x)}$，我们有：<br>$$<br>\lambda f(x) + (1-\lambda)f(y) &#x3D; \lambda\frac{1}{\widetilde{h}(x)} + (1- \lambda)\frac{1}{\widetilde{h}(y)} &gt; \frac{1}{\lambda \widetilde{h}(x) + (1-\lambda)\widetilde{h}(y)} \label{eq28}<br>$$<br>将$\eqref{eq27}$代入$\eqref{eq28}$,可得：<br>$$<br>\lambda f(x) + (1-\lambda)f(y)  &gt; \frac{1}{\widetilde{h}(\lambda x+(1-\lambda) y)} &#x3D; f(\lambda x +(1- \lambda)y)<br>$$<br>证得$T_{k}$为凸函数。因此，$R_{u,k} &#x3D; \widetilde{h}<em>{u, k}(\eta)$成立，且$\eta</em>{k^{‘}}, \forall k^{‘} \in {k^{‘} \neq k | 1,\ldots, K  }$固定时，总存在一个最优的$\eta_{k}$,令$T_{k}$最优。在进行一轮优化之后，我们得到了最优的功率分配因子集合$\boldsymbol{\eta^{</em>}} &#x3D; { \eta_{1}^{<em>},\ldots, \eta_{K}^{</em>} }$和最优的时延集合$\boldsymbol{t^{<em>}} &#x3D; {T_{1}^{</em>} ,\ldots,T_{K}^{<em>} }$。为了消除落后者效应，我们引入一个全局时延约束$T$,对于任意的$T &#x3D; \max_{k} (T_{k}^{</em>})$，用户$k^{‘} \in {k^{‘} \neq k | 1,\ldots, K  }$可以通过缩小发射功率因子$\eta_{k^{‘}}$令能量消耗在全局延迟约束下最优，此时$T_{k} &#x3D; T_{k^{‘}}$，同理可得当：</p>
-<p>$$<br>T &#x3D; T_{1}^{<em>} &#x3D; T_{2}^{</em>} &#x3D; \ldots &#x3D; T_{K}^{*}<br>$$</p>
-<p>根据推论3，$P3$等价于以下最小-最大问题：<br>$$<br>\min_{\eta_{k}} \ l \<br>s.t. \ \  t_{c,k}^{*}+t_{u,k} \leq l \ \ \ \ (C.1)\<br>0 \leq R_{u,k} \leq \widetilde{h}<em>{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)\<br>0 \leq \eta</em>{k} \leq 1 \ \ \ \ (C.3)\<br>通过SINR筛选每轮参与训练的用户\ \ \ \ (C.4)\<br>$$</p>
-<p>我们根据<strong>推论3</strong>可以证明$P3$等价于下面的可行性问题,对于每个用户$k$，都存在一个最优时延问题如下：<br>$$<br>\min T \<br>s.t. \ \ \max_{k} (t_{c,k}^{*}+t_{u,k}) \leq T \ \ \ \ (C.1)\<br>0 \leq R_{u,k} \leq \widetilde{h}<em>{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)\<br>0 \leq \eta</em>{k} \leq 1 \ \ \ \ (C.3)\<br>通过SINR筛选每轮参与训练的用户\ \ \ \ (C.4)\<br>$$<br>上述问题可以通过二分法寻找最优解。</p>
-<p>此时原始问题可以表述为以下形式：<br>$$<br>\min_{\boldsymbol{\theta},\mathbf{f},\boldsymbol{\eta}} G(\theta) \sum_{k&#x3D;1}^{K}(E_{C,k} +E_{U,k}) \<br>s.t. \ \ \max_{k} (t_{C,k}+t_{U,k}) \leq T \ \ \ \ (C.1)\<br>C.2-C.5<br>$$</p>
-<hr>
-<p>需要注意的是，由于用户设备性能各异，因此对于全局模型训练的贡献不同。例如高性能的用户设备与低性能的用户设备相比可以在短时间内训练更高精度的本地模型。为了全局模型的更快收敛，训练了更高精度模型的用户设备若在第t轮全局迭代中被选中参与联邦学习，应当在全局模型的聚合阶段贡献更多。即对于每个用户设备k，由于本地资源${ \theta_{min}^{k}, \theta_{max}^{k} }$, ${ f_{min}^{k}, f_{max}^{k} }$的限制，导致了不同的本地训练次数$\log(\theta_{k})$和本地训练时间$\frac{C_{k}D_{k}}{f_{k}}$。</p>
+<p>12:<span class="math inline">\(\theta^{*} = \max_{k}
+(\theta_{k}^{*})\)</span></p>
+<p><strong>Output:</strong> <span
+class="math inline">\((\theta^{*},\boldsymbol{f^{*}},\boldsymbol{t}_{c}^{*})\)</span></p>
+<hr />
+<hr />
+<p>通过运行算法1我们可以获得最优的本地模型训练精度和用户设备CPU运行频率<span
+class="math inline">\((\theta^{*},\boldsymbol{f^{*}} = \{
+f_{1}^{*},\ldots, f_{K}^{*} \})\)</span>, 此时<span
+class="math inline">\(T_{C} = \{ T_{c,1}^{*},\ldots, T_{c,K}^{*}
+\}\)</span>已知。用户设备在更新本地模型之后，将通过无蜂窝网络上传本地模型的参数到服务器，用户模型上传的能耗优化问题<span
+class="math inline">\(P3\)</span>可以表示如下： <span
+class="math display">\[
+P3: \min_{\eta_{k}}E_{U,k}\\
+s.t. \ \ \max_{k} (t_{c,k}^{*}+t_{u,k}) \leq T \ \ \ \ (C.1)\\
+0 \leq R_{u,k} \leq h_{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)\\
+0 \leq \eta_{k} \leq 1 \ \ \ \ (C.3)\\
+\]</span> 其中<span class="math inline">\(E_{U,k} =
+G(\theta^{*})\frac{S_{k}}{R_{u,k}}t_{u,k}\)</span>, <span
+class="math inline">\(\theta^{*}\)</span>通过运行算法1获得，<span
+class="math inline">\(G(\theta^{*})\)</span>
+为已知常数。在一轮联邦学习训练过程中，训练时延由信道情况最差的用户决定，并且导致了更多的能量消耗。这种情况被称为落后者效应，通常通过用户调度缓解。C.1表示在一轮训练过程中，用户训练时延与上行传输时延的和应当小于时延阈值<span
+class="math inline">\(T\)</span>。C.2和C.3分别表示上行传输速率的值域和功率控制因子的定义域。C.1和C.2仍是非凸的,我们仍需要对约束条件进行进一步的变换。</p>
+<p>对于<span class="math inline">\(f(a,b) = \log(1+
+\frac{|a|^{2}}{b})\)</span>，有函数下界 ： <span class="math display">\[
+\begin{aligned}
+f(a, b) \geq \log
+\left(1+\frac{\left|a^{(n)}\right|^{2}}{b^{(n)}}\right)-\frac{\left|a^{(n)}\right|^{2}}{b^{(n)}}
++2 \frac{a^{(n)}
+x}{b^{(n)}}-\frac{\left|a^{(n)}\right|^{2}\left(|a|^{2}+b\right)}{b^{(n)}\left(\left|a^{(n)}\right|^{2}+b^{(n)}\right)}
+\end{aligned}
+\]</span> 根据上述关系我们可以将<span
+class="math inline">\(h_{u,k}(\eta)\)</span>重新表述为： <span
+class="math display">\[
+\begin{aligned}
+\widetilde{h}_{u, k}(\boldsymbol{\eta}) \triangleq \log
+_{2}\left(1+\frac{\left(\Psi_{k}^{(n)}\right)^{2}}{\Xi_{k}^{(n)}}\right)-\frac{\left(\Psi_{k}^{(n)}\right)^{2}}{\Xi_{k}^{(n)}}
++2 \frac{\Psi_{k}^{(n)}
+\Psi_{k}}{\Xi_{k}^{(n)}}-\frac{\left(\Psi_{k}^{(n)}\right)^{2}\left(\Psi_{k}^{2}+\Xi_{k}\right)}{\Xi_{k}^{(n)}\left(\left(\Psi_{k}^{(n)}\right)^{2}+\Xi_{k}^{(n)}\right)}
+\leq h_{u, k}(\boldsymbol{\eta})
+\end{aligned}
+\]</span> 其中 <span class="math display">\[
+\begin{aligned}
+\Psi_{k}\left(\eta_{k}\right)=&amp; \rho_{u}^{1 / 2}
+\eta_{k}\left(\sum_{m \in \mathcal{M}} \sigma_{m k}^{2}\right) \\
+\Xi_{k}(\boldsymbol{\eta})=&amp; \rho_{u} \sum_{k^{`} \in \mathcal{K}
+\backslash k} \eta_{k^{`}}^{2}\left(\sum_{m \in \mathcal{M}} \sigma_{m
+k}^{2} \frac{\beta_{m k^{`}}}{\beta_{m k}}\right)^{2}\left|\phi_{k}^{H}
+\phi_{k^{`}}\right|^{2} \\
+&amp;+\rho_{u} \sum_{k^{`} \in \mathcal{K}} \eta_{k^{`}}^{2} \sum_{m \in
+\mathcal{M}} \sigma_{m k}^{2} \beta_{m k^{`}}+\sum_{m \in \mathcal{M}}
+\sigma_{m k}^{2}
+\end{aligned}
+\]</span> 综上，C.2可以重新表述为一个凸集合： <span
+class="math display">\[
+0 \leq R_{u,k} \leq \widetilde{h}_{u, k}(\boldsymbol{\eta}) \leq
+h_{u,k}(\boldsymbol{\eta}) \ \ \ \ (C.2)
+\]</span></p>
+<p><strong>推论3：</strong>
+<em>为了缓解落后者效应，考虑最小化用户设备的最大时延，对于用户设备<span
+class="math inline">\(k,\ \forall k \in \{1,\ldots,
+K\}\)</span>，令用户设备的最优时延</em> <span
+class="math inline">\(T_{k}^{*} =
+t_{c,k}^{*}+t_{u,k}^{*}\)</span>，<span
+class="math inline">\(K\)</span><em>个用户设备进行一轮联邦学习过程的最优时延满足以下关系：</em>
+<span class="math display">\[
+T = T_{1}^{*} = T_{2}^{*} = \ldots = T_{K}^{*}
+\]</span> <strong>证明：</strong>
+<em>在任意一次联邦学习全局更新的迭代过程中，总存在一个训练时延与通信时延最大的用户<span
+class="math inline">\(k\)</span>。假定用户设备的性能一致，我们可以忽略训练时延对总时延的影响，即:</em>
+<span class="math inline">\(T_{k} \approx t_{u,k} =
+\frac{S_{k}}{R_{u,k}},\)</span> <span class="math inline">\(\ \ \forall
+k \in \{1, \ldots, K \}\)</span>，且<span
+class="math inline">\(T_{k}\)</span>服从如下条件： <span
+class="math display">\[
+T_{k} \geq T_{k^{&#39;}}, \ \ \forall k^{&#39;} \in \{k^{&#39;} \neq k |
+1,\ldots, K  \}
+\]</span></p>
+<p>当存在<span class="math inline">\(\eta_{k}\)</span>使得<span
+class="math inline">\(T_{k}^{*}\)</span>最优时，假设存在<span
+class="math inline">\(\eta_{k^{&#39;}}\)</span>令<span
+class="math inline">\(T_{k^{&#39;}} &gt; T_{k}^{*}\)</span>，此时<span
+class="math inline">\(T_{k^{&#39;}}^{*}\)</span>为全局最优，这与初始条件冲突，因此假设条件不成立，即仅存在<span
+class="math inline">\(\eta_{k^{&#39;}}\)</span>令<span
+class="math inline">\(T_{k^{&#39;}} \leq T_{k}^{*}\)</span>,由于<span
+class="math inline">\(T_{k}^{*} =
+\frac{S_{k}}{R_{u,k}^{*}}\)</span>,其中$R_{u,k}^{*} = <em>{u,k}() <span
+class="math inline">\(,\)</span></em>{u,k}() $为凹函数，满足下列不等式：
+<span class="math display">\[
+\lambda \widetilde{h}(x) + (1-\lambda)\widetilde{h}(y) &lt;
+\widetilde{h}(\lambda x+(1-\lambda) y) \label{eq27}
+\]</span></p>
+<p>令<span class="math inline">\(f(x) = T_{k}^{*}(x) =
+\frac{S_{k}}{\widetilde{h}(x)}\)</span>，我们有： <span
+class="math display">\[
+\lambda f(x) + (1-\lambda)f(y) = \lambda\frac{1}{\widetilde{h}(x)} + (1-
+\lambda)\frac{1}{\widetilde{h}(y)} &gt; \frac{1}{\lambda
+\widetilde{h}(x) + (1-\lambda)\widetilde{h}(y)} \label{eq28}
+\]</span> 将<span class="math inline">\(\eqref{eq27}\)</span>代入<span
+class="math inline">\(\eqref{eq28}\)</span>,可得： <span
+class="math display">\[
+\lambda f(x) + (1-\lambda)f(y)  &gt; \frac{1}{\widetilde{h}(\lambda
+x+(1-\lambda) y)} = f(\lambda x +(1- \lambda)y)
+\]</span> 证得<span
+class="math inline">\(T_{k}\)</span>为凸函数。因此，<span
+class="math inline">\(R_{u,k} = \widetilde{h}_{u,
+k}(\eta)\)</span>成立，且<span class="math inline">\(\eta_{k^{&#39;}},
+\forall k^{&#39;} \in \{k^{&#39;} \neq k | 1,\ldots, K
+\}\)</span>固定时，总存在一个最优的<span
+class="math inline">\(\eta_{k}\)</span>,令<span
+class="math inline">\(T_{k}\)</span>最优。在进行一轮优化之后，我们得到了最优的功率分配因子集合<span
+class="math inline">\(\boldsymbol{\eta^{*}} = \{ \eta_{1}^{*},\ldots,
+\eta_{K}^{*} \}\)</span>和最优的时延集合<span
+class="math inline">\(\boldsymbol{t^{*}} = \{T_{1}^{*} ,\ldots,T_{K}^{*}
+\}\)</span>。为了消除落后者效应，我们引入一个全局时延约束<span
+class="math inline">\(T\)</span>,对于任意的<span class="math inline">\(T
+= \max_{k} (T_{k}^{*})\)</span>，用户<span
+class="math inline">\(k^{&#39;} \in \{k^{&#39;} \neq k | 1,\ldots, K
+\}\)</span>可以通过缩小发射功率因子<span
+class="math inline">\(\eta_{k^{&#39;}}\)</span>令能量消耗在全局延迟约束下最优，此时<span
+class="math inline">\(T_{k} = T_{k^{&#39;}}\)</span>，同理可得当：</p>
+<p><span class="math display">\[
+T = T_{1}^{*} = T_{2}^{*} = \ldots = T_{K}^{*}
+\]</span></p>
+<p>根据推论3，<span
+class="math inline">\(P3\)</span>等价于以下最小-最大问题： <span
+class="math display">\[
+\min_{\eta_{k}} \ l \\
+s.t. \ \  t_{c,k}^{*}+t_{u,k} \leq l \ \ \ \ (C.1)\\
+0 \leq R_{u,k} \leq \widetilde{h}_{u,k}(\boldsymbol{\eta}) \ \ \ \
+(C.2)\\
+0 \leq \eta_{k} \leq 1 \ \ \ \ (C.3)\\
+通过SINR筛选每轮参与训练的用户\ \ \ \ (C.4)\\
+\]</span></p>
+<p>我们根据<strong>推论3</strong>可以证明<span
+class="math inline">\(P3\)</span>等价于下面的可行性问题,对于每个用户<span
+class="math inline">\(k\)</span>，都存在一个最优时延问题如下： <span
+class="math display">\[
+\min T \\
+s.t. \ \ \max_{k} (t_{c,k}^{*}+t_{u,k}) \leq T \ \ \ \ (C.1)\\
+0 \leq R_{u,k} \leq \widetilde{h}_{u,k}(\boldsymbol{\eta}) \ \ \ \
+(C.2)\\
+0 \leq \eta_{k} \leq 1 \ \ \ \ (C.3)\\
+通过SINR筛选每轮参与训练的用户\ \ \ \ (C.4)\\
+\]</span> 上述问题可以通过二分法寻找最优解。</p>
+<p>此时原始问题可以表述为以下形式： <span class="math display">\[
+\min_{\boldsymbol{\theta},\mathbf{f},\boldsymbol{\eta}} G(\theta)
+\sum_{k=1}^{K}(E_{C,k} +E_{U,k}) \\
+s.t. \ \ \max_{k} (t_{C,k}+t_{U,k}) \leq T \ \ \ \ (C.1)\\
+C.2-C.5
+\]</span></p>
+<hr />
+<p>需要注意的是，由于用户设备性能各异，因此对于全局模型训练的贡献不同。例如高性能的用户设备与低性能的用户设备相比可以在短时间内训练更高精度的本地模型。为了全局模型的更快收敛，训练了更高精度模型的用户设备若在第t轮全局迭代中被选中参与联邦学习，应当在全局模型的聚合阶段贡献更多。即对于每个用户设备k，由于本地资源<span
+class="math inline">\(\{ \theta_{min}^{k}, \theta_{max}^{k} \}\)</span>,
+<span class="math inline">\(\{ f_{min}^{k}, f_{max}^{k}
+\}\)</span>的限制，导致了不同的本地训练次数<span
+class="math inline">\(\log(\theta_{k})\)</span>和本地训练时间<span
+class="math inline">\(\frac{C_{k}D_{k}}{f_{k}}\)</span>。</p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Dong, S., Wang, P., &amp; Abbas, K.
+(2021). A survey on deep learning and its applications. <em>Computer
+Science Review</em>, <em>40</em>, 100379.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>McMahan, B., Moore, E., Ramage, D.,
+Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient
+learning of deep networks from decentralized data. In <em>Artificial
+intelligence and statistics</em> (pp. 1273-1282). PMLR.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Zhao, Y., Barnaghi, P., &amp;
+Haddadi, H. (2022, May). Multimodal Federated Learning on IoT Data. In
+<em>2022 IEEE/ACM Seventh International Conference on Internet-of-Things
+Design and Implementation (IoTDI)</em> (pp. 43-54). IEEE.<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Deng, Y., Han, T., &amp; Ansari, N.
+(2020). FedVision: Federated video analytics with edge computing.
+<em>IEEE Open Journal of the Computer Society</em>, <em>1</em>, 62-72.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>McMahan, B., Moore, E., Ramage, D.,
+Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient
+learning of deep networks from decentralized data. In <em>Artificial
+intelligence and statistics</em> (pp. 1273-1282). PMLR.<a href="#fnref5"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>X. Li, K. Huang, W. Yang, S. Wang,
+and Z. Zhang, “On the convergence of FedAvg on Non-IID data,” in Proc.
+Int. Conf. Learning Representations (ICLR), 2020.<a href="#fnref6"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Haddadpour, F., &amp; Mahdavi, M.
+(2019). On the convergence of local descent methods in federated
+learning. <em>arXiv preprint arXiv:1910.14425</em>.<a href="#fnref7"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>Xia, W., Quek, T. Q., Guo, K., Wen,
+W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client
+scheduling for federated learning. <em>IEEE Transactions on Wireless
+Communications</em>, <em>19</em>(11), 7108-7123.<a href="#fnref8"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>Vu, T. T., Ngo, D. T., Ngo, H. Q.,
+Dao, M. N., Tran, N. H., &amp; Middleton, R. H. (2022). Joint Resource
+Allocation to Minimize Execution Time of Federated Learning in Cell-Free
+Massive MIMO. <em>IEEE Internet of Things Journal</em>.<a href="#fnref9"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>Xia, W., Quek, T. Q., Guo, K., Wen,
+W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client
+scheduling for federated learning. <em>IEEE Transactions on Wireless
+Communications</em>, <em>19</em>(11), 7108-7123.<a href="#fnref10"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>Vu, T. T., Ngo, D. T., Ngo, H. Q.,
+Dao, M. N., Tran, N. H., &amp; Middleton, R. H. (2022). Joint Resource
+Allocation to Minimize Execution Time of Federated Learning in Cell-Free
+Massive MIMO. <em>IEEE Internet of Things Journal</em>.<a
+href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>M. Chen, H. V. Poor, W. Saad, and S.
+Cui, “Convergence time minimization of federated learning over wireless
+networks,” in <em>Proc. IEEE Int. Conf. Commun. (ICC)</em>, 2020, pp.
+1–6.<a href="#fnref12" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p>Xia, W., Quek, T. Q., Guo, K., Wen,
+W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client
+scheduling for federated learning. <em>IEEE Transactions on Wireless
+Communications</em>, <em>19</em>(11), 7108-7123.<a href="#fnref13"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14" role="doc-endnote"><p>M. Chen, H. V. Poor, W. Saad, and S.
+Cui, “Convergence time minimization of federated learning over wireless
+networks,” in <em>Proc. IEEE Int. Conf. Commun. (ICC)</em>, 2020, pp.
+1–6.<a href="#fnref14" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn15" role="doc-endnote"><p>T. T. Vu, D. T. Ngo, N. H. Tran, H.
+Q. Ngo, M. N. Dao, and R. H. Middleton, “Cell-free massive MIMO for
+wireless federated learning,” <em>IEEE Trans. Wireless Commun.</em>,
+2020.<a href="#fnref15" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn16" role="doc-endnote"><p>H. Q. Ngo, A. Ashikhmin, H. Yang, E.
+G. Larsson, and T. L. Marzetta, “Cell-free massive MIMO versus small
+cells,”<em>IEEE Trans. Wireless Commun.</em>, vol. 16, no. 3, pp.
+1834–1850, Mar. 2017.<a href="#fnref16" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn17" role="doc-endnote"><p>T. L. Marzetta, E. G. Larsson, H.
+Yang, and H. Q. Ngo, Fundamentals of Massive MIMO. <em>Cambridge
+University Press</em>, 2016.
+因此本文的研究目标在于通过缓解无蜂窝网络中进行联邦学习的落后者效应，降低用户设备的功耗。<a
+href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18" role="doc-endnote"><p>T. T. Vu, D. T. Ngo, N. H. Tran, H.
+Q. Ngo, M. N. Dao, and R. H. Middleton, “Cell-free massive MIMO for
+wireless federated learning,” <em>IEEE Trans. Wireless Commun.</em>,
+2020.<a href="#fnref18" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
     </div>
 
@@ -391,7 +844,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%BB%E8%9C%82%E7%AA%9DmMIMO-%E7%BD%91%E7%BB%9C%E9%AB%98%E6%95%88%E9%80%9A%E4%BF%A1%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">支持联邦学习的去蜂窝mMIMO 网络高效通信策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">1.背景介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">2.系统模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%83%BD%E8%80%97%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%E8%A1%A8%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">3. 能耗优化问题表述</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%BB%E8%9C%82%E7%AA%9Dmmimo-%E7%BD%91%E7%BB%9C%E9%AB%98%E6%95%88%E9%80%9A%E4%BF%A1%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">支持联邦学习的去蜂窝mMIMO
+网络高效通信策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">1.背景介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">2.系统模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E8%80%97%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%E8%A1%A8%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">3. 能耗优化问题表述</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -557,6 +1011,63 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
