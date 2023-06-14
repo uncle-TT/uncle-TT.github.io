@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="密码学实验报告 南通大学 信息科学技术学院 2110310044-赵涛涛  密码学实验报告  实验一 DES加密算法实验  实验目的 实验背景 算法原理 实验内容 实验过程 实验代码 实验结果 结果分析  实验二 AES加密算法实验  实验目的 实验背景 算法原理 实验内容 实验过程 实验代码 实验结果 结果分析  实验三 RSA加密算法实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码学实验报告">
+<meta property="og:url" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.html">
+<meta property="og:site_name" content="FATT的个人博客">
+<meta property="og:description" content="密码学实验报告 南通大学 信息科学技术学院 2110310044-赵涛涛  密码学实验报告  实验一 DES加密算法实验  实验目的 实验背景 算法原理 实验内容 实验过程 实验代码 实验结果 结果分析  实验二 AES加密算法实验  实验目的 实验背景 算法原理 实验内容 实验过程 实验代码 实验结果 结果分析  实验三 RSA加密算法实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/DES-1.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/DES-2.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/AES-1.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/AES-2.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/AES-3.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/AES-4.png">
+<meta property="article:published_time" content="2022-05-16T08:05:02.000Z">
+<meta property="article:modified_time" content="2023-06-14T08:06:41.420Z">
+<meta property="article:author" content="FATT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/DES-1.png">
+
+<link rel="canonical" href="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>密码学实验报告 | FATT的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FATT的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">技术笔记和随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="FATT">
+      <meta itemprop="description" content="南通大学 信息科学技术学院 信息与通信工程专业 21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FATT的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          密码学实验报告
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-16 16:05:02" itemprop="dateCreated datePublished" datetime="2022-05-16T16:05:02+08:00">2022-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-14 16:06:41" itemprop="dateModified" datetime="2023-06-14T16:06:41+08:00">2023-06-14</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="密码学实验报告">密码学实验报告</h1>
+<p>南通大学 信息科学技术学院<br />
+2110310044-赵涛涛</p>
+<ul>
+<li><a href="#密码学实验报告">密码学实验报告</a>
+<ul>
+<li><a href="#实验一-des加密算法实验">实验一 DES加密算法实验</a>
+<ul>
+<li><a href="#实验目的">实验目的</a></li>
+<li><a href="#实验背景">实验背景</a></li>
+<li><a href="#算法原理">算法原理</a></li>
+<li><a href="#实验内容">实验内容</a></li>
+<li><a href="#实验过程">实验过程</a></li>
+<li><a href="#实验代码">实验代码</a></li>
+<li><a href="#实验结果">实验结果</a></li>
+<li><a href="#结果分析">结果分析</a></li>
+</ul></li>
+<li><a href="#实验二-aes加密算法实验">实验二 AES加密算法实验</a>
+<ul>
+<li><a href="#实验目的-1">实验目的</a></li>
+<li><a href="#实验背景-1">实验背景</a></li>
+<li><a href="#算法原理-1">算法原理</a></li>
+<li><a href="#实验内容-1">实验内容</a></li>
+<li><a href="#实验过程-1">实验过程</a></li>
+<li><a href="#实验代码-1">实验代码</a></li>
+<li><a href="#实验结果-1">实验结果</a></li>
+<li><a href="#结果分析-1">结果分析</a></li>
+</ul></li>
+<li><a href="#实验三-rsa加密算法实验">实验三 RSA加密算法实验</a>
+<ul>
+<li><a href="#实验目的-2">实验目的</a></li>
+<li><a href="#实验背景-2">实验背景</a></li>
+<li><a href="#算法原理-2">算法原理</a>
+<ul>
+<li><a href="#公钥与私钥的产生">公钥与私钥的产生</a></li>
+<li><a href="#加密消息">加密消息</a></li>
+<li><a href="#解密消息">解密消息</a></li>
+<li><a href="#签名消息">签名消息</a></li>
+</ul></li>
+<li><a href="#实验内容-2">实验内容</a></li>
+<li><a href="#实验过程-2">实验过程</a></li>
+<li><a href="#实验代码-2">实验代码</a></li>
+<li><a href="#结果分析-2">结果分析</a>
+<ul>
+<li><a href="#附录">附录</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="实验一-des加密算法实验">实验一 DES加密算法实验</h2>
+<h3 id="实验目的">实验目的</h3>
+<ul>
+<li>理解对称加密算法的原理和特点</li>
+<li>理解DES算法的加解密原理</li>
+<li></li>
+</ul>
+<h3 id="实验背景">实验背景</h3>
+<p>DES全称为Data Encryption
+Standard，即数据加密标准，是一种使用密钥加密的块算法，1977年被美国联邦政府的国家标准局确定为联邦资料处理标准（FIPS），并授权在非密级政府通信中使用，随后该算法在国际上广泛流传开来。需要注意的是，在某些文献中，作为算法的DES称为数据加密算法（Data
+Encryption Algorithm,DEA），已与作为标准的DES区分开来。</p>
+<p>其算法运行需要三个关键参数：key、data、mode。key为加密解密使用的密钥，data为加密解密的数据。mode为其工作模式，当模式为加密模式时，明文按照64位进行分组，形成明文组，key用于对数据加密；当模式为解密模式时，key用于对数据解密。</p>
+<p>DES设计中使用了分组密码设计的两个原则：混淆（confusion）和扩散(diffusion)，其目的是抗击敌手对密码系统的统计分析。混淆是使密文的统计特性与密钥的取值之间的关系尽可能复杂化，以使密钥和明文以及密文之间的依赖性对密码分析者来说是无法利用的。扩散的作用就是将每一位明文的影响尽可能迅速地作用到较多的输出密文位中，以便在大量的密文中消除明文的统计结构，并且使每一位密钥的影响尽可能迅速地扩展到较多的密文位中，以防对密钥进行逐段破译。</p>
+<h3 id="算法原理">算法原理</h3>
+<p>DES算法把64位的明文输入块变为64位的密文输出块，算法所使用的密钥也是64位，DES对64位明文分组进行操作。通过一个初始置换，将明文分组分成左半部分和右半部分，各长32位。然后进行16轮相同的运算，这些相同的运算被称为F函数(是由四步运算构成：密钥置换；拓展置换；S盒代替；P置换；)，在运算过程中数据和密钥相结合。经过16轮运算后左、右部分在一起经过一个置换（初始置换的逆置换），这样算法就完成了。 </p>
+<p><img src="密码学实验报告/DES-1.png" style="zoom:50%;text-align: center;"></p>
+<p>图1 DES加密整体结构图</p>
+<p><img src="密码学实验报告/DES-2.png" style="zoom:50%;text-align: center"></p>
+<p>图2 每轮结构图</p>
+<ol type="1">
+<li><p><strong>初始置换。</strong>
+其功能是把输入的64位数据块按位重新组合，并把输出分为L0，R0两部分，每部分各长32位，即将输入的第58位换到第1位，第50位换到第2位，„，依次类推，最后一位是原来的第7位，L0，R0则是换位输出后的两部分，L0是输出的左32位，R0是右32位。 </p></li>
+<li><p><strong>逆置换。</strong> 经过16次迭代运算后，得到L16，R16，将此作为输入进行逆置换，即得到密文输出。逆置换正好是初始置换的逆运算。例如，第1位经过初始置换后，处于第40位，而通过逆置换，又将第40位换回到第1位。</p></li>
+<li><p><strong>F函数的计算。</strong>
+“扩展置换”是将32位放大成48位，“P盒置换”是32位到32位换位，在（Ri,Ki）算法描述图中，选择函数功能是把6 b数据变为4 b数据。  </p></li>
+<li><p><strong>子密钥Ki(48 b)的生成算法。</strong>
+由于不考虑每个字节的第8位，DES的密钥从64位变为56位，首先密钥被分成两个部分，每部分28位，然后根据轮数，两部分分别循环左移。</p></li>
+</ol>
+<p>实际运用中，密钥只用到了64位中的56位，其中第8，16，...，64位是校验位，不参与DES运算，故Key实际可用位数只有56位。即：经过密钥置换表的变换后，Key的位数由64位变成了56位，此56位分为C 0，D0两部分，各28位，然后分别进行第一次循环左移，得到C1，D1，将C1(28位)，D1(28位)合并得到56位，再经过压缩置换，从而便得到了密钥K0(48位)。依次类推，便可得到K1，K 2，„，K15。需要注意的是，16次循环左移对应的左移位数要依据表7所示的规则进行。</p>
+<p>DES算法加密和解密可以使用相同的算法。加密和解密唯一不同的是秘钥的次序是相反的。就是说如果每一轮的加密秘钥分别是K1、K2、K3…K16，那么解密秘钥就是K16、K15、K14…K1。为每一轮产生秘钥的算法也是循环的。加密是秘钥循环左移，解密是秘钥循环右移。</p>
+<h3 id="实验内容">实验内容</h3>
+<ul>
+<li>熟悉DES算法的基本原理；</li>
+<li>根据算法原理，编程实现算法；</li>
+<li>执行程序并分析结果；</li>
+</ul>
+<h3 id="实验过程">实验过程</h3>
+<ul>
+<li><em>编程环境</em> Oracle OpenJDK version 16.0.1</li>
+<li><em>IDEA</em> version 2022.1</li>
+<li><em>所需包</em> commons-io-1.4.jar</li>
+</ul>
+<h3 id="实验代码">实验代码</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加解密过程代码</span></span><br><span class="line"><span class="keyword">package</span> DES; <span class="comment">//添加必要的包</span></span><br><span class="line"><span class="keyword">import</span> FileOperate.FileOperate;</span><br><span class="line"><span class="keyword">import</span> ParseSystemUtil.ParseSystemUtil;</span><br><span class="line"><span class="keyword">import</span> java.security.SecureRandom;</span><br><span class="line"><span class="keyword">import</span> java.security.spec.KeySpec;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKeyFactory;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.DESKeySpec;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">DESEncryptTools</span> &#123;</span><br><span class="line">    <span class="comment">//加密算法是des</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ALGORITHM</span> <span class="operator">=</span> <span class="string">&quot;DES&quot;</span>;</span><br><span class="line">    <span class="comment">//转换格式</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TRANSFORMATION</span> <span class="operator">=</span> <span class="string">&quot;DES/ECB/PKCS5Padding&quot;</span>;</span><br><span class="line">    <span class="comment">//利用8个字节64位的key给src加密</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unused&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span>[] encrypt(<span class="type">byte</span>[] src,<span class="type">byte</span>[]key)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加密</span></span><br><span class="line">            <span class="type">Cipher</span> <span class="variable">cipher</span> <span class="operator">=</span> Cipher.getInstance(TRANSFORMATION);</span><br><span class="line">            <span class="type">SecretKeyFactory</span> <span class="variable">secretKeyFactory</span> <span class="operator">=</span> SecretKeyFactory.getInstance(ALGORITHM);</span><br><span class="line">            <span class="type">KeySpec</span> <span class="variable">keySpec</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DESKeySpec</span>(key);</span><br><span class="line">            <span class="type">SecretKey</span> <span class="variable">secretKey</span> <span class="operator">=</span> secretKeyFactory.generateSecret(keySpec);</span><br><span class="line">            cipher.init(Cipher.ENCRYPT_MODE, secretKey,<span class="keyword">new</span> <span class="title class_">SecureRandom</span>());</span><br><span class="line">            <span class="type">byte</span>[] enMsgBytes = cipher.doFinal(src);</span><br><span class="line">            <span class="keyword">return</span> enMsgBytes;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//利用8个字节64位的key给src解密</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unused&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span>[] decrypt(<span class="type">byte</span>[] encryptBytes,<span class="type">byte</span>[]key)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//解密</span></span><br><span class="line">            <span class="comment">//Cipher deCipher = Cipher.getInstance(&quot;DES/CBC/PKCS5Padding&quot;);</span></span><br><span class="line">            <span class="type">Cipher</span> <span class="variable">deCipher</span> <span class="operator">=</span> Cipher.getInstance(TRANSFORMATION);</span><br><span class="line">            <span class="type">SecretKeyFactory</span> <span class="variable">deDecretKeyFactory</span> <span class="operator">=</span> SecretKeyFactory.getInstance(ALGORITHM);</span><br><span class="line">            <span class="type">KeySpec</span> <span class="variable">deKeySpec</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DESKeySpec</span>(key);</span><br><span class="line">            <span class="type">SecretKey</span> <span class="variable">deSecretKey</span> <span class="operator">=</span> deDecretKeyFactory.generateSecret(deKeySpec);</span><br><span class="line">            deCipher.init(Cipher.DECRYPT_MODE, deSecretKey,<span class="keyword">new</span> <span class="title class_">SecureRandom</span>());</span><br><span class="line">            <span class="type">byte</span>[] deMsgBytes = deCipher.doFinal(encryptBytes);</span><br><span class="line">            <span class="keyword">return</span> deMsgBytes;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DesMainTest</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="string">&quot;123456a812345678d2345678123456c81234567812345678123456d812b45e78&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">msg0</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">msg1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">msg2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            msg0 = String.valueOf(<span class="string">&quot;123456781234567812345678&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;密钥为：&quot;</span>+key);</span><br><span class="line">        System.out.println(<span class="string">&quot;密钥长度：&quot;</span>+key.length());</span><br><span class="line">            System.out.println(<span class="string">&quot;明文为：&quot;</span>+msg0);</span><br><span class="line">            System.out.println(<span class="string">&quot;明文长度：&quot;</span>+msg0.length());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="type">double</span> <span class="variable">startTime0</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">            <span class="type">byte</span>[] encryptBytes0 = DESEncryptTools.encrypt(msg0.getBytes(),key.getBytes());</span><br><span class="line">            <span class="type">String</span> <span class="variable">hexStrResult0</span> <span class="operator">=</span> ParseSystemUtil.parseByte2HexStr(encryptBytes0);</span><br><span class="line">            System.out.println(<span class="string">&quot;加密后的16进制密文为：&quot;</span> + hexStrResult0);</span><br><span class="line">            System.out.println(<span class="string">&quot;密文长度：&quot;</span>  + hexStrResult0.length()/<span class="number">2</span>);</span><br><span class="line">            <span class="type">double</span> <span class="variable">endTime0</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">            System.out.println(<span class="string">&quot;加密耗时：&quot;</span> + (endTime0 - startTime0)/<span class="number">1000000</span> + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line"></span><br><span class="line">            startTime0 = System.nanoTime();</span><br><span class="line">            <span class="type">byte</span>[] deMsgBytes0 = DESEncryptTools.decrypt(encryptBytes0,key.getBytes());</span><br><span class="line">            System.out.println(<span class="string">&quot;解密后的明文为:&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(deMsgBytes0));</span><br><span class="line">            endTime0 = System.nanoTime();</span><br><span class="line">            System.out.println(<span class="string">&quot;解密耗时：&quot;</span> + (endTime0 - startTime0)/<span class="number">1000000</span> + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line"></span><br><span class="line">            msg = String.valueOf(<span class="string">&quot;1234567812345678123456781234567812345678&quot;</span> +</span><br><span class="line">                    <span class="string">&quot;123456781234567812345678123456781234567812345678&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;明文为：&quot;</span>+msg);</span><br><span class="line">            System.out.println(<span class="string">&quot;明文长度：&quot;</span>+msg.length());</span><br><span class="line"></span><br><span class="line">            <span class="type">double</span> <span class="variable">startTime</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">            <span class="type">byte</span>[] encryptBytes = DESEncryptTools.encrypt(msg.getBytes(),key.getBytes());</span><br><span class="line">            <span class="type">String</span> <span class="variable">hexStrResult</span> <span class="operator">=</span> ParseSystemUtil.parseByte2HexStr(encryptBytes);</span><br><span class="line">            System.out.println(<span class="string">&quot;加密后的16进制密文为：&quot;</span> + hexStrResult);</span><br><span class="line">            System.out.println(<span class="string">&quot;密文长度：&quot;</span>  + hexStrResult.length()/<span class="number">2</span>);</span><br><span class="line">            <span class="type">double</span> <span class="variable">endTime</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">            System.out.println(<span class="string">&quot;加密耗时：&quot;</span> + (endTime - startTime)/<span class="number">1000000</span> + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line"></span><br><span class="line">            startTime = System.nanoTime();</span><br><span class="line">            <span class="type">byte</span>[] deMsgBytes = DESEncryptTools.decrypt(encryptBytes,key.getBytes());</span><br><span class="line">            System.out.println(<span class="string">&quot;解密后的明文为:&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(deMsgBytes));</span><br><span class="line">            endTime = System.nanoTime();</span><br><span class="line">            System.out.println(<span class="string">&quot;解密耗时：&quot;</span> + (endTime - startTime)/<span class="number">1000000</span> + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实验结果">实验结果</h3>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">密钥为：<span class="number">123456</span>a812345678d2345678123456c81234567812345678123456d<span class="number">812b45e78</span></span><br><span class="line">密钥长度：<span class="number">64</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">明文<span class="number">1</span>长度：<span class="number">23</span></span><br><span class="line">密文长度：<span class="number">24</span></span><br><span class="line">加密耗时：<span class="number">88</span>.<span class="number">5568m</span>s</span><br><span class="line">解密耗时：<span class="number">0</span>.<span class="number">5941m</span>s</span><br><span class="line"></span><br><span class="line">明文<span class="number">2</span>长度：<span class="number">88</span></span><br><span class="line">密文长度：<span class="number">96</span></span><br><span class="line">加密耗时：<span class="number">1</span>.<span class="number">1646m</span>s</span><br><span class="line">解密耗时：<span class="number">0</span>.<span class="number">9766m</span>s</span><br><span class="line"></span><br><span class="line">明文<span class="number">3</span>长度：<span class="number">264</span></span><br><span class="line">密文长度：<span class="number">272</span></span><br><span class="line">加密耗时：<span class="number">2</span>.<span class="number">724m</span>s</span><br><span class="line">解密耗时<span class="number">1</span>：<span class="number">1</span>.<span class="number">6967m</span>s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">明文<span class="number">4</span>长度：<span class="number">528</span></span><br><span class="line">密文长度：<span class="number">536</span></span><br><span class="line">加密耗时：<span class="number">2</span>.<span class="number">1478m</span>s</span><br><span class="line">解密耗时<span class="number">2</span>：<span class="number">3</span>.<span class="number">4234m</span>s</span><br><span class="line"></span><br><span class="line">明文<span class="number">5</span>长度：<span class="number">1848</span></span><br><span class="line">密文长度：<span class="number">1856</span></span><br><span class="line">加密耗时：<span class="number">2</span>.<span class="number">0555m</span>s</span><br><span class="line">解密耗时：<span class="number">1</span>.<span class="number">2073m</span>s</span><br></pre></td></tr></table></figure>
+<h3 id="结果分析">结果分析</h3>
+<p>实验中分别按照明文长度设置了5组明文消息，在使用DES加密算算进行加解密的过程中，我们发现，随着明文长度增加，加密和解密的耗时也增加。并且我们注意到，第2-5组明文加解密的时间在0.1~3ms之间，第1组明文加密时间超过80ms，这明显是非正常的加密时间，可能是将程序初始化的时间也计算于其中。因此在实验中我们设置了多组测试明文进行对比，并弃置每次测试的第一组明文的数据。
+明文长度与加解密时间的关系如下表所示：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">明文长度</th>
+<th style="text-align: center;">密文长度</th>
+<th style="text-align: center;">加密时间</th>
+<th style="text-align: right;">解密时间</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">88</td>
+<td style="text-align: center;">96</td>
+<td style="text-align: center;">1.1646ms</td>
+<td style="text-align: right;">0.9766ms</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">264</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">2.724ms</td>
+<td style="text-align: right;">1.6967ms</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">528</td>
+<td style="text-align: center;">536</td>
+<td style="text-align: center;">2.1478ms</td>
+<td style="text-align: right;">3.4234ms</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1848</td>
+<td style="text-align: center;">1856</td>
+<td style="text-align: center;">2.0555ms</td>
+<td style="text-align: right;">1.2073ms</td>
+</tr>
+</tbody>
+</table>
+<p>从上表中，我们可以观察到另外一个事实，当明文长度为1-7之间，则密文长度为8；明文长度为8-15之间时，加密后的密文长度为16，以此类推。需要注意，上述实验数据仅经过一次实验得出，限于本人的能力，尚且无法在Java环境中进行多轮重复实验，无法获得更为精确的加解密时间，因此上述实验结果仅供参考。</p>
+<p>破解DES算法的方法是穷举搜索法。56位长的密钥总共要测试256次，如果每100毫秒可以测试1次，那么需要7.2×1015秒，大约是228,493,000年。但是，仍有学者认为在可预见的将来用穷举法寻找正确密钥已趋于可行，所以若要安全保护10年以上的数据最好。现在多使用3DES加密。</p>
+<p>参考：</p>
+<ol type="1">
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/lifeng_2009/article/details/5338687?spm=a2c6h.13066369.question.23.506b7cc58Zm1ot">DES加密解密算法JAVA实现</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://baike.baidu.com/item/DES/210508?fr=aladdin">DES百度百科</a></li>
+</ol>
+<h2 id="实验二-aes加密算法实验">实验二 AES加密算法实验</h2>
+<h3 id="实验目的-1">实验目的</h3>
+<ul>
+<li>理解对称加密算法的原理和特点</li>
+<li>理解AES算法的加解密原理</li>
+<li></li>
+</ul>
+<h3 id="实验背景-1">实验背景</h3>
+<p>密码学中的高级加密标准（Advanced Encryption
+Standard，AES），又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。</p>
+<p>这个标准用来替代原先的DES（Data Encryption
+Standard），已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院
+（NIST）于2001年11月26日发布于FIPS PUB
+197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一
+。</p>
+<h3 id="算法原理-1">算法原理</h3>
+<p>严格地说，AES和Rijndael加密法并不完全一样（虽然在实际应用中两者可以互换），因为Rijndael加密法可以支持更大范围的区块和密钥长度：AES的区块长度固定为128比特，密钥长度则可以是128，192或256比特；而Rijndael使用的密钥和区块长度均可以是128，192或256比特。加密过程中使用的密钥是由Rijndael密钥生成方案产生。</p>
+<p>大多数AES计算是在一个特别的有限域完成的。</p>
+<p>AES加密过程是在一个4×4的字节矩阵上运作，这个矩阵又称为“体（state）”，其初值就是一个明文区块（矩阵中一个元素大小就是明文区块中的一个Byte）。（Rijndael加密法因支持更大的区块，其矩阵的“列数（Row
+number）”可视情况增加）加密时，各轮AES加密循环（除最后一轮外）均包含4个步骤：</p>
+<ol type="1">
+<li><strong>添加轮密钥</strong>—矩阵中的每一个字节都与该次轮密钥做XOR运算；每个子密钥由密钥生成方案产生。轮密钥将会与原矩阵合并。在每次的加密循环中，都会由主密钥产生一把回合密钥（透过Rijndael密钥生成方案产生），这把密钥大小会跟原矩阵一样，以与原矩阵中每个对应的字节作异或（⊕）加法。</li>
+</ol>
+<p><img src="密码学实验报告/AES-1.png" style="zoom:80%; text-align: center" ></p>
+<ol start="2" type="1">
+<li><strong>字节替换</strong>—透过一个非线性的替换函数，用查找表的方式把每个字节替换成对应的字节。矩阵中的各字节透过一个8位的S-box进行转换。这个步骤提供了加密法非线性的变换能力。S-box与<span
+class="math inline">\(GF(2^8)\)</span>上的乘法反元素有关，已知具有良好的非线性特性。为了避免简单代数性质的攻击，S-box结合了乘法反元素及一个可逆的仿射变换矩阵建构而成。此外在建构S-box时，刻意避开了不动点与反不动点，即以S-box替换字节的结果会相当于错排的结果。</li>
+</ol>
+<p><img src="密码学实验报告/AES-2.png" style="zoom:80%; text-align: center" ></p>
+<ol start="3" type="1">
+<li><strong>行移位</strong>
+—将矩阵中的每个横列进行循环式移位。在此步骤中，每一行都向左循环位移某个偏移量。在AES中（区块大小128位），第一行维持不变，第二行里的每个字节都向左循环移动一格。同理，第三行及第四行向左循环位移的偏移量就分别是2和3。128位和192比特的区块在此步骤的循环位移的模式相同。经过ShiftRows之后，矩阵中每一竖列，都是由输入矩阵中的每个不同列中的元素组成。Rijndael算法的版本中，偏移量和AES有少许不同；对于长度256比特的区块，第一行仍然维持不变，第二行、第三行、第四行的偏移量分别是1字节、2字节、3字节。除此之外，<strong>行移位</strong>操作步骤在Rijndael和AES中完全相同。</li>
+</ol>
+<p><img src="密码学实验报告/AES-3.png" style="zoom:80%; text-align: center" ></p>
+<ol start="4" type="1">
+<li><strong>列混淆</strong>—为了充分混合矩阵中各个直行的操作。这个步骤使用线性转换来混合每内联的四个字节。最后一个加密循环中省略<strong>列混淆</strong>步骤，而以另一个<strong>添加轮密钥</strong>取代。每一列的四个字节透过线性变换互相结合。每一列的四个元素分别当作<span
+class="math inline">\(1, x, x^2, x^3\)</span>的系数，合并即为<span
+class="math inline">\(GF(2^8)\)</span>中的一个多项式，接着将此多项式和一个固定的多项式<span
+class="math inline">\(c(x)=3x^{3}+x^{2}+x+2\)</span>在模<span
+class="math inline">\(x^4+1\)</span>下相乘。此步骤亦可视为Rijndael有限域之下的矩阵乘法。<strong>列混淆</strong>函数接受4个字节的输入，输出4个字节，每一个输入的字节都会对输出的四个字节造成影响。因此<strong>行移位</strong>和<strong>列混淆</strong>两步骤为这个密码系统提供了扩散性。</li>
+</ol>
+<p><img src="密码学实验报告/AES-4.png" style="zoom:80%; text-align: center" ></p>
+<h3 id="实验内容-1">实验内容</h3>
+<ul>
+<li>熟悉AES算法的基本原理；</li>
+<li>根据算法原理，编程实现算法；</li>
+<li>执行程序并分析结果；</li>
+</ul>
+<h3 id="实验过程-1">实验过程</h3>
+<ul>
+<li><em>编程环境</em> Oracle OpenJDK version 16.0.1</li>
+<li><em>IDEA</em> version 2022.1</li>
+<li><em>所需包</em> commons-io-1.4.jar</li>
+</ul>
+<h3 id="实验代码-1">实验代码</h3>
+<p>AES加解密</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> AES;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.*;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.security.InvalidKeyException;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.SecureRandom;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * AES 加密方法，是对称的密码算法(加密与解密的密钥一致)，这里使用最大的 256 位的密钥</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AESUtil</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得一个 密钥长度为 256 位的 AES 密钥，</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回经 BASE64 处理之后的密钥字符串</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getStrKeyAES</span><span class="params">()</span> <span class="keyword">throws</span> NoSuchAlgorithmException, UnsupportedEncodingException &#123;</span><br><span class="line">        <span class="type">KeyGenerator</span> <span class="variable">keyGen</span> <span class="operator">=</span> KeyGenerator.getInstance(<span class="string">&quot;AES&quot;</span>);</span><br><span class="line">        <span class="type">SecureRandom</span> <span class="variable">secureRandom</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecureRandom</span>(String.valueOf(System.currentTimeMillis()).getBytes(<span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line">        keyGen.init(<span class="number">128</span>, secureRandom);   <span class="comment">// 这里可以是 128、192、256、越大越安全</span></span><br><span class="line">        <span class="type">SecretKey</span> <span class="variable">secretKey</span> <span class="operator">=</span> keyGen.generateKey();</span><br><span class="line">        <span class="keyword">return</span> Base64.getEncoder().encodeToString(secretKey.getEncoded());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  将使用 Base64 加密后的字符串类型的 secretKey 转为 SecretKey</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strKey</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> SecretKey</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SecretKey <span class="title function_">strKey2SecretKey</span><span class="params">(String strKey)</span>&#123;</span><br><span class="line">        <span class="type">byte</span>[] bytes = Base64.getDecoder().decode(strKey);</span><br><span class="line">        <span class="type">SecretKeySpec</span> <span class="variable">secretKey</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(bytes, <span class="string">&quot;AES&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> secretKey;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加密</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> content 待加密内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> secretKey 加密使用的 AES 密钥</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 加密后的密文 byte[]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span>[] encryptAES(<span class="type">byte</span>[] content, SecretKey secretKey) <span class="keyword">throws</span> NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException &#123;</span><br><span class="line">        <span class="type">Cipher</span> <span class="variable">cipher</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;AES&quot;</span>);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, secretKey);</span><br><span class="line">        <span class="keyword">return</span> cipher.doFinal(content);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解密</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> content 待解密内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> secretKey 解密使用的 AES 密钥</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 解密后的明文 byte[]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span>[] decryptAES(<span class="type">byte</span>[] content, SecretKey secretKey) <span class="keyword">throws</span> NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException &#123;</span><br><span class="line">        <span class="type">Cipher</span> <span class="variable">cipher</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;AES&quot;</span>);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, secretKey);</span><br><span class="line">        <span class="keyword">return</span> cipher.doFinal(content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试代码</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package AES;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import java.io.FileWriter;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.Base64;</span><br><span class="line">import ReadFile.ReadFile;</span><br><span class="line">import ParseSystemUtil.ParseSystemUtil;</span><br><span class="line">public <span class="keyword">class</span> AESUtilTest &#123;</span><br><span class="line">    public static void main(String<span class="literal">[]</span> args) throws IOException &#123;</span><br><span class="line">        ReadFile readfile = <span class="keyword">new</span> <span class="constructor">ReadFile()</span>;</span><br><span class="line">        String pathname = <span class="string">&quot;D:\\IDEA_java\\src\\AES\\test.txt&quot;</span>;</span><br><span class="line">        String content = readfile.read<span class="constructor">FromTextFile(<span class="params">pathname</span>)</span>;</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;文件读取成功，明文为：&quot;</span>+content);</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;明文长度：&quot;</span>+content.length<span class="literal">()</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 获得经 BASE64 处理之后的 AES 密钥</span></span><br><span class="line">            String strKeyAES = <span class="module-access"><span class="module"><span class="identifier">AESUtil</span>.</span></span>get<span class="constructor">StrKeyAES()</span>;</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;经BASE64处理之后的密钥：&quot;</span> + strKeyAES);</span><br><span class="line">            <span class="comment">// 将 BASE64 处理之后的 AES 密钥转为 SecretKey</span></span><br><span class="line">            SecretKey secretKey = <span class="module-access"><span class="module"><span class="identifier">AESUtil</span>.</span></span>str<span class="constructor">Key2SecretKey(<span class="params">strKeyAES</span>)</span>;</span><br><span class="line">            <span class="comment">// 加密数据</span></span><br><span class="line">            byte<span class="literal">[]</span> <span class="built_in">bytes</span> = content.get<span class="constructor">Bytes(<span class="string">&quot;utf-8&quot;</span>)</span>;</span><br><span class="line">            long startTime = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>nano<span class="constructor">Time()</span>;</span><br><span class="line">            byte<span class="literal">[]</span> encryptAESbytes = <span class="module-access"><span class="module"><span class="identifier">AESUtil</span>.</span></span>encrypt<span class="constructor">AES(<span class="params">bytes</span>, <span class="params">secretKey</span>)</span>;</span><br><span class="line">            double endTime = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>nano<span class="constructor">Time()</span>; <span class="comment">//获取结束时间</span></span><br><span class="line">            String hexStrResult = <span class="module-access"><span class="module"><span class="identifier">ParseSystemUtil</span>.</span></span>parse<span class="constructor">Byte2HexStr(<span class="params">encryptAESbytes</span>)</span>;</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;加密后的16进制密文为：&quot;</span>  + hexStrResult);</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;密文长度：&quot;</span>  + hexStrResult.length<span class="literal">()</span>/<span class="number">2</span>);</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;加密耗时： &quot;</span> + (endTime - startTime)/<span class="number">1000000</span> + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">            FileWriter out1 = <span class="keyword">new</span> <span class="constructor">FileWriter(<span class="string">&quot;D:\\IDEA_java\\src\\AES\\密文.txt&quot;</span>)</span>;</span><br><span class="line">            out1.write(<span class="module-access"><span class="module"><span class="identifier">Base64</span>.</span></span>get<span class="constructor">Encoder()</span>.encode<span class="constructor">ToString(<span class="params">encryptAESbytes</span>)</span>);</span><br><span class="line">            out1.close<span class="literal">()</span>;</span><br><span class="line">            <span class="comment">// 解密数据</span></span><br><span class="line">            long startTime1 = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>nano<span class="constructor">Time()</span>;</span><br><span class="line">            String decryptAESStr = <span class="keyword">new</span> <span class="constructor">String(AESUtil.<span class="params">decryptAES</span>(<span class="params">encryptAESbytes</span>, <span class="params">secretKey</span>)</span>, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            double endTime1 = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>nano<span class="constructor">Time()</span>; </span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;解密后的明文为:&quot;</span> + decryptAESStr);</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;解密耗时： &quot;</span> + (endTime1 - startTime1)/<span class="number">1000000</span> + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">            FileWriter out = <span class="keyword">new</span> <span class="constructor">FileWriter(<span class="string">&quot;D:\\IDEA_java\\src\\AES\\明文.txt&quot;</span>)</span>;</span><br><span class="line">            out.write(decryptAESStr);</span><br><span class="line">            out.close<span class="literal">()</span>;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.print<span class="constructor">StackTrace()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实验结果-1">实验结果</h3>
+<p><strong>密钥长度：128</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">明文1长度：88</span><br><span class="line">密文长度：96</span><br><span class="line">加密耗时： 0.1449ms</span><br><span class="line">解密耗时： 0.1454ms</span><br><span class="line">明文2长度：264</span><br><span class="line">密文长度：272</span><br><span class="line">加密耗时： 0.1857ms</span><br><span class="line">解密耗时： 0.1841ms</span><br><span class="line">明文3长度：528</span><br><span class="line">密文长度：544</span><br><span class="line">加密耗时： 0.234ms</span><br><span class="line">解密耗时： 2.5967ms</span><br><span class="line">明文4长度：1848</span><br><span class="line">密文长度：1856</span><br><span class="line">加密耗时： 0.6445ms</span><br><span class="line">解密耗时： 0.4615ms</span><br></pre></td></tr></table></figure>
+<p><strong>密钥长度：192</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">明文1长度：88</span><br><span class="line">密文长度：96</span><br><span class="line">加密耗时： 0.1575ms</span><br><span class="line">解密耗时： 0.2432ms</span><br><span class="line">明文2长度：264</span><br><span class="line">密文长度：272</span><br><span class="line">加密耗时： 0.1845ms</span><br><span class="line">解密耗时： 0.2177ms</span><br><span class="line">明文3长度：528</span><br><span class="line">密文长度：544</span><br><span class="line">加密耗时： 0.4002ms</span><br><span class="line">解密耗时： 3.0396ms</span><br><span class="line">明文4长度：1848</span><br><span class="line">密文长度：1856</span><br><span class="line">加密耗时： 0.5901ms</span><br><span class="line">解密耗时： 0.6833ms</span><br></pre></td></tr></table></figure>
+<p><strong>密钥长度：256</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">明文1长度：88</span><br><span class="line">密文长度：96</span><br><span class="line">加密耗时： 0.1508ms</span><br><span class="line">解密耗时： 0.1596ms</span><br><span class="line">明文2长度：264</span><br><span class="line">密文长度：272</span><br><span class="line">加密耗时： 0.2093ms</span><br><span class="line">解密耗时： 0.3756ms</span><br><span class="line">明文3长度：528</span><br><span class="line">密文长度：544</span><br><span class="line">加密耗时： 0.3064ms</span><br><span class="line">解密耗时： 2.9697ms</span><br><span class="line">明文4长度：1848</span><br><span class="line">密文长度：1856</span><br><span class="line">加密耗时： 0.6144ms</span><br><span class="line">解密耗时： 0.464ms</span><br></pre></td></tr></table></figure>
+<h3 id="结果分析-1">结果分析</h3>
+<p>AES实验中分别按照明文长度设置了4组明文消息，在使用AES加密算算进行加解密的过程中，我们发现，随着明文长度增加，加密和解密的耗时也增加。另外密钥长度的增加也会使加解密时间增加。
+明文长度与加解密时间的关系如下表所示：</p>
+<table>
+<thead>
+<tr class="header">
+<th>密钥长度</th>
+<th>明文长度</th>
+<th>密文长度</th>
+<th>加密时间</th>
+<th>解密时间</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>128</td>
+<td>88</td>
+<td>96</td>
+<td>0.1449ms</td>
+<td>0.1454ms</td>
+</tr>
+<tr class="even">
+<td>128</td>
+<td>264</td>
+<td>272</td>
+<td>0.1857ms</td>
+<td>0.1841ms</td>
+</tr>
+<tr class="odd">
+<td>128</td>
+<td>528</td>
+<td>544</td>
+<td>0.234ms</td>
+<td>2.5967ms</td>
+</tr>
+<tr class="even">
+<td>128</td>
+<td>1848</td>
+<td>1856</td>
+<td>0.6445ms</td>
+<td>0.4615ms</td>
+</tr>
+<tr class="odd">
+<td>192</td>
+<td>88</td>
+<td>96</td>
+<td>0.1575ms</td>
+<td>0.2432ms</td>
+</tr>
+<tr class="even">
+<td>192</td>
+<td>264</td>
+<td>272</td>
+<td>0.1845ms</td>
+<td>0.2177ms</td>
+</tr>
+<tr class="odd">
+<td>192</td>
+<td>528</td>
+<td>544</td>
+<td>0.4002ms</td>
+<td>3.0396ms</td>
+</tr>
+<tr class="even">
+<td>192</td>
+<td>1848</td>
+<td>1856</td>
+<td>0.5901ms</td>
+<td>0.6833ms</td>
+</tr>
+<tr class="odd">
+<td>256</td>
+<td>88</td>
+<td>96</td>
+<td>0.1508ms</td>
+<td>0.1596ms</td>
+</tr>
+<tr class="even">
+<td>256</td>
+<td>264</td>
+<td>272</td>
+<td>0.2093ms</td>
+<td>0.3756ms</td>
+</tr>
+<tr class="odd">
+<td>256</td>
+<td>528</td>
+<td>544</td>
+<td>0.3064ms</td>
+<td>2.9697ms</td>
+</tr>
+<tr class="even">
+<td>256</td>
+<td>1848</td>
+<td>1856</td>
+<td>0.6144ms</td>
+<td>0.464ms</td>
+</tr>
+</tbody>
+</table>
+<p>明文与密文长度关系:</p>
+<ul>
+<li><p>在原始数据长度为<span
+class="math inline">\(8\)</span>的整数倍时:假如原始数据长度等于<span
+class="math inline">\(8n\)</span>，则使用NoPadding时加密后数据长度等于<span
+class="math inline">\(8n\)</span>，其它情况下加密数据长度等于 <span
+class="math inline">\(8*(n+1)\)</span>。</p></li>
+<li><p>在不足 16 的整数倍的情况下:假如原始数据长度等于 <span
+class="math inline">\(8n+m,m&lt;8\)</span>其中 <span
+class="math inline">\(m\)</span> 小于<span
+class="math inline">\(8\)</span>，除了NoPadding填充之外的任何方式，加密数据长度都等于<span
+class="math inline">\(8(n+1)\)</span>；</p></li>
+</ul>
+<p>例如：算法/模式/填充(AES/CBC/PKCS5Padding),明文69字符，则密文为<span
+class="math inline">\(69=8*8+5\)</span>,其中<span
+class="math inline">\(n\)</span>为<span
+class="math inline">\(8\)</span>,<span
+class="math inline">\(m\)</span>为<span
+class="math inline">\(5\)</span>,密文长度为<span
+class="math inline">\(8(8+1)=72\)</span>字节,再转为base64之后，长度也会变长。</p>
+<p>需要注意，上述实验数据仅经过一次实验得出，限于本人的能力，尚且无法在Java环境中进行多轮重复实验，无法获得更为精确的加解密时间，因此上述实验结果仅供参考。</p>
+<h2 id="实验三-rsa加密算法实验">实验三 RSA加密算法实验</h2>
+<h3 id="实验目的-2">实验目的</h3>
+<ul>
+<li>理解非对称加密算法(公钥算法)的原理和特点，并理解其与对称加密算法的区别与不同</li>
+<li>理解RSA算法的加解密原理和签名算法</li>
+<li></li>
+</ul>
+<h3 id="实验背景-2">实验背景</h3>
+<p>RSA加密算法是一种非对称加密算法，在公开密钥加密和电子商业中被广泛使用。RSA是由罗纳德·李维斯特（Ron
+Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard
+Adleman）在1977年一起提出的。当时他们三人都在麻省理工学院工作。RSA
+就是他们三人姓氏开头字母拼在一起组成的。</p>
+<p>对极大整数做因数分解的难度决定了 RSA
+算法的可靠性。换言之，对一极大整数做因数分解愈困难，RSA
+算法愈可靠。假如有人找到一种快速因数分解的算法的话，那么用 RSA
+加密的信息的可靠性就会极度下降。但找到这样的算法的可能性是非常小的。今天只有短的
+RSA
+钥匙才可能被强力方式破解。到2020年为止，世界上还没有任何可靠的攻击RSA算法的方式。只要其钥匙的长度足够长，用RSA加密的信息实际上是不能被破解的。</p>
+<h3 id="算法原理-2">算法原理</h3>
+<h4 id="公钥与私钥的产生">公钥与私钥的产生</h4>
+<p>假设爱丽丝想要通过一个不可靠的媒体接收鲍伯的一条私人信息。她可以用以下的方式来产生一个公钥和一个私钥：</p>
+<p>随意选择两个大的素数<span class="math inline">\(p\)</span>和<span
+class="math inline">\(q\)</span>，<span
+class="math inline">\(p\)</span>不等于<span
+class="math inline">\(q\)</span>，计算<span
+class="math inline">\(N=pq\)</span>。 根据欧拉函数，求得<span
+class="math inline">\({\displaystyle r=\varphi (N)=\varphi (p)\times
+\varphi (q)=(p-1)(q-1)}\)</span> 选择一个小于<span
+class="math inline">\(r\)</span>的整数<span
+class="math inline">\(e\)</span>，使<span
+class="math inline">\(e\)</span>与<span
+class="math inline">\(r\)</span>互质。并求得<span
+class="math inline">\(e\)</span>关于<span
+class="math inline">\(r\)</span>的模逆元，命名为<span
+class="math inline">\(d\)</span>（求<span
+class="math inline">\(d\)</span>令<span
+class="math inline">\({\displaystyle ed\equiv 1{\pmod
+{r}}}\)</span>）。（模逆元存在，当且仅当<span
+class="math inline">\(e\)</span>与<span
+class="math inline">\(r\)</span>互质） 将<span
+class="math inline">\(p\)</span>和<span
+class="math inline">\(q\)</span>的记录销毁。 <span
+class="math inline">\((N,e)\)</span>是公钥，<span
+class="math inline">\((N,d)\)</span>是私钥。爱丽丝将她的公钥<span
+class="math inline">\((N,e)\)</span>传给鲍伯，而将她的私钥<span
+class="math inline">\((N,d)\)</span>藏起来。</p>
+<h4 id="加密消息">加密消息</h4>
+<p>假设鲍伯想给爱丽丝送一个消息<span
+class="math inline">\({\displaystyle
+m}\)</span>，他知道爱丽丝产生的<span
+class="math inline">\({\displaystyle N}\)</span>和<span
+class="math inline">\({\displaystyle
+e}\)</span>。他使用起先与爱丽丝约好的格式将<span
+class="math inline">\({\displaystyle m}\)</span>转换为一个小于<span
+class="math inline">\({\displaystyle N}\)</span>的非负整数<span
+class="math inline">\({\displaystyle
+n}\)</span>，比如他可以将每一个字转换为这个字的Unicode码，然后将这些数字连在一起组成一个数字。假如他的信息非常长的话，他可以将这个信息分为几段，然后将每一段转换为<span
+class="math inline">\({\displaystyle
+n}\)</span>。用下面这个公式他可以将<span
+class="math inline">\({\displaystyle n}\)</span>加密为<span
+class="math inline">\({\displaystyle c}\)</span>：</p>
+<p><span class="math inline">\({\displaystyle c=n^{e}{\bmod
+{N}}}\)</span> 计算<span class="math inline">\({\displaystyle
+c}\)</span>并不复杂。鲍伯算出<span class="math inline">\({\displaystyle
+c}\)</span>后就可以将它传递给爱丽丝。</p>
+<h4 id="解密消息">解密消息</h4>
+<p>爱丽丝得到鲍伯的消息<span
+class="math inline">\(c\)</span>后就可以利用她的密钥<span
+class="math inline">\(d\)</span>来解码。她可以用以下这个公式来将<span
+class="math inline">\(c\)</span>转换为<span
+class="math inline">\(n\)</span>：</p>
+<p><span class="math inline">\({\displaystyle n=c^{d}{\bmod
+{N}}}\)</span> 得到<span
+class="math inline">\(n\)</span>后，她可以将原来的信息<span
+class="math inline">\(m\)</span>重新复原。</p>
+<p>解码的原理是 <span class="math inline">\(c^d \equiv n^{e \cdot d}\
+(\mathrm{mod}\ N)\)</span> 已知<span
+class="math inline">\({\displaystyle ed\equiv 1{\pmod {r}}}\)</span>，即
+<span class="math inline">\({\displaystyle ed=1+h\varphi
+(N)}\)</span>。那么有</p>
+<p><span class="math display">\[{\displaystyle n^{ed}=n^{1+h\varphi
+(N)}=n\cdot n^{h\varphi (N)}=n\left(n^{\varphi
+(N)}\right)^{h}}\]</span></p>
+<p>其中 <span class="math inline">\({\displaystyle n^{ed}\equiv n{\pmod
+{N}}}\)</span> 。</p>
+<h4 id="签名消息">签名消息</h4>
+<p>RSA也可以用来为一个消息署名。假如爱丽丝想给鲍伯传递一个署名的消息的话，那么她可以为她的消息计算一个散列值（Message
+digest），然后用她的私钥“加密”（如同前面“加密消息”的步骤）这个散列值并将这个“署名”加在消息的后面。这个消息只有用她的公钥才能被解密。鲍伯获得这个消息后可以用爱丽丝的公钥“解密”（如同前面“解密消息”的步骤）这个散列值，然后将这个数据与他自己为这个消息计算的散列值相比较。假如两者相符的话，那么鲍伯就可以知道发信人持有爱丽丝的私钥，以及这个消息在传播路径上没有被篡改过。</p>
+<h3 id="实验内容-2">实验内容</h3>
+<p>给定 RSA 算法结构 一、参数和密钥生成：</p>
+<p>1.随机两个大素数𝑝和𝑞，保密；</p>
+<p>2.计算<span class="math inline">\(𝑛 = 𝑝 ×
+𝑞\)</span>，公开。计算欧拉函数<span class="math inline">\(𝜑(𝑛) = (𝑝 −
+1)(𝑞 − 1)\)</span>。</p>
+<p>3.随机选取整数<span class="math inline">\(𝑒\)</span>，<span
+class="math inline">\(gcd(𝑒,𝜑(𝑛)) = 1\)</span>。</p>
+<p>4.计算d：<span class="math inline">\(d= e^{-1} mod \
+\Phi(n)\)</span></p>
+<p>5.公钥为<span class="math inline">\(（𝑒, 𝑛）\)</span>，私钥为<span
+class="math inline">\(（𝑑，n）\)</span>。</p>
+<p>二、加密： <span class="math display">\[c \equiv m^e mod
+n  \]</span></p>
+<p>三、解密： <span class="math display">\[ m \equiv c^d mod n
+\]</span></p>
+<p>实现功能：</p>
+<ul>
+<li>RSA 算法密钥生成，存放两个不同文件。</li>
+<li>RSA 加密文件，读入公钥文件，读入待加密文件，输出密文文件。</li>
+<li>RSA 解密文件，读入私钥文件，读入待解密文件，输出明文文件。</li>
+</ul>
+<h3 id="实验过程-2">实验过程</h3>
+<ul>
+<li><em>编程环境</em> Oracle OpenJDK version 16.0.1</li>
+<li><em>IDEA</em> version 2022.1</li>
+<li><em>所需包</em> commons-io-1.4.jar</li>
+</ul>
+<h3 id="实验代码-2">实验代码</h3>
+<p>密钥长度 1024 (明文长度限制117)</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">密钥长度: 1024</span></span><br><span class="line">明文加解密</span><br><span class="line">明文长度：115</span><br><span class="line"><span class="section">密文长度:172</span></span><br><span class="line">加密耗时：51ms</span><br><span class="line">解密耗时：3ms</span><br></pre></td></tr></table></figure>
+<p>密钥长度: 3072 (明文长度限制383)</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">密钥长度: 3072</span></span><br><span class="line">明文0加解密</span><br><span class="line">明文长度：115</span><br><span class="line"><span class="section">密文长度:512</span></span><br><span class="line">加密耗时：55ms</span><br><span class="line">解密耗时：16ms</span><br></pre></td></tr></table></figure>
+<p>密钥长度: 7680 (明文长度限制959)</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">密钥长度: 7680</span></span><br><span class="line">明文0加解密</span><br><span class="line">明文长度：802</span><br><span class="line"><span class="section">密文长度:1280</span></span><br><span class="line">加密耗时：51ms</span><br><span class="line">解密耗时：83ms</span><br></pre></td></tr></table></figure>
+<p>密钥长度: 15360 (明文长度限制1919)</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">密钥长度: 15360</span></span><br><span class="line">明文0加解密</span><br><span class="line">明文长度：1454</span><br><span class="line"><span class="section">密文长度:2560</span></span><br><span class="line">加密耗时：48ms</span><br><span class="line">解密耗时：453ms</span><br></pre></td></tr></table></figure>
+<h3 id="结果分析-2">结果分析</h3>
+<p>RSA算法一次能加密的名文长度与密钥长度成正比，如RSA
+1024实际可加密的明文长度最大是1024bits。如果小于这个长度就需要进行数据补齐（padding），因为如果没有padding，用户则无法确分解密后内容的真实长度。字符串之类的内容问题还不大，以0作为结束符，但对二进制数据就很难理解，因为不确定后面的0是内容还是内容结束符。
+只要用到padding，那么就要占用实际的明文长度。于是才有117字节的说法，即下面这种常见的说法：len_in_byte(raw_data)
+= len_in_bit(key)/8 -11，如1024bit的密钥，一次能加密的内容长度为 1024/8
+-11 = 117 byte。</p>
+<p>我们一般使用的padding标准有NoPPadding、OAEPPadding、PKCS1Padding等，其中PKCS#1建议的padding就占用了11个字节。对于RSA加密来讲，padding也是参与加密的，所以实际的明文只有117字节了。</p>
+<p>并且从实验三的结果可以看出RSA加密算法的运算速度与对称加密算法（DES、AES等）非常缓慢，且可以加密的内容长度受到限制，因此不适合直接部署为消息加密算法。比起AES、3DES和其它对称算法来说，RSA要慢得多。实际的运用（如TLS）一般结合了对称加密（如AES）和非对称加密（如RSA）两者，非对称加密算法优良的密钥管理机制使得我们可以使用其来对对称密钥进行加密，防止对称密钥在交换过程中被窃取，而对称密钥的加密性能使得消息内容的安全性得到保证。
+19004665271894593499149560691777066794020507456815937883836820497604631561167092538170674555181754702142093694771861058277967104862032061909600088828058270305135896972219387856587464029714213216518622519078940445723220577291967</p>
+<h1 id="数字签名">数字签名</h1>
+<h2 id="rsa数字签名">RSA数字签名</h2>
+<h3 id="数字签名背景">数字签名背景</h3>
+<p>数字签名（英语：Digital
+Signature，又称公钥数字签名）是一种功能类似写在纸上的普通签名、但是使用了公钥加密领域的技术，以用于鉴别数字信息的方法。
+数字签名了的文件的完整性是很容易验证的，而且数字签名具有不可抵赖性（即不可否认性），不需要笔迹专家来验证。
+信息发布者可以使用数字签名：信息发布的目的是让人们知道信息，虽然没必要对消息进行加密，但是必须排除有人伪装信息发布者发布假消息的风险，这时信息发布者就可以使用数字签名。而对明文消息施加的签名，称为明文签名（clearsign）。</p>
+<p>软件的作者可以加上数字签名，以便用户下载后对签名进行验证。</p>
+<p>认证机构（CA）也可以为用户的公钥加上数字签名生成证书，以便人们确认用户公钥的合法性。</p>
+<p>SSL/TLS使用服务器证书（加上了数字签名的服务器公钥）认证服务器身份是否合法。</p>
+<h3 id="rsa数字签名原理">RSA数字签名原理</h3>
+<p>普通的数字签名算法包括三种算法：</p>
+<ul>
+<li>一种密码生成算法</li>
+<li>签名算法</li>
+<li>验证算法</li>
+</ul>
+<p>在使用非对称加密算法的时候，对于一个公钥-私钥对，通常是用公钥加密，私钥解密。实际上使用私钥加密，公钥解密也是可行的。后者的操作实际上实现了一个不可伪造，不可否认的数字签名，接受信息方获取消息以及哈希后的消息摘要，使用公钥对消息摘要进行解密，若与本地接收的消息哈希后的内容相同，则证明该签名是有效的。因此，私钥加密得到的密文实际上就是数字签名，要验证这个签名是否正确，只能用私钥持有者的公钥进行解密验证。使用数字签名的目的是为了确认某个信息确实是由某个发送方发送的，任何人都不可能伪造消息，并且，发送方也不能抵赖。
+在实际应用的时候，签名实际上并不是针对原始消息，而是针对原始消息的哈希进行签名，即：signature
+= encrypt(privateKey, sha256(message))
+对签名进行验证实际上就是用公钥解密：</p>
+<p>hash = decrypt(publicKey, signature)
+然后把解密后的哈希与原始消息的哈希进行对比。</p>
+<p>因为用户总是使用自己的私钥进行签名，所以，私钥就相当于用户身份。而公钥用来给外部验证用户身份。</p>
+<h3 id="实验数据">实验数据</h3>
+<p>对一本小说进行签名</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">哈希值为：<span class="number">26</span>feb<span class="number">27</span>fbe<span class="number">8</span>f<span class="number">12</span>d<span class="number">31</span>bfb<span class="number">8</span>d<span class="number">9</span>ddcdfc<span class="number">166586</span>b<span class="number">17</span>a<span class="number">31</span>af<span class="number">3</span>f<span class="number">5</span>aa<span class="number">0</span>f<span class="number">736</span>bac<span class="number">25</span>a<span class="number">86249</span></span><br><span class="line">哈希值长度：<span class="number">1024</span></span><br><span class="line">数字签名为: <span class="number">8</span>ee<span class="number">910</span><span class="keyword">c</span><span class="number">8</span><span class="keyword">c</span><span class="number">8</span>d<span class="number">0</span>aaa<span class="number">53</span>bea<span class="number">7</span>f<span class="number">88</span><span class="keyword">c</span><span class="number">619</span>a<span class="number">8</span>b<span class="number">010291</span>a<span class="number">6e7</span>cbfce<span class="number">92e54534</span>ce<span class="number">1</span>f<span class="number">26</span>ce<span class="number">55</span><span class="keyword">c</span><span class="number">263</span>aa<span class="number">5</span>aa<span class="number">3</span>cec<span class="number">2</span>fcba<span class="number">05e5348</span>e<span class="number">791</span>cb<span class="number">1843</span>dd<span class="number">95526</span>b<span class="number">32</span>d<span class="number">0</span>ed<span class="number">451</span>ce<span class="number">32</span><span class="keyword">c</span><span class="number">3</span>db<span class="number">4329</span></span><br><span class="line">签名耗时：<span class="number">4</span>ms</span><br><span class="line">验证签名耗时：<span class="number">0.077</span>ms</span><br><span class="line">验证数字签名，状态: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<p>更改文本内容的一个符号</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">哈希值为：<span class="number">8</span>af<span class="number">6</span>a<span class="number">57</span>f<span class="number">5672e8544</span>ca<span class="number">86</span>ed<span class="number">1</span>adfacb<span class="number">3812</span>f<span class="number">162</span>dcc<span class="number">9</span><span class="keyword">c</span><span class="number">3</span>f<span class="number">9</span><span class="keyword">c</span><span class="number">906791</span><span class="keyword">c</span><span class="number">591e962</span>f<span class="number">78</span></span><br><span class="line">哈希值长度：<span class="number">256</span></span><br><span class="line">数字签名为: <span class="number">1224</span>ce<span class="number">679</span>b<span class="number">2</span>f<span class="number">7</span>ce<span class="number">5</span>ead<span class="number">53</span><span class="keyword">c</span><span class="number">8</span>ddbaf<span class="number">7e130</span>fa<span class="number">21153</span>d<span class="number">7</span>bc<span class="number">0</span>aa<span class="number">8</span>d<span class="number">8</span>ac<span class="number">9</span>d<span class="number">59</span><span class="keyword">c</span><span class="number">9631e2</span>f<span class="number">599468</span>ac<span class="number">4</span>dc<span class="number">754</span>ca<span class="number">8</span>d<span class="number">25</span><span class="keyword">c</span><span class="number">676</span>d<span class="number">335998</span>d<span class="number">8</span>fdf<span class="number">40</span>f<span class="number">7584</span>ec<span class="number">603</span>b<span class="number">0</span>de<span class="number">1e83</span>b<span class="number">15</span>b<span class="number">7e38</span></span><br><span class="line">签名耗时：<span class="number">3</span>ms</span><br><span class="line">验证签名耗时：<span class="number">0.065</span>ms</span><br><span class="line">验证数字签名，状态: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<p>消息内容的更改使哈希函数的输出截然不同，因此数字签名的结果也会截然不同，哈希函数的这种特性使得伪造签名的行为但在实践中不可行。因为需要哈希的消息文本通常非常长，
+而寻找原象的步骤与原消息的长度密切相关。</p>
+<h4 id="附录">附录</h4>
+<p>实验中所用明文</p>
+<ul>
+<li>明文1：12345678123456781234567</li>
+</ul>
+<p>明文1长度：23</p>
+<ul>
+<li>明文2：1234567812345678123456781234567812345678123456781234567812345678123456781234567812345678</li>
+</ul>
+<p>明文2长度：88</p>
+<ul>
+<li>明文3：123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678</li>
+</ul>
+<p>明文3长度：264</p>
+<ul>
+<li>明文4：123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678</li>
+</ul>
+<p>明文4长度：528</p>
+<ul>
+<li>明文5为：123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678</li>
+</ul>
+<p>明文5长度：1848</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0.html" rel="next" title="密码学课程笔记">
+      密码学课程笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A"><span class="nav-number">1.</span> <span class="nav-text">密码学实验报告</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80-des%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.1.</span> <span class="nav-text">实验一 DES加密算法实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.2.</span> <span class="nav-text">实验背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.3.</span> <span class="nav-text">算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.4.</span> <span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.5.</span> <span class="nav-text">实验过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.6.</span> <span class="nav-text">实验代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.1.7.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">1.1.8.</span> <span class="nav-text">结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C-aes%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.2.</span> <span class="nav-text">实验二 AES加密算法实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">实验背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">实验过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">实验代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-1"><span class="nav-number">1.2.7.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90-1"><span class="nav-number">1.2.8.</span> <span class="nav-text">结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89-rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.3.</span> <span class="nav-text">实验三 RSA加密算法实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">实验背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">算法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E9%92%A5%E4%B8%8E%E7%A7%81%E9%92%A5%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">公钥与私钥的产生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E6%B6%88%E6%81%AF"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">加密消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86%E6%B6%88%E6%81%AF"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">解密消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E6%B6%88%E6%81%AF"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">签名消息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="nav-number">1.3.5.</span> <span class="nav-text">实验过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81-2"><span class="nav-number">1.3.6.</span> <span class="nav-text">实验代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90-2"><span class="nav-number">1.3.7.</span> <span class="nav-text">结果分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">2.</span> <span class="nav-text">数字签名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rsa%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">2.1.</span> <span class="nav-text">RSA数字签名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E8%83%8C%E6%99%AF"><span class="nav-number">2.1.1.</span> <span class="nav-text">数字签名背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rsa%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.2.</span> <span class="nav-text">RSA数字签名原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">实验数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">附录</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">FATT</p>
+  <div class="site-description" itemprop="description">南通大学 信息科学技术学院 信息与通信工程专业 21级研究生</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FATT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : ,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
