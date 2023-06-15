@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="深入浅出密码学-课程笔记课程教师：马海英 2110310044 赵涛涛  [TOC] 密码学基本定义密码学本身可以分为三个主要分支： 对称算法：通信双方共享一个密钥，并使用相同的加密方法和解密方法。 非对称算法：与对称密码学不同的是，用户拥有一个公私钥对。可以用于数字签名或者密钥交换。 密码协议：密码协议是针对密码学算法的应用，例如传输层安全方案（TLS）。    替换密码是一种简单的对称加密方法">
+  <meta name="description" content="深入浅出密码学-课程笔记课程教师：马海英 2110310044 赵涛涛  [TOC] 密码学基本定义密码学本身可以分为三个主要分支： 对称算法：通信双方共享一个密钥，并使用相同的加密方法和解密方法。 非对称算法：与对称密码学不同的是，用户拥有一个公私钥对。可以用于数字签名或者密钥交换。 密码协议：密码协议是针对密码学算法的应用，例如传输层安全方案（TLS）。   替换密码是一种简单的对称加密方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="密码学课程笔记">
 <meta property="og:url" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0.html">
 <meta property="og:site_name" content="FATT的个人博客">
-<meta property="og:description" content="深入浅出密码学-课程笔记课程教师：马海英 2110310044 赵涛涛  [TOC] 密码学基本定义密码学本身可以分为三个主要分支： 对称算法：通信双方共享一个密钥，并使用相同的加密方法和解密方法。 非对称算法：与对称密码学不同的是，用户拥有一个公私钥对。可以用于数字签名或者密钥交换。 密码协议：密码协议是针对密码学算法的应用，例如传输层安全方案（TLS）。    替换密码是一种简单的对称加密方法">
+<meta property="og:description" content="深入浅出密码学-课程笔记课程教师：马海英 2110310044 赵涛涛  [TOC] 密码学基本定义密码学本身可以分为三个主要分支： 对称算法：通信双方共享一个密钥，并使用相同的加密方法和解密方法。 非对称算法：与对称密码学不同的是，用户拥有一个公私钥对。可以用于数字签名或者密钥交换。 密码协议：密码协议是针对密码学算法的应用，例如传输层安全方案（TLS）。   替换密码是一种简单的对称加密方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520161955986.png">
 <meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520161814367.png">
@@ -291,14 +291,12 @@
 <p><strong>对称算法</strong>：通信双方共享一个密钥，并使用相同的加密方法和解密方法。</p>
 <p><strong>非对称算法</strong>：与对称密码学不同的是，用户拥有一个公私钥对。可以用于数字签名或者密钥交换。</p>
 <p><strong>密码协议</strong>：密码协议是针对密码学算法的应用，例如传输层安全方案（TLS）。</p>
-<img src="密码学课程笔记/image-20220520161955986.png" alt="image-20220520161955986" style="zoom: 50%;" />
-
+<p><img src="密码学课程笔记/image-20220520161955986.png" alt="image-20220520161955986" style="zoom: 50%;" /></p>
 <hr>
 <p><strong>替换密码</strong>是一种简单的对称加密方法。可以使用蛮力攻击或者密钥穷尽搜索；可以使用字母频率法分析攻击。</p>
 <p><strong>移位密码</strong>是替换密码的一种特例。可以使用蛮力攻击或者密钥穷尽搜索；可以使用字母频率法分析攻击。</p>
 <p><strong>仿射密码</strong>拥有两个密钥，一个密钥（a）用于乘以明文，另一个密钥相当于移位密钥。</p>
-<img src="密码学课程笔记/image-20220520161814367.png" alt="image-20220520161814367" style="zoom: 67%;" />
-
+<p><img src="密码学课程笔记/image-20220520161814367.png" alt="image-20220520161814367" style="zoom: 67%;" /></p>
 <hr>
 <h4 id="Kerckhoffs-原理"><a href="#Kerckhoffs-原理" class="headerlink" title="Kerckhoffs 原理"></a>Kerckhoffs 原理</h4><p>即使除密钥外的整个系统的一切都是公开的, 这个密码体制也必须是安全 的。尤其是即使攻击者知道系统的加密算法和解密算法, 此系统也必须是安全的。</p>
 <hr>
@@ -308,10 +306,10 @@
 <li><p><strong>环</strong>在交换群的基础上，添加了一种二元运算。环上有两种操作，环内元素存在单位元，但不一定存在乘法逆元；（<strong>乘法逆元的判断方法是欧几里得算法</strong>）</p>
 </li>
 <li><p><strong>域</strong>在交换环的基础上，还增加了二元运算除法，要求元素(除零以外)可以作除法运算，即每个非零的元素都要有乘法逆元。域上有两种操作，域内元素一定存在乘法逆元；</p>
-<p>域是一种可以进行加减乘除(除0以外)的代数结构，是数域与四则运算的推广。整数集合，不存在乘法逆元(1&#x2F;3不是整数)，所以整数集合不是域，是环。有理数、实数、复数可以形成域，分别叫有理数域、实数域、复数域。其中，集合元素个数为有限个的域被称为有限域（伽罗瓦域）。</p>
+<p>域是一种可以进行加减乘除(除0以外)的代数结构，是数域与四则运算的推广。整数集合，不存在乘法逆元(1/3不是整数)，所以整数集合不是域，是环。有理数、实数、复数可以形成域，分别叫有理数域、实数域、复数域。其中，集合元素个数为有限个的域被称为有限域（伽罗瓦域）。</p>
 <p><strong>域包含的元素个数称为域的阶或者基</strong></p>
-<p><strong>只有当$m&#x3D;p^{n}$，其中$n$为正整数，$p$为素数，阶为$m$的有限域才存在.</strong></p>
-<p>正如欧几里得算法所得，当且仅当某元素$a$与域的阶$p$互素，$gca(a, p) &#x3D;1, a$的逆元存在，因此在整数环GF（p）中，若p为素数，GF（p）内的所有非零元素都存在乘法逆元，则GF（p）也称为素数域或伽罗瓦域。</p>
+<p><strong>只有当$m=p^{n}$，其中$n$为正整数，$p$为素数，阶为$m$的有限域才存在.</strong></p>
+<p>正如欧几里得算法所得，当且仅当某元素$a$与域的阶$p$互素，$gca(a, p) =1, a$的逆元存在，因此在整数环GF（p）中，若p为素数，GF（p）内的所有非零元素都存在乘法逆元，则GF（p）也称为素数域或伽罗瓦域。</p>
 <p>$GF(2^{m})$内的加法与乘法。加法使用按位异或。乘法满足分配率。模运算可以使用长除法。</p>
 </li>
 </ul>
@@ -341,8 +339,8 @@
 <li>混淆，模糊密钥与密文之间关系的操作。实现混淆的常用元素为替换。</li>
 <li>扩散，是一个隐藏明文统计属性，将明文符号的影响扩散到多个密文符号的加密操作。最简单的实现方法是位置换，用于DES。</li>
 </ul>
-<ol start="2">
-<li><p>AES的密钥长度为128&#x2F;192&#x2F;256，分组大小为128位.</p>
+<ol>
+<li><p>AES的密钥长度为128/192/256，分组大小为128位.</p>
 <p>AES的替换算法为3DES.</p>
 <p>AES密码与分组密码Rijndael基本一致。只有分组为128位的Rijndael算法才称为AES算法。</p>
 <p>AES分为密钥加法层、s-盒、扩散层（行移位，列混淆）。</p>
@@ -355,221 +353,129 @@
 <p><strong>结合使用：</strong>可以使用公钥加密算法建立安全信道，交换对称密钥，这样可以在保证密钥安全交换的基础上降低加解密开销。</p>
 <p>公钥加密方案都来自于一个公共原理，即<strong>单向函数</strong>：</p>
 <ul>
-<li><p>该函数在$y&#x3D;f(x)$上的计算是容易的，</p>
+<li><p>该函数在$y=f(x)$上的计算是容易的，</p>
 </li>
-<li><p>且在$x&#x3D;f^{-1}(y)$上的计算是不可行的。</p>
+<li><p>且在$x=f^{-1}(y)$上的计算是不可行的。</p>
 </li>
 </ul>
 <h4 id="具有实用性的公钥算法家族"><a href="#具有实用性的公钥算法家族" class="headerlink" title="具有实用性的公钥算法家族"></a>具有实用性的公钥算法家族</h4><p><strong>整数分解方案</strong> 有效公钥方案基于这样一个事实: 因式分解大整数是非常 困难的。这类算法最突出的代表就是 RSA。<br><strong>离散对数方案</strong> 有不少算法都基于有限域内的离散对数问题, 最典型的例 子包括 Diffie-Hellman 密钥交换、Elgamal 加密或数字签名算法(DSA)。<br><strong>椭圆曲线(EC)方案</strong> 离散对数算法的一个推广就是椭圆曲线公钥方案。典 型例子包括椭圆曲线 Diffie-Hellman 密钥交换(ECDH)和椭圆曲线数字签名算法 (ECDSA)。</p>
-<img src="密码学课程笔记/image-20220520193343841.png" alt="image-20220520193343841" style="zoom:67%;" />
-
+<p><img src="密码学课程笔记/image-20220520193343841.png" alt="image-20220520193343841" style="zoom:67%;" /></p>
 <h4 id="公钥算法的基本数论知识"><a href="#公钥算法的基本数论知识" class="headerlink" title="公钥算法的基本数论知识"></a>公钥算法的基本数论知识</h4><ol>
 <li><p>欧几里得算法</p>
-<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520193718362.png" class="" title="image-20220520193718362"></li>
+<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520193718362.png" class="" title="image-20220520193718362">
+</li>
 </ol>
-<img src="密码学课程笔记/image-20220520193823439.png" alt="image-20220520193823439" style="zoom:67%;" />
-
-<ol start="2">
+<p><img src="密码学课程笔记/image-20220520193823439.png" alt="image-20220520193823439" style="zoom:67%;" /></p>
+<ol>
 <li><p>扩展的欧几里得算法</p>
-<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520193918902.png" class="" title="image-20220520193918902"></li>
+<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520193918902.png" class="" title="image-20220520193918902">
+</li>
 </ol>
-<img src="密码学课程笔记/image-20220520194018759.png" alt="image-20220520194018759" style="zoom:67%;" />
-
-<img src="密码学课程笔记/image-20220520194109118.png" alt="image-20220520194109118" style="zoom:67%;" />
-
+<p><img src="密码学课程笔记/image-20220520194018759.png" alt="image-20220520194018759" style="zoom:67%;" /></p>
+<p><img src="密码学课程笔记/image-20220520194109118.png" alt="image-20220520194109118" style="zoom:67%;" /></p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520194357324.png" class="" title="image-20220520194357324">
-
-<ol start="3">
+<ol>
 <li><p>欧拉函数</p>
-<img src="密码学课程笔记/image-20220520194439529.png" alt="image-20220520194439529" style="zoom:67%;" />
-
-<img src="密码学课程笔记/image-20220520194538335.png" alt="image-20220520194538335" style="zoom:67%;" />
+<p><img src="密码学课程笔记/image-20220520194439529.png" alt="image-20220520194439529" style="zoom:67%;" /></p>
+<p><img src="密码学课程笔记/image-20220520194538335.png" alt="image-20220520194538335" style="zoom:67%;" /></p>
 </li>
 <li><p>费马小定理</p>
-<img src="密码学课程笔记/image-20220520194619881.png" alt="image-20220520194619881" style="zoom:67%;" />
-
-<img src="密码学课程笔记/image-20220520194638272.png" alt="image-20220520194638272" style="zoom:67%;" /></li>
+<p><img src="密码学课程笔记/image-20220520194619881.png" alt="image-20220520194619881" style="zoom:67%;" /></p>
+<p><img src="密码学课程笔记/image-20220520194638272.png" alt="image-20220520194638272" style="zoom:67%;" /></p>
+</li>
 </ol>
 <h3 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h3><p>步骤：</p>
 <ul>
 <li><p>密钥生成</p>
-<img src="密码学课程笔记/image-20220520194836572.png" alt="image-20220520194836572" style="zoom:67%;" />
+<p><img src="密码学课程笔记/image-20220520194836572.png" alt="image-20220520194836572" style="zoom:67%;" /></p>
 </li>
 <li><p>加密</p>
-<img src="密码学课程笔记/image-20220520194911466.png" alt="image-20220520194911466" style="zoom:67%;" />
+<p><img src="密码学课程笔记/image-20220520194911466.png" alt="image-20220520194911466" style="zoom:67%;" /></p>
 </li>
 <li><p>解密</p>
-<img src="密码学课程笔记/image-20220520194927967.png" alt="image-20220520194927967" style="zoom:67%;" />
+<p><img src="密码学课程笔记/image-20220520194927967.png" alt="image-20220520194927967" style="zoom:67%;" /></p>
 </li>
 <li><p>示例</p>
-<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520195004285.png" class="" title="image-20220520195004285"></li>
+<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520195004285.png" class="" title="image-20220520195004285">
+</li>
 </ul>
-<img src="密码学课程笔记/image-20220520202444225.png" alt="image-20220520202444225" style="zoom:67%;" />
-
-<img src="密码学课程笔记/第六章1.jpg" alt="第六章1" style="zoom: 50%;" />
-
+<p><img src="密码学课程笔记/image-20220520202444225.png" alt="image-20220520202444225" style="zoom:67%;" /></p>
+<p><img src="密码学课程笔记/第六章1.jpg" alt="第六章1" style="zoom: 50%;" /></p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%85%AD%E7%AB%A02.jpg" class="" title="第六章2">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%85%AD%E7%AB%A03.jpg" class="" title="第六章3">
-
-<img src="密码学课程笔记/image-20220520202627534.png" alt="image-20220520202627534" style="zoom: 80%;" />
-
-<img src="密码学课程笔记/image-20220520202638370.png" alt="image-20220520202638370" style="zoom:80%;" />
-
-<h3 id="模重复平方法"><a href="#模重复平方法" class="headerlink" title="模重复平方法"></a>模重复平方法</h3><img src="密码学课程笔记/image-20220520202740776.png" alt="image-20220520202740776" style="zoom:80%;" />
-
-<img src="密码学课程笔记/image-20220520202802429.png" alt="image-20220520202802429" style="zoom:80%;" />
-
-
-
-<img src="密码学课程笔记/第七章 (1).jpg" alt="第七章 (1)" style="zoom:50%;" />
-
-<img src="密码学课程笔记/第七章 (2).jpg" alt="第七章 (2)" style="zoom:50%;" />
-
-
-
-
-
+<p><img src="密码学课程笔记/image-20220520202627534.png" alt="image-20220520202627534" style="zoom: 80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520202638370.png" alt="image-20220520202638370" style="zoom:80%;" /></p>
+<h3 id="模重复平方法"><a href="#模重复平方法" class="headerlink" title="模重复平方法"></a>模重复平方法</h3><p><img src="密码学课程笔记/image-20220520202740776.png" alt="image-20220520202740776" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520202802429.png" alt="image-20220520202802429" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/第七章 (1).jpg" alt="第七章 (1)" style="zoom:50%;" /></p>
+<p><img src="密码学课程笔记/第七章 (2).jpg" alt="第七章 (2)" style="zoom:50%;" /></p>
 <h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520195745715.png" class="" title="image-20220520195745715">
-
-
-
 <h3 id="离散对数加密"><a href="#离散对数加密" class="headerlink" title="离散对数加密"></a>离散对数加密</h3><ol>
 <li><p>Difie-Hellman 密钥交换</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520200020118.png" class="" title="image-20220520200020118">
-
-<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520195951037.png" class="" title="image-20220520195951037"></li>
+<img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520195951037.png" class="" title="image-20220520195951037">
+</li>
 </ol>
 <p>群</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520200453965.png" class="" title="image-20220520200453965">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520200519576.png" class="" title="image-20220520200519576">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520200546045.png" class="" title="image-20220520200546045">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520200623257.png" class="" title="image-20220520200623257">
-
-<img src="密码学课程笔记/image-20220520200647491.png" alt="image-20220520200647491" style="zoom:80%;" />
-
-<img src="密码学课程笔记/image-20220520200703143.png" alt="image-20220520200703143" style="zoom:80%;" />
-
-<img src="密码学课程笔记/image-20220520200729756.png" alt="image-20220520200729756" style="zoom:80%;" />
-
-<img src="密码学课程笔记/image-20220520200839317.png" alt="image-20220520200839317" style="zoom:80%;" />
-
-<img src="密码学课程笔记/image-20220520200920970.png" alt="image-20220520200920970" style="zoom:80%;" />
-
-
-
-<h4 id="离散对数问题"><a href="#离散对数问题" class="headerlink" title="离散对数问题"></a>离散对数问题</h4><img src="密码学课程笔记/image-20220520201018728.png" alt="image-20220520201018728" style="zoom:80%;" />
-
-<h3 id="Elgamal-加密"><a href="#Elgamal-加密" class="headerlink" title="Elgamal 加密"></a>Elgamal 加密</h3><img src="密码学课程笔记/image-20220520201226727.png" alt="image-20220520201226727" style="zoom:80%;" />
-
-<img src="密码学课程笔记/image-20220520201300543.png" alt="image-20220520201300543" style="zoom:80%;" />
-
+<p><img src="密码学课程笔记/image-20220520200647491.png" alt="image-20220520200647491" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520200703143.png" alt="image-20220520200703143" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520200729756.png" alt="image-20220520200729756" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520200839317.png" alt="image-20220520200839317" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520200920970.png" alt="image-20220520200920970" style="zoom:80%;" /></p>
+<h4 id="离散对数问题"><a href="#离散对数问题" class="headerlink" title="离散对数问题"></a>离散对数问题</h4><p><img src="密码学课程笔记/image-20220520201018728.png" alt="image-20220520201018728" style="zoom:80%;" /></p>
+<h3 id="Elgamal-加密"><a href="#Elgamal-加密" class="headerlink" title="Elgamal 加密"></a>Elgamal 加密</h3><p><img src="密码学课程笔记/image-20220520201226727.png" alt="image-20220520201226727" style="zoom:80%;" /></p>
+<p><img src="密码学课程笔记/image-20220520201300543.png" alt="image-20220520201300543" style="zoom:80%;" /></p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520201320166.png" class="" title="image-20220520201320166">
-
-
-
-
-
 <p>示例</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520202907130.png" class="" title="image-20220520202907130">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520203130246.png" class="" title="image-20220520203130246">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520203406505.png" class="" title="image-20220520203406505">
-
-
-
-
-
 <h3 id="椭圆曲线加密"><a href="#椭圆曲线加密" class="headerlink" title="椭圆曲线加密"></a>椭圆曲线加密</h3><img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520201557757.png" class="" title="image-20220520201557757">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520201646905.png" class="" title="image-20220520201646905">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520201724557.png" class="" title="image-20220520201724557">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520201807199.png" class="" title="image-20220520201807199">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520201905040.png" class="" title="image-20220520201905040">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520202020924.png" class="" title="image-20220520202020924">
-
-
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520203455347.png" class="" title="image-20220520203455347">
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>使用私钥签名，使用公钥验证。签名和验证的内容为消息摘要（消息的哈希）。</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520203655668.png" class="" title="image-20220520203655668">
-
 <p>RSA签名</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520203813048.png" class="" title="image-20220520203813048">
-
 <p>示例</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520203850125.png" class="" title="image-20220520203850125">
-
 <p>Elgamal签名</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204052418.png" class="" title="image-20220520204052418">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204112178.png" class="" title="image-20220520204112178">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204124913.png" class="" title="image-20220520204124913">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204154339.png" class="" title="image-20220520204154339">
-
 <p>DSA</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204308196.png" class="" title="image-20220520204308196">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204328070.png" class="" title="image-20220520204328070">
-
 <p>示例</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204409929.png" class="" title="image-20220520204409929">
-
 <p>ECDSA</p>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204456365.png" class="" title="image-20220520204456365">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204521950.png" class="" title="image-20220520204521950">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204914073.png" class="">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520204945477.png" class="" title="image-20220520204945477">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205005647.png" class="" title="image-20220520205005647">
-
 <h3 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h3><img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205105037.png" class="" title="image-20220520205105037">
-
 <ol>
-<li>抗第一原象性（单向性）：给定一个哈希输出z，找到满足z&#x3D;h（x）的x在计算上不可行。</li>
+<li>抗第一原象性（单向性）：给定一个哈希输出z，找到满足z=h（x）的x在计算上不可行。</li>
 <li>抗第二原象性（弱抗冲突性）：使用相同的哈希值创建两个不同的消息是计算不可行的。</li>
-<li>抗冲突性：找到满足h（x1）&#x3D;h（x2）的两个不同输入x1，x2在计算上不可行。</li>
+<li>抗冲突性：找到满足h（x1）=h（x2）的两个不同输入x1，x2在计算上不可行。</li>
 </ol>
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205615218.png" class="" title="image-20220520205615218">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205631218.png" class="" title="image-20220520205631218">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205747702.png" class="" title="image-20220520205747702">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205805431.png" class="" title="image-20220520205805431">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205819448.png" class="" title="image-20220520205819448">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%E4%BD%9C%E4%B8%9A.jpg" class="" title="第十一章作业">
-
 <h3 id="消息验证码"><a href="#消息验证码" class="headerlink" title="消息验证码"></a>消息验证码</h3><img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520205912221.png" class="" title="image-20220520205912221">
-
 <img src="/uncategorized/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220520210014002.png" class="" title="image-20220520210014002">
 
     </div>
