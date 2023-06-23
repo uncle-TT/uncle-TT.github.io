@@ -23,18 +23,18 @@
     var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="凸优化基础 [TOC] 1. 凸集合 1.1 定义 在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有\(t \cdot x₁ + (1 - t) \cdot x₂ \in C\)，那么集合C就是一个凸集合。 1.2 凸组合 凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素\(x₁,">
+  <meta name="description" content="凸优化基础 1. 凸集合 1.1 定义 在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有\(t \cdot x₁ + (1 - t) \cdot x₂ \in C\)，那么集合C就是一个凸集合。 1.2 凸组合 凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素\(x₁, x₂, ...">
 <meta property="og:type" content="article">
 <meta property="og:title" content="凸优化">
 <meta property="og:url" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96.html">
 <meta property="og:site_name" content="FATT的个人博客">
-<meta property="og:description" content="凸优化基础 [TOC] 1. 凸集合 1.1 定义 在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有\(t \cdot x₁ + (1 - t) \cdot x₂ \in C\)，那么集合C就是一个凸集合。 1.2 凸组合 凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素\(x₁,">
+<meta property="og:description" content="凸优化基础 1. 凸集合 1.1 定义 在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有\(t \cdot x₁ + (1 - t) \cdot x₂ \in C\)，那么集合C就是一个凸集合。 1.2 凸组合 凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素\(x₁, x₂, ...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213252514.png">
 <meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213329623.png">
 <meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213347984.png">
 <meta property="article:published_time" content="2023-06-23T06:26:04.000Z">
-<meta property="article:modified_time" content="2023-06-23T13:35:16.364Z">
+<meta property="article:modified_time" content="2023-06-23T13:56:02.193Z">
 <meta property="article:author" content="FATT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213252514.png">
@@ -182,7 +182,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-23 14:26:04 / 修改时间：21:35:16" itemprop="dateCreated datePublished" datetime="2023-06-23T14:26:04+08:00">2023-06-23</time>
+              <time title="创建时间：2023-06-23 14:26:04 / 修改时间：21:56:02" itemprop="dateCreated datePublished" datetime="2023-06-23T14:26:04+08:00">2023-06-23</time>
             </span>
 
           
@@ -204,7 +204,6 @@
 
       
         <h1 id="凸优化基础">凸优化基础</h1>
-<p>[TOC]</p>
 <h2 id="凸集合">1. 凸集合</h2>
 <h3 id="定义">1.1 定义</h3>
 <p>在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有<span
@@ -379,14 +378,14 @@ class="math inline">\(P_{\text{max}}\)</span>
   L(\mathbf{w}, \lambda) &amp;= R_{\text{sum}} - \lambda
 \left(\|\mathbf{w}\|_2^2 - P_{\text{max}}\right)
   \end{align*}
-  \]</span></p></li>
+\]</span></p></li>
 <li><p>对拉格朗日函数 <span class="math inline">\(L(\mathbf{w},
 \lambda)\)</span> 求解最大化问题： <span class="math display">\[
   \begin{align*}
   \text{maximize} &amp; \quad L(\mathbf{w}, \lambda) \\
   \text{subject to} &amp; \quad \mathbf{w} \in \mathcal{W}
   \end{align*}
-  \]</span> 其中，<span class="math inline">\(\mathcal{W}\)</span>
+\]</span> 其中，<span class="math inline">\(\mathcal{W}\)</span>
 是波束权向量的可行域，根据具体的问题可以定义不同的约束条件。</p></li>
 <li><p>进行迭代：</p>
 <ul>
@@ -667,6 +666,61 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
