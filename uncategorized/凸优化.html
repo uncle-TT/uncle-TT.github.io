@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="凸优化基础 [TOC] 1. 凸集合 1.1 定义 在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有\(t \cdot x₁ + (1 - t) \cdot x₂ \in C\)，那么集合C就是一个凸集合。 1.2 凸组合 凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素\(x₁,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="凸优化">
+<meta property="og:url" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96.html">
+<meta property="og:site_name" content="FATT的个人博客">
+<meta property="og:description" content="凸优化基础 [TOC] 1. 凸集合 1.1 定义 在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有\(t \cdot x₁ + (1 - t) \cdot x₂ \in C\)，那么集合C就是一个凸集合。 1.2 凸组合 凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素\(x₁,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213252514.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213329623.png">
+<meta property="og:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213347984.png">
+<meta property="article:published_time" content="2023-06-23T06:26:04.000Z">
+<meta property="article:modified_time" content="2023-06-23T13:35:16.364Z">
+<meta property="article:author" content="FATT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213252514.png">
+
+<link rel="canonical" href="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>凸优化 | FATT的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FATT的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">技术笔记和随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://uncle-tt.github.io/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="FATT">
+      <meta itemprop="description" content="南通大学 信息科学技术学院 信息与通信工程专业 21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FATT的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          凸优化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-23 14:26:04 / 修改时间：21:35:16" itemprop="dateCreated datePublished" datetime="2023-06-23T14:26:04+08:00">2023-06-23</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="凸优化基础">凸优化基础</h1>
+<p>[TOC]</p>
+<h2 id="凸集合">1. 凸集合</h2>
+<h3 id="定义">1.1 定义</h3>
+<p>在凸优化中，凸集合是一种具有特殊性质的集合。给定一个集合C，如果对于C中的任意两个元素x₁和x₂，以及0到1之间的任意实数t，都有<span
+class="math inline">\(t \cdot x₁ + (1 - t) \cdot x₂ \in
+C\)</span>，那么集合C就是一个凸集合。</p>
+<h3 id="凸组合">1.2 凸组合</h3>
+<p>凸组合是凸集合中的一种特殊组合形式。给定一个凸集合C和C中的n个元素<span
+class="math inline">\(x₁, x₂, ..., x_n\)</span>，对于任意非负实数<span
+class="math inline">\(t₁, t₂, ..., t_n\)</span>，且满足<span
+class="math inline">\(t₁ + t₂ + ... + t_n =
+1\)</span>，凸组合定义为<span class="math inline">\(y = t₁ \cdot x₁ + t₂
+\cdot x₂ + ... + t_n \cdot x_n\)</span>。当所有的<span
+class="math inline">\(t\_i\)</span>非负且满足和为1时，y是C中的一个凸组合。</p>
+<h3 id="凸包">1.3 凸包</h3>
+<p>凸包是包含凸集合中所有点的最小凸集合。换句话说，凸包是由凸集合中所有凸组合形成的集合。凸包可以用来描述凸集合的边界。</p>
+<h3 id="示例与图像展示">1.4 示例与图像展示</h3>
+<p>下面是一些常见的凸集合的示例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 示例1: 凸集合为一个球体</span></span><br><span class="line">center = np.array([<span class="number">0</span>, <span class="number">0</span>])  <span class="comment"># 球心</span></span><br><span class="line">radius = <span class="number">1</span>  <span class="comment"># 半径</span></span><br><span class="line">theta = np.linspace(<span class="number">0</span>, <span class="number">2</span> * np.pi, <span class="number">100</span>)  <span class="comment"># 角度</span></span><br><span class="line">x = center[<span class="number">0</span>] + radius * np.cos(theta)</span><br><span class="line">y = center[<span class="number">1</span>] + radius * np.sin(theta)</span><br><span class="line">plt.plot(x, y, label=<span class="string">&quot;Convex Set 1&quot;</span>)</span><br><span class="line"><span class="comment"># 示例2: 凸集合为一个正方形</span></span><br><span class="line">x = [-<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>]</span><br><span class="line">y = [-<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, -<span class="number">1</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">&quot;Convex Set 2&quot;</span>)</span><br><span class="line"><span class="comment"># 示例3: 凸集合为一个多边形</span></span><br><span class="line">x = [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">y = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>, -<span class="number">1</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">&quot;Convex Set 3&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Examples of Convex Sets&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213252514.png" class="" title="示例1">
+<img src="/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213329623.png" class="" title="示例2">
+<img src="/uncategorized/%E5%87%B8%E4%BC%98%E5%8C%96/image-20230623213347984.png" class="" title="示例3">
+<p>上述示例中，示例1展示了一个球体作为凸集合，示例2展示了一个正方形作为凸集合，示例3展示了一个多边形作为凸集合。</p>
+<h2 id="凸函数">2. 凸函数</h2>
+<h3 id="定义-1">2.1 定义</h3>
+<p>凸函数是一类具有特殊性质的函数。给定定义在实数域上的函数<span
+class="math inline">\(f(x)\)</span>，如果对于任意的实数x₁和x₂，以及0到1之间的任意实数t，都有<span
+class="math inline">\(f(t \cdot x₁ + (1 - t) \cdot x₂) \leq t \cdot
+f(x₁) + (1 - t) \cdot f(x₂)\)</span>，那么函数<span
+class="math inline">\(f(x)\)</span>就是凸函数。</p>
+<h3 id="一阶凸性和二阶凸性">2.2 一阶凸性和二阶凸性</h3>
+<p>凸函数的一阶和二阶导数性质对其凸性起到重要作用。</p>
+<ul>
+<li><p>一阶凸性：如果对于定义在开区间(a,
+b)上的函数f(x)，对于任意两个实数x₁和x₂，以及0到1之间的任意实数t，如果<span
+class="math inline">\(f(tx₁ + (1 - t)x₂) \leq tf(x₁) + (1 -
+t)f(x₂)\)</span>，那么函数f(x)在区间(a, b)上是凸函数。</p></li>
+<li><p>二阶凸性：如果定义在开区间<span class="math inline">\((a,
+b)\)</span>上的函数<span
+class="math inline">\(f(x)\)</span>的二阶导数存在且非负，即<span
+class="math inline">\(f&#39;&#39;(x) \geq 0\)</span>，那么函数<span
+class="math inline">\(f(x)\)</span>在区间<span class="math inline">\((a,
+b)\)</span>上是凸函数。</p></li>
+</ul>
+<h3 id="凸函数的性质">2.3 凸函数的性质</h3>
+<p>凸函数具有以下重要性质：</p>
+<ul>
+<li><p>对于凸函数f(x)，对于任意的实数x₁和x₂，以及0到1之间的任意实数t，都有<span
+class="math inline">\(f(tx₁ + (1 - t)x₂) \leq tf(x₁) + (1 -
+t)f(x₂)\)</span>。这被称为凸函数的凸组合性质。</p></li>
+<li><p>凸函数的局部最小值也是全局最小值。对于凸函数<span
+class="math inline">\(f(x)\)</span>，任何局部最小值都是其全局最小值。</p></li>
+</ul>
+<h2 id="保凸运算">3. 保凸运算</h2>
+<h3 id="加法和标量乘法">3.1 加法和标量乘法</h3>
+<p>保凸运算是指对凸集合和凸函数进行一些操作后仍然保持其凸性质的运算。</p>
+<ul>
+<li><p>加法：如果C₁和C₂是凸集合，那么它们的和集合C = C₁ + C₂定义为<span
+class="math inline">\(C = {x + y | x \in C₁, y \in
+C₂}\)</span>，并且C也是凸集合。</p></li>
+<li><p>标量乘法：如果C是凸集合，那么对于任意的实数a，集合<span
+class="math inline">\(aC\)</span>定义为<span class="math inline">\(aC =
+{ax | x \in C}\)</span>，并且<span
+class="math inline">\(aC\)</span>也是凸集合。</p></li>
+</ul>
+<h3 id="函数复合">3.2 函数复合</h3>
+<p>如果<span class="math inline">\(f(x)\)</span>是一个凸函数，<span
+class="math inline">\(g(x)\)</span>是一个仿射函数（线性函数加上常数项），那么复合函数<span
+class="math inline">\(h(x) = f(g(x))\)</span>也是凸函数。</p>
+<h2 id="凸优化问题">4. 凸优化问题</h2>
+<h3 id="问题形式">4.1 问题形式</h3>
+<p>在数学上，优化问题通常被定义为如下形式：</p>
+<p><span class="math display">\[\min f_{0}(x) \\ \text{s. t.} f_{i}(x)
+\leq b_{i}, i=1, \ldots, m\]</span></p>
+<p>在优化问题中，我们定义了一个<strong>优化变量 </strong><span
+class="math inline">\(x\)</span>，目标是最小化<strong>目标函数</strong>
+<span
+class="math inline">\(f_0(x)\)</span>，同时满足一系列<strong>约束函数</strong>
+<span
+class="math inline">\(f_i(x)\)</span>。通过在优化变量的可行域中搜索，我们可以找到目标函数的最大值或最小值，同时满足约束函数的限制。对于最小化问题，我们的目标是找到一个最优解
+<span
+class="math inline">\(x^*\)</span>，使得目标函数在约束函数限制的值域内取得最小值。</p>
+<p>在搜索优化变量的可行域时，我们使用的方法被称为<strong>优化算法</strong>。</p>
+<p>在优化问题中，全局最优解指的是在整个变量集合上取得最小值的解。局部最优解指的是在某个特定区域内取得最小值的解。对于<strong>凸优化问题</strong>，任何局部最优解都是其全局最优解。利用凸函数的性质，研究者们开发了许多高效的算法来寻找凸优化问题的全局最优解。</p>
+<p>然而，对于<strong>非凸优化问题</strong>，情况变得更加复杂。非凸优化问题的目标函数和约束条件可能存在多个局部最优解，因此寻找全局最优解变得困难且计算复杂度较高。除了一些特殊问题可以被特定方法解决外，大部分非凸优化问题仍然缺乏有效的解决方法。</p>
+<p>凸优化问题总能找到全局最优解，因此将非凸优化问题转化为凸优化问题成为研究的重点。</p>
+<h2 id="实例">5. 实例</h2>
+<h3 id="逐次凸逼近">逐次凸逼近</h3>
+<p>Sequential Convex
+Approximation，SCA）是一种常用的方法，用于处理非凸优化问题。它通过将非凸问题逐步逼近为一系列凸子问题来求解。</p>
+<p>SCA的基本原理如下：</p>
+<ol type="1">
+<li>初始化：给定初始点 <span
+class="math inline">\(\mathbf{x}_0\)</span>。</li>
+<li>进行迭代：
+<ol type="a">
+<li>在当前点 <span class="math inline">\(\mathbf{x}_k\)</span>
+处，对非凸目标函数进行一次凸逼近，得到局部凸近似目标函数 <span
+class="math inline">\(f_k(\mathbf{x})\)</span>。</li>
+<li>求解凸近似问题，即最小化 <span
+class="math inline">\(f_k(\mathbf{x})\)</span>，在一组凸约束条件下，找到局部最优解
+<span class="math inline">\(\mathbf{x}_{k+1}\)</span>。</li>
+<li>检查终止准则，如果满足，则停止迭代，返回最优解 <span
+class="math inline">\(\mathbf{x}_{k+1}\)</span>；否则，返回步骤
+b，继续迭代。</li>
+</ol></li>
+<li>返回最优解 <span
+class="math inline">\(\mathbf{x}_{k+1}\)</span>。</li>
+</ol>
+<p>在每一次迭代中，我们将原始非凸目标函数进行一次凸逼近。这可以通过不同的方法实现，如一阶泰勒展开、凸松弛或仿射逼近等。通过逐步逼近，我们可以在每个迭代步骤中获得目标函数在一点处的全局上估计，并求解凸近似问题，逐步接近原始非凸问题的最优解。</p>
+<p>下面，我们使用SCA方法来解决之前提到的波束赋形设计优化问题。假设我们已经将问题转化为如下形式：</p>
+<p>目标函数：最大化总传输速率 <span class="math display">\[
+\begin{align*}
+\text{maximize} &amp; \quad R_{\text{sum}}(\mathbf{w}) \\
+\end{align*}
+\]</span> 约束条件： <span class="math display">\[
+\begin{align*}
+\text{subject to} &amp; \quad \|\mathbf{w}\|_2^2 \leq P_{\text{max}} \\
+\end{align*}
+\]</span> 具体步骤如下：</p>
+<ol type="1">
+<li>初始化：给定初始波束权向量 <span
+class="math inline">\(\mathbf{w}_0\)</span>。</li>
+<li>进行迭代：
+<ol type="a">
+<li>在当前波束权向量 <span class="math inline">\(\mathbf{w}_k\)</span>
+处，对总传输速率进行一次凸逼近，得到局部凸近似目标函数 <span
+class="math inline">\(R_{\text{sum}}(\mathbf{w})_k\)</span>。</li>
+<li>求解凸近似问题，即最大化 <span
+class="math inline">\(R_{\text{sum}}(\mathbf{w})_k\)</span>，在一组凸约束条件下，找到局部最优解
+<span class="math inline">\(\mathbf{w}_{k+1}\)</span>。</li>
+<li>检查终止准则，如果满足，则停止迭代，返回最优解 <span
+class="math inline">\(\mathbf{w}_{k+1}\)</span>；否则，返回步骤
+b，继续迭代。</li>
+</ol></li>
+<li>返回最优解 <span
+class="math inline">\(\mathbf{w}_{k+1}\)</span>。</li>
+</ol>
+<p>在每一次迭代中，我们使用适当的凸逼近方法对目标函数 <span
+class="math inline">\(R_{\text{sum}}(\mathbf{w})\)</span>
+进行逼近，并求解凸近似问题。重复迭代过程，直到满足终止准则为止，最终得到原始非凸问题的一个局部最优解。</p>
+<p>需要注意的是，由于SCA是一种近似方法，它只能提供非凸问题的局部最优解，并且收敛性也无法保证。因此，对于实际应用中的非凸优化问题，需要综合考虑算法的性能和求解结果的质量。</p>
+<h3 id="拉格朗日对偶方法">拉格朗日对偶方法</h3>
+<p>非常感谢您的建议。现在我将使用拉格朗日对偶方法来解决无线通信领域的波束赋形设计优化问题。</p>
+<p>问题描述：
+考虑一个MIMO通信系统，其中有一个基站（发射端）和多个用户设备（接收端）。我们的目标是设计基站的波束权向量，以最大化系统的总传输速率。假设我们有
+<span class="math inline">\(N_t\)</span> 个发射天线和 <span
+class="math inline">\(N_r\)</span>
+个接收天线。波束赋形设计问题可以表述为优化波束权向量 <span
+class="math inline">\(\mathbf{w}\)</span>，使得总传输速率最大化。</p>
+<p>目标函数：最大化总传输速率 <span class="math display">\[
+\begin{align*}
+\text{maximize} &amp; \quad R_{\text{sum}} = \sum_{i=1}^{K} R_i \\
+\end{align*}
+\]</span> 其中，<span class="math inline">\(R_{\text{sum}}\)</span>
+是总传输速率，<span class="math inline">\(R_i\)</span> 是用户 <span
+class="math inline">\(i\)</span> 的传输速率。</p>
+<p>约束条件： <span class="math display">\[
+\begin{align*}
+\text{subject to} &amp; \quad \|\mathbf{w}\|_2^2 \leq P_{\text{max}}
+\end{align*}
+\]</span> 其中，<span class="math inline">\(\|\mathbf{w}\|_2^2\)</span>
+表示波束权向量的模长的平方，<span
+class="math inline">\(P_{\text{max}}\)</span>
+是基站的总发射功率限制。</p>
+<p>解决思路：
+使用拉格朗日对偶方法，我们可以将非凸的波束赋形设计优化问题转化为一个凸优化问题。</p>
+<ol type="1">
+<li><p>定义拉格朗日乘子 <span class="math inline">\(\lambda \geq
+0\)</span>。</p></li>
+<li><p>构造拉格朗日函数： <span class="math display">\[
+  \begin{align*}
+  L(\mathbf{w}, \lambda) &amp;= R_{\text{sum}} - \lambda
+\left(\|\mathbf{w}\|_2^2 - P_{\text{max}}\right)
+  \end{align*}
+  \]</span></p></li>
+<li><p>对拉格朗日函数 <span class="math inline">\(L(\mathbf{w},
+\lambda)\)</span> 求解最大化问题： <span class="math display">\[
+  \begin{align*}
+  \text{maximize} &amp; \quad L(\mathbf{w}, \lambda) \\
+  \text{subject to} &amp; \quad \mathbf{w} \in \mathcal{W}
+  \end{align*}
+  \]</span> 其中，<span class="math inline">\(\mathcal{W}\)</span>
+是波束权向量的可行域，根据具体的问题可以定义不同的约束条件。</p></li>
+<li><p>进行迭代：</p>
+<ul>
+<li><ol type="a">
+<li>在当前拉格朗日乘子 <span class="math inline">\(\lambda\)</span>
+的估计下，固定波束权向量 <span
+class="math inline">\(\mathbf{w}\)</span>，通过求解最大化问题来更新拉格朗日乘子的估计
+<span class="math inline">\(\lambda\)</span>。</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>在当前拉格朗日乘子 <span class="math inline">\(\lambda\)</span>
+的估计下，固定拉格朗日乘子 <span
+class="math inline">\(\lambda\)</span>，通过求解波束权向量的最大化问题来更新波束权向量
+<span class="math inline">\(\mathbf{w}\)</span>。</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>更新迭代次数。</li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>检查终止准则，如果满足则停止迭代，否则返回步骤a。</li>
+</ol></li>
+</ul></li>
+<li><p>利用最优解 <span class="math inline">\(\mathbf{w}^*\)</span>
+和拉格朗日乘子 <span
+class="math inline">\(\lambda^*\)</span>，计算总传输速率 <span
+class="math inline">\(R_{\text{sum}}^*\)</span>。</p></li>
+</ol>
+<p>通过拉格朗日对偶方法，我们可以将原始的非凸优化问题转化为求解拉格朗日函数的凸优化问题。然后通过求解凸优化问题，可以得到最优的波束权向量和总传输速率。</p>
+<p>拉格朗日对偶方法通常需要进行迭代求解。在每一次迭代中，我们会更新波束权向量和拉格朗日乘子的估计，并计算相应的拉格朗日函数值。通过迭代，我们逐步接近最优解。</p>
+<p>在每一次迭代中，通过交替地更新波束权向量和拉格朗日乘子，我们可以逐步接近最优解。停止准则通常可以设置为达到最大迭代次数或达到满足收敛条件（目标函数收敛或者函数上估计与下估计间隙收敛）。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/uncategorized/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86.html" rel="prev" title="神经网络的数学原理">
+      <i class="fa fa-chevron-left"></i> 神经网络的数学原理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%B8%E4%BC%98%E5%8C%96%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">凸优化基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E9%9B%86%E5%90%88"><span class="nav-number">1.1.</span> <span class="nav-text">1. 凸集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E7%BB%84%E5%90%88"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 凸组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E5%8C%85"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 凸包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%B1%95%E7%A4%BA"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 示例与图像展示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. 凸函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E5%87%B8%E6%80%A7%E5%92%8C%E4%BA%8C%E9%98%B6%E5%87%B8%E6%80%A7"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 一阶凸性和二阶凸性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 凸函数的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E5%87%B8%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">3. 保凸运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E5%92%8C%E6%A0%87%E9%87%8F%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 加法和标量乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A4%8D%E5%90%88"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 函数复合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">4. 凸优化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 问题形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.5.</span> <span class="nav-text">5. 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%90%E6%AC%A1%E5%87%B8%E9%80%BC%E8%BF%91"><span class="nav-number">1.5.1.</span> <span class="nav-text">逐次凸逼近</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AF%B9%E5%81%B6%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.2.</span> <span class="nav-text">拉格朗日对偶方法</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">FATT</p>
+  <div class="site-description" itemprop="description">南通大学 信息科学技术学院 信息与通信工程专业 21级研究生</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FATT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : ,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"uncle-tt.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略1.背景介绍为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集1。由于无线通信场景的开放性，用户的（个人词库, FedAvg2）（工业识别, Mm-FedAvg3）（智能监控, FedVision4）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。联邦学习">
+  <meta name="description" content="支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略 1.背景介绍 为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集1。由于无线通信场景的开放性，用户的（个人词库, FedAvg2）（工业识别, Mm-FedAvg3）（智能监控, FedVision4）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损">
 <meta property="og:type" content="article">
 <meta property="og:title" content="去蜂窝">
 <meta property="og:url" content="https://uncle-tt.github.io/uncategorized/%E6%97%A0%E8%9C%82%E7%AA%9D.html">
 <meta property="og:site_name" content="FATT的个人博客">
-<meta property="og:description" content="支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略1.背景介绍为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集1。由于无线通信场景的开放性，用户的（个人词库, FedAvg2）（工业识别, Mm-FedAvg3）（智能监控, FedVision4）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。联邦学习">
+<meta property="og:description" content="支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略 1.背景介绍 为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集1。由于无线通信场景的开放性，用户的（个人词库, FedAvg2）（工业识别, Mm-FedAvg3）（智能监控, FedVision4）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-20T13:11:32.000Z">
 <meta property="article:modified_time" content="2022-12-23T10:18:01.398Z">
@@ -206,74 +206,175 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="支持联邦学习的去蜂窝大规模MIMO-网络高效通信策略"><a href="#支持联邦学习的去蜂窝大规模MIMO-网络高效通信策略" class="headerlink" title="支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略"></a><strong>支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略</strong></h4><h4 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h4><p>为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集<sup><a href="#fn_1" id="reffn_1">1</a></sup>。由于无线通信场景的开放性，用户的（个人词库, FedAvg<sup><a href="#fn_2" id="reffn_2">2</a></sup>）（工业识别, Mm-FedAvg<sup><a href="#fn_3" id="reffn_3">3</a></sup>）（智能监控, FedVision<sup><a href="#fn_4" id="reffn_4">4</a></sup>）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。联邦学习支持用户在本地训练模型，是保障用户隐私数据安全的新型机器学习范例。</p>
-<blockquote id="fn_1">
-<sup>1</sup>. Dong, S., Wang, P., &amp; Abbas, K. (2021). A survey on deep learning and its applications. <em>Computer Science Review</em>, <em>40</em>, 100379.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_2">
-<sup>2</sup>. McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient learning of deep networks from decentralized data. In <em>Artificial intelligence and statistics</em> (pp. 1273-1282). PMLR.<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_3">
-<sup>3</sup>. Zhao, Y., Barnaghi, P., &amp; Haddadi, H. (2022, May). Multimodal Federated Learning on IoT Data. In <em>2022 IEEE/ACM Seventh International Conference on Internet-of-Things Design and Implementation (IoTDI)</em> (pp. 43-54). IEEE.<a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_4">
-<sup>4</sup>. Deng, Y., Han, T., &amp; Ansari, N. (2020). FedVision: Federated video analytics with edge computing. <em>IEEE Open Journal of the Computer Society</em>, <em>1</em>, 62-72.<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a>
-</blockquote>
+        <h4
+id="支持联邦学习的去蜂窝大规模mimo-网络高效通信策略"><strong>支持联邦学习的去蜂窝大规模MIMO
+网络高效通信策略</strong></h4>
+<h4 id="背景介绍">1.背景介绍</h4>
+<p>为了给用户提供私人化、定制化的智能服务，集中式机器学习要求用户数据被发送到云端服务器作为训练人工智能模型的源数据集<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>。由于无线通信场景的开放性，用户的（个人词库,
+FedAvg<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>）（工业识别, Mm-FedAvg<a href="#fn3"
+class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>）（智能监控, FedVision<a href="#fn4"
+class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>）隐私数据上传到云服务器的过程中存在泄露风险，会给用户带来不必要的困扰和损失。联邦学习支持用户在本地训练模型，是保障用户隐私数据安全的新型机器学习范例。</p>
 <p>为了保护用户的数据隐私，联邦学习提出用户仅需要上传本地模型的参数到云服务器。然而，将有海量智能设备通过无线通信链路更新模型参数，一方面，大量数据上传使得通信系统中的干扰水平提高，增加了通信开销；另一方面无线信道的复杂性使得用户设备的服务质量无法得到保证，无线信道质量较差的设备需要更长的上传时间，这降低了通信效率，并增加了全局训练时延。前者取决于通信系统的抗干扰能力，而后者则与用户设备的通信策略相关。在实际应用中，通信系统由工业电源供电，无须担心高功耗负载带来的续航问题，而无线设备通过锂电池供电，低通信效率将显著增加无线设备的能量消耗。</p>
-<hr>
+<hr />
 <p>在大规模无线网络中，海量用户设备进行数据收发导致了无线信道的复杂性，因此总存在一部分用户受到严重干扰，使得这部分用户的通信效率降低。如图1所示，由于中心服务器需要等待所有参与联邦学习进程的用户设备接收训练更新，通信效率低的用户设备将导致参与训练的其他用户设备的功耗增加，这就是所谓的落后者效应。</p>
 <p>落后者效应导致在每轮更新过程中，网络中总存在一部分用户在训练过程中的不必要的待机时间和功耗大大增加，</p>
-<p>为了节省UE端的能耗，我们需要在联邦学习过程中抑制落后者效应。文献<sup><a href="#fn_5" id="reffn_5">5</a></sup><sup><a href="#fn_6" id="reffn_6">6</a></sup><sup><a href="#fn_7" id="reffn_7">7</a></sup>中提出联邦学习在每次迭代中，只需要一个终端的子集而不是所有终端发送本地更新。通过特定的采样技术选择用户设备的子集，使训练更新的聚合是无偏的，从而使联邦学习过程收敛。使用用户设备采样的网络比不使用用户设备采样的网络有更小的落后者用户设备的概率。因此，在这个意义上，落后者效应得到了缓解。然而，抽样的某些用户设备可能是掉线的用户设备，因此，仅使用用户设备采样技术并不总是有效地缓解落后者效应。另一方面，文献<sup><a href="#fn_8" id="reffn_8">8</a></sup><sup><a href="#fn_9" id="reffn_9">9</a></sup>提出了用户选择方法来缓解落后者效应。文献<sup><a href="#fn_8" id="reffn_8">8</a></sup>开发了一种在线方案，在每次迭代中选择用户设备以最小化训练时间，同时保证联邦学习过程的收敛性。文献<sup><a href="#fn_9" id="reffn_9">9</a></sup>中设计了一种联合设计训练时间最小化的带宽分配和用户设备选择的次优方案。文献<sup><a href="#fn_10" id="reffn_10">10</a></sup>中引入了一种联合联邦学习、资源分配和用户设备选择方案的新型联邦学习框架，以在达到一定联邦学习精度的同时最小化训练时间。但是，在时分多址、频分多址和正交频分多址网络中实现联邦学习，如<sup><a href="#fn_8" id="reffn_8">8</a></sup><sup><a href="#fn_10" id="reffn_10">10</a></sup>，可能效率不高。在这些网络中，联邦学习训练时间显著增加，特别是当用户设备数量较大时。</p>
-<p><sup><a href="#fn_5" id="reffn_5">5</a></sup>:McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient learning of deep networks from decentralized data. In <em>Artificial intelligence and statistics</em> (pp. 1273-1282). PMLR.<br><sup><a href="#fn_6" id="reffn_6">6</a></sup>: X. Li, K. Huang, W. Yang, S. Wang, and Z. Zhang, “On the convergence of FedAvg on Non-IID data,” in Proc. Int. Conf. Learning Representations (ICLR), 2020.<br><sup><a href="#fn_7" id="reffn_7">7</a></sup>: Haddadpour, F., &amp; Mahdavi, M. (2019). On the convergence of local descent methods in federated learning. <em>arXiv preprint arXiv:1910.14425</em>.<br><sup><a href="#fn_8" id="reffn_8">8</a></sup>:Xia, W., Quek, T. Q., Guo, K., Wen, W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client scheduling for federated learning. <em>IEEE Transactions on Wireless Communications</em>, <em>19</em>(11), 7108-7123.<br><sup><a href="#fn_9" id="reffn_9">9</a></sup>:Vu, T. T., Ngo, D. T., Ngo, H. Q., Dao, M. N., Tran, N. H., &amp; Middleton, R. H. (2022). Joint Resource Allocation to Minimize Execution Time of Federated Learning in Cell-Free Massive MIMO. <em>IEEE Internet of Things Journal</em>.<br><sup><a href="#fn_10" id="reffn_10">10</a></sup>:M. Chen, H. V. Poor, W. Saad, and S. Cui, “Convergence time minimization of federated learning over wireless networks,” in <em>Proc. IEEE Int. Conf. Commun. (ICC)</em>, 2020, pp. 1–6.</p>
-<p>近年来，无蜂窝的大规模多输入多输出(CFmMIMO)网络被认为是在<sup><a href="#fn_11" id="reffn_11">11</a></sup>无线网络上支持联邦学习的绝佳选择。在CFmMIMO网络中，用户设备由大量的分布式接入点通过相同频段的无线链路同时提供服务，接入点通过回程链路连接到中央处理器。CFmMIMO网络提供了宏分集增益，从而为所有终端<sup><a href="#fn_12" id="reffn_12">12</a></sup>提供高质量的服务。更重要的是，CFmMIMO网络提供了信道硬化<sup><a href="#fn_13" id="reffn_13">13</a></sup>，即有效信道增益在一个大尺度相干时间内相当稳定。利用这一特性，文献<sup><a href="#fn_11" id="reffn_11">11</a></sup>提出了一个联邦学习框架，使联邦学习过程的每次迭代发生在一个大尺度相干时间内。然而，现有工作仍未研究落后者效应对用户终端功耗的影响，因此用于减轻无细胞大规模 MIMO 网络上联邦学习的落后者效应的方法尚未被研究。</p>
-<blockquote id="fn_11">
-<sup>11</sup>. T. T. Vu, D. T. Ngo, N. H. Tran, H. Q. Ngo, M. N. Dao, and R. H. Middleton, “Cell-free massive MIMO for wireless federated learning,” <em>IEEE Trans. Wireless Commun.</em>, 2020.<a href="#reffn_11" title="Jump back to footnote [11] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_12">
-<sup>12</sup>. H. Q. Ngo, A. Ashikhmin, H. Yang, E. G. Larsson, and T. L. Marzetta, “Cell-free massive MIMO versus small cells,”<em>IEEE Trans. Wireless Commun.</em>, vol. 16, no. 3, pp. 1834–1850, Mar. 2017.<a href="#reffn_12" title="Jump back to footnote [12] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_13">
-<sup>13</sup>. T. L. Marzetta, E. G. Larsson, H. Yang, and H. Q. Ngo, Fundamentals of Massive MIMO. <em>Cambridge University Press</em>, 2016.<a href="#reffn_13" title="Jump back to footnote [13] in the text."> &#8617;</a>
-</blockquote>
-<p>因此本文的研究目标在于通过缓解无蜂窝网络中进行联邦学习的落后者效应，降低用户设备的功耗。</p>
+<p>为了节省UE端的能耗，我们需要在联邦学习过程中抑制落后者效应。文献<a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a><a href="#fn6" class="footnote-ref"
+id="fnref6" role="doc-noteref"><sup>6</sup></a><a href="#fn7"
+class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a>中提出联邦学习在每次迭代中，只需要一个终端的子集而不是所有终端发送本地更新。通过特定的采样技术选择用户设备的子集，使训练更新的聚合是无偏的，从而使联邦学习过程收敛。使用用户设备采样的网络比不使用用户设备采样的网络有更小的落后者用户设备的概率。因此，在这个意义上，落后者效应得到了缓解。然而，抽样的某些用户设备可能是掉线的用户设备，因此，仅使用用户设备采样技术并不总是有效地缓解落后者效应。另一方面，文献<a
+href="#fn8" class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref"
+id="fnref9"
+role="doc-noteref"><sup>9</sup></a>提出了用户选择方法来缓解落后者效应。文献<a
+href="#fn10" class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a>开发了一种在线方案，在每次迭代中选择用户设备以最小化训练时间，同时保证联邦学习过程的收敛性。文献<a
+href="#fn11" class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a>中设计了一种联合设计训练时间最小化的带宽分配和用户设备选择的次优方案。文献<a
+href="#fn12" class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a>中引入了一种联合联邦学习、资源分配和用户设备选择方案的新型联邦学习框架，以在达到一定联邦学习精度的同时最小化训练时间。但是，在时分多址、频分多址和正交频分多址网络中实现联邦学习，如<a
+href="#fn13" class="footnote-ref" id="fnref13"
+role="doc-noteref"><sup>13</sup></a><a href="#fn14" class="footnote-ref"
+id="fnref14"
+role="doc-noteref"><sup>14</sup></a>，可能效率不高。在这些网络中，联邦学习训练时间显著增加，特别是当用户设备数量较大时。</p>
+<p>近年来，无蜂窝的大规模多输入多输出(CFmMIMO)网络被认为是在<a
+href="#fn15" class="footnote-ref" id="fnref15"
+role="doc-noteref"><sup>15</sup></a>无线网络上支持联邦学习的绝佳选择。在CFmMIMO网络中，用户设备由大量的分布式接入点通过相同频段的无线链路同时提供服务，接入点通过回程链路连接到中央处理器。CFmMIMO网络提供了宏分集增益，从而为所有终端<a
+href="#fn16" class="footnote-ref" id="fnref16"
+role="doc-noteref"><sup>16</sup></a>提供高质量的服务。更重要的是，CFmMIMO网络提供了信道硬化<a
+href="#fn17" class="footnote-ref" id="fnref17"
+role="doc-noteref"><sup>17</sup></a>，即有效信道增益在一个大尺度相干时间内相当稳定。利用这一特性，文献<a
+href="#fn18" class="footnote-ref" id="fnref18"
+role="doc-noteref"><sup>18</sup></a>提出了一个联邦学习框架，使联邦学习过程的每次迭代发生在一个大尺度相干时间内。然而，现有工作仍未研究落后者效应对用户终端功耗的影响，因此用于减轻无细胞大规模
+MIMO 网络上联邦学习的落后者效应的方法尚未被研究。</p>
 <p>在联邦学习场景下，</p>
 <p>如图1所示，联邦学习的步骤如下。</p>
 <ul>
-<li><p>服务器分发全局模型给参与联邦学习的用户。</p>
-</li>
-<li><p>用户使用个人数据训练本地模型。</p>
-</li>
-<li><p>用户上传本地模型。</p>
-</li>
+<li><p>服务器分发全局模型给参与联邦学习的用户。</p></li>
+<li><p>用户使用个人数据训练本地模型。</p></li>
+<li><p>用户上传本地模型。</p></li>
 <li><p>服务器汇聚多个用户的本地模型生成新的全局模型。</p>
-<p>联邦学习过程将持续进行直到全局模型收敛。</p>
-</li>
+<p>联邦学习过程将持续进行直到全局模型收敛。</p></li>
 </ul>
-<hr>
+<hr />
 <p>通常联邦学习训练模型的迭代过程将持续上千次，随着参与联邦学习的用户数量的增加，联邦学习训练过程传输的数据量使现有通信系统不堪重负。</p>
-<hr>
+<hr />
 <p>【相关工作部分】</p>
 <p>由于上述所有有前途的优势，FL已经吸引了开发者和研究人员的广泛关注。</p>
 <p>目前的研究可以分为以下几类：</p>
 <ul>
 <li><p>提升模型收敛速度，降低全局通信轮次</p>
 <ul>
-<li><p>通过用户调度，提高模型收敛速度。</p>
-</li>
-<li><p>通过优化云端魔性的聚合方式，获得更好的全局模型。</p>
-</li>
-</ul>
-</li>
+<li><p>通过用户调度，提高模型收敛速度。</p></li>
+<li><p>通过优化云端魔性的聚合方式，获得更好的全局模型。</p></li>
+</ul></li>
 <li><p>降低每轮通信的通信消耗（训练时间、数据量）</p>
 <ul>
 <li>通过用户侧或基站侧的资源分配方案降低模型训练的时间</li>
 <li>通过压缩模型参数的方法，降低每轮次通信的数据量</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
+<hr />
 <p>【未来工作】</p>
 <p>在无线网络中，大多数用户设备仅依靠电池维持工作，参与联邦学习的多轮次通信消耗对用户设备的续航时间影响很大，因此高能效的资源分配方案是必要的。基于上述原因，本文提出了一种用户设备的资源分配方案以支持在无蜂窝系统上进行联邦学习。通过建模用户设备在每轮次联邦学习过程中的计算时间、计算功耗、数据传输时间和数据传输功耗，最终在优化用户设备的本地模型精度、上行功率分配系数和CPU时钟频率等变量的基础上，最小化用户设备的能耗。</p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Dong, S., Wang, P., &amp; Abbas, K.
+(2021). A survey on deep learning and its applications. <em>Computer
+Science Review</em>, <em>40</em>, 100379.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>McMahan, B., Moore, E., Ramage, D.,
+Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient
+learning of deep networks from decentralized data. In <em>Artificial
+intelligence and statistics</em> (pp. 1273-1282). PMLR.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Zhao, Y., Barnaghi, P., &amp;
+Haddadi, H. (2022, May). Multimodal Federated Learning on IoT Data. In
+<em>2022 IEEE/ACM Seventh International Conference on Internet-of-Things
+Design and Implementation (IoTDI)</em> (pp. 43-54). IEEE.<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Deng, Y., Han, T., &amp; Ansari, N.
+(2020). FedVision: Federated video analytics with edge computing.
+<em>IEEE Open Journal of the Computer Society</em>, <em>1</em>, 62-72.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>McMahan, B., Moore, E., Ramage, D.,
+Hampson, S., &amp; y Arcas, B. A. (2017, April). Communication-efficient
+learning of deep networks from decentralized data. In <em>Artificial
+intelligence and statistics</em> (pp. 1273-1282). PMLR.<a href="#fnref5"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>X. Li, K. Huang, W. Yang, S. Wang,
+and Z. Zhang, “On the convergence of FedAvg on Non-IID data,” in Proc.
+Int. Conf. Learning Representations (ICLR), 2020.<a href="#fnref6"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Haddadpour, F., &amp; Mahdavi, M.
+(2019). On the convergence of local descent methods in federated
+learning. <em>arXiv preprint arXiv:1910.14425</em>.<a href="#fnref7"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>Xia, W., Quek, T. Q., Guo, K., Wen,
+W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client
+scheduling for federated learning. <em>IEEE Transactions on Wireless
+Communications</em>, <em>19</em>(11), 7108-7123.<a href="#fnref8"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>Vu, T. T., Ngo, D. T., Ngo, H. Q.,
+Dao, M. N., Tran, N. H., &amp; Middleton, R. H. (2022). Joint Resource
+Allocation to Minimize Execution Time of Federated Learning in Cell-Free
+Massive MIMO. <em>IEEE Internet of Things Journal</em>.<a href="#fnref9"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>Xia, W., Quek, T. Q., Guo, K., Wen,
+W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client
+scheduling for federated learning. <em>IEEE Transactions on Wireless
+Communications</em>, <em>19</em>(11), 7108-7123.<a href="#fnref10"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>Vu, T. T., Ngo, D. T., Ngo, H. Q.,
+Dao, M. N., Tran, N. H., &amp; Middleton, R. H. (2022). Joint Resource
+Allocation to Minimize Execution Time of Federated Learning in Cell-Free
+Massive MIMO. <em>IEEE Internet of Things Journal</em>.<a
+href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>M. Chen, H. V. Poor, W. Saad, and S.
+Cui, “Convergence time minimization of federated learning over wireless
+networks,” in <em>Proc. IEEE Int. Conf. Commun. (ICC)</em>, 2020, pp.
+1–6.<a href="#fnref12" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p>Xia, W., Quek, T. Q., Guo, K., Wen,
+W., Yang, H. H., &amp; Zhu, H. (2020). Multi-armed bandit-based client
+scheduling for federated learning. <em>IEEE Transactions on Wireless
+Communications</em>, <em>19</em>(11), 7108-7123.<a href="#fnref13"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14" role="doc-endnote"><p>M. Chen, H. V. Poor, W. Saad, and S.
+Cui, “Convergence time minimization of federated learning over wireless
+networks,” in <em>Proc. IEEE Int. Conf. Commun. (ICC)</em>, 2020, pp.
+1–6.<a href="#fnref14" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn15" role="doc-endnote"><p>T. T. Vu, D. T. Ngo, N. H. Tran, H.
+Q. Ngo, M. N. Dao, and R. H. Middleton, “Cell-free massive MIMO for
+wireless federated learning,” <em>IEEE Trans. Wireless Commun.</em>,
+2020.<a href="#fnref15" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn16" role="doc-endnote"><p>H. Q. Ngo, A. Ashikhmin, H. Yang, E.
+G. Larsson, and T. L. Marzetta, “Cell-free massive MIMO versus small
+cells,”<em>IEEE Trans. Wireless Commun.</em>, vol. 16, no. 3, pp.
+1834–1850, Mar. 2017.<a href="#fnref16" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn17" role="doc-endnote"><p>T. L. Marzetta, E. G. Larsson, H.
+Yang, and H. Q. Ngo, Fundamentals of Massive MIMO. <em>Cambridge
+University Press</em>, 2016.
+因此本文的研究目标在于通过缓解无蜂窝网络中进行联邦学习的落后者效应，降低用户设备的功耗。<a
+href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18" role="doc-endnote"><p>T. T. Vu, D. T. Ngo, N. H. Tran, H.
+Q. Ngo, M. N. Dao, and R. H. Middleton, “Cell-free massive MIMO for
+wireless federated learning,” <em>IEEE Trans. Wireless Commun.</em>,
+2020.<a href="#fnref18" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
     </div>
 
@@ -362,7 +463,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%BB%E8%9C%82%E7%AA%9D%E5%A4%A7%E8%A7%84%E6%A8%A1MIMO-%E7%BD%91%E7%BB%9C%E9%AB%98%E6%95%88%E9%80%9A%E4%BF%A1%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">支持联邦学习的去蜂窝大规模MIMO 网络高效通信策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">1.背景介绍</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%BB%E8%9C%82%E7%AA%9D%E5%A4%A7%E8%A7%84%E6%A8%A1mimo-%E7%BD%91%E7%BB%9C%E9%AB%98%E6%95%88%E9%80%9A%E4%BF%A1%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">支持联邦学习的去蜂窝大规模MIMO
+网络高效通信策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">1.背景介绍</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -376,7 +478,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
